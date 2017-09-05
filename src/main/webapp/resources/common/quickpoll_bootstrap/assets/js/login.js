@@ -17,7 +17,8 @@ loginJS = {
 						
 						alert(json.loginState);
 						if (json.loginState) {
-							location.href = "main";
+							alert(json.id);
+							location.href = "main?id="+json.id+"";
 						} else {
 							alert("틀렸습니다.")
 							$('#id').val("");

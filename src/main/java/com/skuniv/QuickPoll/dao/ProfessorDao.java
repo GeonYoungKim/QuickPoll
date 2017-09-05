@@ -14,4 +14,8 @@ public class ProfessorDao extends ConnectDB {
 		return (String)selectOne("professor.selectProfessorPassword", professor_id);
 	}
 
+	//
+	public List<Map<String, Object>>selectProfessorList(int professor_id) {
+		return (List<Map<String,Object>>)selectList("professor.selectProfessorList", professor_id);
+	}
 }

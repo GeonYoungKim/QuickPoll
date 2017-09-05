@@ -31,8 +31,12 @@ public class LoginController {
 		String input_password = request.getParameter("password");
 		ModelAndView mv = new ModelAndView("jsonView");
 		boolean login_check = professorService.selectProfessorPassword(professor_id, input_password);
-		System.out.println(login_check);
+//		if (login_check) {
+//			List<Map<String, Object>> list = professorService.selectProfessorList(professor_id);
+//			request.getSession().setAttribute("professorInfo", list);
+//		}
 		mv.addObject("loginState", login_check);
+		mv.addObject("id", professor_id);
 		return mv;
 	}
 }

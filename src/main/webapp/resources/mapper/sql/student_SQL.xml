@@ -6,11 +6,21 @@
 	<select id="selectStudentList" resultType="hashmap">
 		<![CDATA[
 			SELECT
-			    s.student_id, s.name, s.major, p.name as 'professor', s.phone_number, s.email
+			    s.*, p.name as 'professor'
 			FROM
 			    student s, professor p
 			WHERE
 				s.professor_id = p.professor_id
+		]]>
+	</select>
+	<select id="selectMenteeList" resultType="hashmap" parameterType="Integer">
+		<![CDATA[
+			SELECT
+			    *
+			FROM
+			    student
+			WHERE
+				professor_id = #{professor_id}
 		]]>
 	</select>
 </mapper>
