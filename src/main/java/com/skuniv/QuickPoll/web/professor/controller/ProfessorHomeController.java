@@ -1,4 +1,4 @@
-package com.skuniv.QuickPoll;
+package com.skuniv.QuickPoll.web.professor.controller;
 
 import java.util.List;
 import java.util.Map;
@@ -19,10 +19,10 @@ import com.skuniv.QuickPoll.service.ProfessorService;
  * Handles requests for the application home page.
  */
 @Controller
-public class HomeController {
+public class ProfessorHomeController {
 	@Resource(name = "ProfessorService")
 	private ProfessorService professorService;
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	private static final Logger logger = LoggerFactory.getLogger(ProfessorHomeController.class);
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -42,5 +42,14 @@ public class HomeController {
 		mv.addObject("professorInfo", list);
 		return mv;
 	}
-	
+	@RequestMapping(value = "/menteeList")
+	public ModelAndView studentList(HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("menteeList");
+		int id = Integer.parseInt(request.getParameter("id"));
+		List<Map<String, Object>> professorList = professorService.selectProfessorList(id);
+		List<Map<String, Object>> menteeList = professorService.selectMenteeList(id);
+		mv.addObject("professorInfo", professorList);
+		mv.addObject("menteeList", menteeList);
+		return mv;
+	}
 }

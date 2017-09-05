@@ -29,4 +29,8 @@ public class ProfessorService {
 		if (professor_password.equals(input_password)) return true;
 		else return false;
 	}
+	
+	public List<Map<String, Object>> selectMenteeList(int professor_id) throws Exception {
+		return professorDao.selectMenteeList(professor_id);
+	}
 }
