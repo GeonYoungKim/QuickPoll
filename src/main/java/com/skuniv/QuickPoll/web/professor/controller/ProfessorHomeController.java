@@ -46,8 +46,10 @@ public class ProfessorHomeController {
 	public ModelAndView studentList(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("menteeList");
 		int id = Integer.parseInt(request.getParameter("id"));
-		List<Map<String, Object>> list = professorService.selectProfessorList(id);
-		mv.addObject("professorInfo", list);
+		List<Map<String, Object>> professorList = professorService.selectProfessorList(id);
+		List<Map<String, Object>> menteeList = professorService.selectMenteeList(id);
+		mv.addObject("professorInfo", professorList);
+		mv.addObject("menteeList", menteeList);
 		return mv;
 	}
 }
