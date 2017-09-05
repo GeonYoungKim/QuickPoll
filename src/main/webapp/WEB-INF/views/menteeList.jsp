@@ -40,149 +40,51 @@
 		-->
 			<div class="logo">
 				<a href="http://www.creative-tim.com" class="simple-text">
-					Creative Tim
+					Quick Poll
 				</a>
 			</div>
 			<div class="logo logo-mini">
 				<a href="http://www.creative-tim.com" class="simple-text">
-					CT
+					QP
 				</a>
 			</div>
 	    	<div class="sidebar-wrapper">
 				<div class="user">
-	                <div class="photo">
-	                    <img src="resources/common/profile_image/professor/kwak.jpg" />
-	                </div>
-	                <div class="info">
-	                    <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-	                        Chet Faker
-	                        <b class="caret"></b>
-	                    </a>
-	                    <div class="collapse" id="collapseExample">
-	                        <ul class="nav">
-	                            <li><a href="#profile">My Profile</a></li>
-	                            <li><a href="#edit">Edit Profile</a></li>
-	                            <li><a href="#settings">Settings</a></li>
-	                        </ul>
-	                    </div>
-	                </div>
-	            </div>
-	            <ul class="nav">
-					<li>
-	                    <a data-toggle="collapse" href="#dashboardOverview">
-	                        <i class="ti-panel"></i>
-	                        <p>Dashboard
-                                <b class="caret"></b>
-                            </p>
-	                    </a>
-                        <div class="collapse" id="dashboardOverview">
+					<div class="photo">
+						<img
+							src="resources/common/profile_image/${professorInfo[0].profile_img}" />
+					</div>
+					<div class="info">
+						<a data-toggle="collapse" href="#collapseExample"
+							class="collapsed"> ${professorInfo[0].name} <b class="caret"></b>
+						</a>
+						<div class="collapse" id="collapseExample">
 							<ul class="nav">
-								<li><a href="../dashboard/overview.html">Overview</a></li>
-								<li><a href="../dashboard/stats.html">Stats</a></li>
+								<li><a href="#profile">My Profile</a></li>
+								<li><a href="#edit">Edit Profile</a></li>
+								<li><a href="#settings">Settings</a></li>
 							</ul>
 						</div>
-	                </li>
-	                <li>
-	                    <a data-toggle="collapse" href="#componentsExamples">
-	                        <i class="ti-package"></i>
-	                        <p>Components
-	                           <b class="caret"></b>
-	                        </p>
-	                    </a>
-	                    <div class="collapse" id="componentsExamples">
-	                        <ul class="nav">
-	                            <li><a href="../components/buttons.html">Buttons</a></li>
-	                            <li><a href="../components/grid.html">Grid System</a></li>
-	                            <li><a href="../components/panels.html">Panels</a></li>
-	                            <li><a href="../components/sweet-alert.html">Sweet Alert</a></li>
-	                            <li><a href="../components/notifications.html">Notifications</a></li>
-	                            <li><a href="../components/icons.html">Icons</a></li>
-	                            <li><a href="../components/typography.html">Typography</a></li>
-	                        </ul>
-	                    </div>
-	                </li>
-	                <li>
-						<a data-toggle="collapse" href="#formsExamples">
-	                        <i class="ti-clipboard"></i>
-	                        <p>
-								Forms
-	                           <b class="caret"></b>
-	                        </p>
-	                    </a>
-	                    <div class="collapse" id="formsExamples">
-	                        <ul class="nav">
-								<li><a href="../forms/regular.html">Regular Forms</a></li>
-								<li><a href="../forms/extended.html">Extended Forms</a></li>
-								<li><a href="../forms/validation.html">Validation Forms</a></li>
-	                            <li><a href="../forms/wizard.html">Wizard</a></li>
-	                        </ul>
-	                    </div>
-	                </li>
-					<li>
-						<a data-toggle="collapse" href="#tablesExamples">
-	                        <i class="ti-view-list-alt"></i>
-	                        <p>
-								Table list
-	                           <b class="caret"></b>
-	                        </p>
-	                    </a>
-	                    <div class="collapse" id="tablesExamples">
-	                        <ul class="nav">
-								<li><a href="../tables/regular.html">Regular Tables</a></li>
-	                            <li><a href="../tables/extended.html">Extended Tables</a></li>
-	                            <li><a href="../tables/bootstrap-table.html">Bootstrap Table</a></li>
-								<li><a href="../tables/datatables.net.html">DataTables.net</a></li>
-	                        </ul>
-	                    </div>
-	                </li>
-	                <li>
-						<a data-toggle="collapse" href="#mapsExamples">
-	                        <i class="ti-map"></i>
-	                        <p>
-								Maps
-	                           <b class="caret"></b>
-	                        </p>
-	                    </a>
-	                    <div class="collapse" id="mapsExamples">
-	                        <ul class="nav">
-								<li><a href="../maps/google.html">Google Maps</a></li>
-								<li><a href="../maps/vector.html">Vector maps</a></li>
-								<li><a href="../maps/fullscreen.html">Full Screen Map</a></li>
-	                        </ul>
-	                    </div>
-	                </li>
-	                <li>
-	                    <a href="../calendar.html">
-	                        <i class="ti-calendar"></i>
-	                        <p>Calendar</p>
-	                    </a>
-	                </li>
-	                <li>
-	                    <a href="../charts.html">
-	                        <i class="ti-bar-chart-alt"></i>
-	                        <p>Charts</p>
-	                    </a>
-	                </li>
-	                <li class="active">
-						<a data-toggle="collapse" href="#pagesExamples" aria-expanded="true">
-	                        <i class="ti-gift"></i>
-	                        <p>
-								Pages
-	                           <b class="caret"></b>
-	                        </p>
-	                    </a>
-	                    <div class="collapse in" id="pagesExamples">
-	                        <ul class="nav">
-								<li><a href="timeline.html">Timeline Page</a></li>
-								<li class="active"><a href="user.html">User Page</a></li>
-								<li><a href="login.html">Login Page</a></li>
-								<li><a href="register.html">Register Page</a></li>
-								<li><a href="lock.html">Lock Screen Page</a></li>
-	                        </ul>
-	                    </div>
-	                </li>
-	            </ul>
-	    	</div>
+					</div>
+				</div>
+				<ul class="nav">
+					<li><a
+						href="main?id=${professorInfo[0].professor_id}"> <i class="ti-view-list-alt"></i>
+							<p>
+								강의 목록 
+							</p>
+					</a>
+					</li>
+					<li class="active"><a href="menteeList?id=${professorInfo[0].professor_id}"> <i
+							class="ti-clipboard"></i>
+							<p>
+								멘티 목록 
+							</p>
+					</a>
+						</li>
+
+				</ul>
+			</div>
 	    </div>
 
 	    <div class="main-panel">

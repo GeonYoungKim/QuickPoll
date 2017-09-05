@@ -11,9 +11,5 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ProfessorController {
-	@RequestMapping(value = "/menteeList")
-	public ModelAndView studentList(HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("menteeList");
-		return mv;
-	}
+	
 }
