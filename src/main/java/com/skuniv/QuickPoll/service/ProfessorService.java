@@ -17,8 +17,12 @@ public class ProfessorService {
 		// TODO Auto-generated method stub
 		return "quickpoll";
 	}
+	public List<Map<String, Object>> selectProfessorList(int professor_id) throws Exception {
+		return professorDao.selectProfessorList(professor_id);
+	}
 	public boolean selectProfessorPassword(int professor_id, String input_password) throws Exception {
 		String professor_password = professorDao.selectProfessorPassword(professor_id);
+		if (professor_password == null) return false;
 		return isLoginCheck(professor_password, input_password);
 	}
 	boolean isLoginCheck(String professor_password, String input_password) {

@@ -13,4 +13,14 @@
 				professor_id = #{professor_id}
 		]]>
 	</select>
+	<select id="selectProfessorList" resultType="hashmap" parameterType="Integer">
+		<![CDATA[
+			SELECT
+			    *
+			FROM
+			    professor
+			WHERE
+				professor_id = #{professor_id}
+		]]>
+	</select>
 </mapper>
