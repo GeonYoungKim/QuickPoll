@@ -20,7 +20,7 @@ public class ProfessorLectureController {
 	// main
 	@RequestMapping(value = "/professorLecture")
 	public ModelAndView mainView(HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("professor_lecture");
+		ModelAndView mv = new ModelAndView("/professor/professor_lecture");
 		int id = Integer.parseInt(request.getParameter("id"));
 		List<Map<String, Object>> professorList = professorService.selectProfessorList(id);
 		List<Map<String, Object>> menteeList = professorService.selectMenteeList(id);

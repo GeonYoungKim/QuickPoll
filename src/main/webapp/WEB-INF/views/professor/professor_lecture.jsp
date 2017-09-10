@@ -65,8 +65,8 @@
 			<div class="sidebar-wrapper">
 				<div class="user">
 					<div class="photo">
-					<input type="hidden" id="id" value="${professorInfo[0].professor_id}">
-						<img
+						<input type="hidden" id="id"
+							value="${professorInfo[0].professor_id}"> <img
 							src="resources/common/profile_image/${professorInfo[0].profile_img}" />
 					</div>
 					<div class="info">
@@ -154,45 +154,85 @@
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-lg-6 col-md-7">
-							<div class="card">
-								<div class="header">
-									<h4 class="title">접속</h4>
-								</div>
-								<div class="content">
-									<ul class="list-unstyled team-members">
-										<c:choose>
-											<c:when test="${fn:length(menteeList) > 0}">
-												<c:forEach items="${menteeList}" var="row">
-													<li>
-														<div class="row">
-															<div class="col-xs-3">
-																<div class="avatar">
-																	<img
-																		src="resources/common/profile_image/${row.profile_img}"
-																		alt="Circle Image"
-																		class="img-circle img-no-padding img-responsive">
+							<div class="card card-wizard" id="wizardCard">
+								<form id="wizardForm" method="" action="">
+									<div class="header text-center">
+										<h4 class="title">Awesome Wizard</h4>
+										<p class="category">Split a complicated flow in multiple
+											steps</p>
+									</div>
+									<div class="content">
+										<ul class="nav">
+											<li><a href="#direct_question" data-toggle="tab">즉석
+													문제</a></li>
+											<li><a onclick="createQuestion.loadQuestion();"
+												href="#upload_question" data-toggle="tab">문제 가져오기</a></li>
+
+										</ul>
+										<div class="tab-content">
+											<div class="tab-pane" id="direct_question">
+												<h5 class="text-center">Please tell us more about
+													yourself.</h5>
+												<div class="row">
+													<div class="col-md-10 col-md-offset-1">
+														<div class="form-group">
+															<label class="control-label"> 문제 </label> <input
+																class="form-control" type="text" name="question"
+																placeholder="ex: 궁금한거 물어보세요~" />
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="tab-pane" id="upload_question">
+												<h5 class="text-center">Please give us more details
+													about your platform.</h5>
+												<div class="row">
+													<div class="col-md-10 col-md-offset-1">
+
+														<div class="content">
+															<div class="nav-tabs-navigation">
+																<div class="nav-tabs-wrapper">
+																	<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+																		<li class="active"><a href="#objective"
+																			data-toggle="tab">객관식 문제</a></li>
+																		<li><a
+																			onclick="createQuestion.loadSubjectiveQuestion();"
+																			href="#subjective" data-toggle="tab">주관식 문제</a></li>
+																		<li><a href="#ox" data-toggle="tab">OX 문제</a></li>
+																	</ul>
 																</div>
 															</div>
-															<div class="col-xs-6">
-																${row.name} <br /> <span class="text-muted"><small>Offline</small></span>
-															</div>
-															<div class="col-xs-3 text-right">
-																<btn class="btn btn-sm btn-success btn-icon"> <i
-																	class="fa fa-envelope"></i></btn>
+															<div id="my-tab-content" class="tab-content text-center">
+																<div class="tab-pane active" id="objective">
+																	<div class="content">
+																		<div id="objective_header"></div>
+
+																	</div>
+																</div>
+																<div class="tab-pane" id="subjective">
+																	<div class="content">
+																		<div id="subjective_header"></div>
+																		<!--  end acordeon -->
+																	</div>
+																</div>
+																<div class="tab-pane" id="ox">
+																	<p>Here are your messages.</p>
+																</div>
 															</div>
 														</div>
-													</li>
-												</c:forEach>
-											</c:when>
-											<c:otherwise>
-												<!-- 데이터 없을 경우 -->
-											</c:otherwise>
-										</c:choose>
-									</ul>
-								</div>
+
+													</div>
+												</div>
+
+											</div>
+
+										</div>
+									</div>
+
+								</form>
 							</div>
 						</div>
-						
+
 						<div class="col-lg-6 col-md-7">
 							<div class="card">
 								<div class="header">
@@ -332,12 +372,109 @@
 <!-- Paper Dashboard PRO Core javascript and methods for Demo purpose -->
 <script
 	src="resources/common/quickpoll_bootstrap/assets/js/paper-dashboard.js"></script>
-<script type="text/javascript" src="resources/common/quickpoll_bootstrap/assets/js/sockjs-0.3.4.js"></script>
+<script type="text/javascript"
+	src="resources/common/quickpoll_bootstrap/assets/js/sockjs-0.3.4.js"></script>
 <!-- Paper Dashboard PRO DEMO methods, don't include it in your project! -->
 <script src="resources/common/quickpoll_bootstrap/assets/js/demo.js"></script>
 <script
 	src="resources/common/quickpoll_bootstrap/assets/js/professor/professor_lecture.js?ver=1"
 	charset="UTF-8"></script>
+	<script src="resources/common/quickpoll_bootstrap/assets/js/professor/create_question.js?ver=1" charset="utf-8"></script>
+<script type="text/javascript">
+        $().ready(function(){
+
+            var $validator = $("#wizardForm").validate({
+    		  rules: {
+    		    email: {
+                    required: true,
+                    email: true,
+                    minlength: 5
+    		    },
+    		    first_name: {
+    		        required: false,
+                    minlength: 5
+    		    },
+    		    last_name: {
+    		        required: false,
+                    minlength: 5
+    		    },
+    		    website: {
+    		        required: true,
+                    minlength: 5,
+                    url: true
+    		    },
+    		    framework: {
+        		    required: false,
+        		    minlength: 4
+    		    },
+    		    cities: {
+        		    required: true
+    		    },
+    		    price:{
+        		    number: true
+    		    }
+    		  }
+    		});
+
+			// you can also use the nav-pills-[blue | azure | green | orange | red] for a different color of wizard
+            $('#wizardCard').bootstrapWizard({
+            	/* tabClass: 'nav nav-pills',
+            	nextSelector: '.btn-next',
+                previousSelector: '.btn-back', */
+            	onNext: function(tab, navigation, index) {
+            		/* var $valid = $('#wizardForm').valid();
+
+            		if(!$valid) {
+            			$validator.focusInvalid();
+            			return false;
+            		} */
+            	},
+                onInit : function(tab, navigation, index){
+
+                    //check number of tabs and fill the entire row
+                    var $total = navigation.find('li').length;
+                    $width = 100/$total;
+
+                    $display_width = $(document).width();
+
+                    if($display_width < 600 && $total > 3){
+                       $width = 50;
+                    }
+
+                    navigation.find('li').css('width',$width + '%');
+                },
+                onTabClick : function(tab, navigation, index){
+                    // Disable the posibility to click on tabs
+                    return true;
+                },
+                onTabShow: function(tab, navigation, index) {
+/*                     var $total = navigation.find('li').length;
+                    var $current = index+1;
+
+                    var wizard = navigation.closest('.card-wizard');
+
+                    // If it's the last tab then hide the last button and show the finish instead
+                    if($current >= $total) {
+                        $(wizard).find('.btn-next').hide();
+                        $(wizard).find('.btn-finish').show();
+                    } else if($current == 1){
+                        $(wizard).find('.btn-back').hide();
+                    } else {
+                        $(wizard).find('.btn-back').show();
+                        $(wizard).find('.btn-next').show();
+                        $(wizard).find('.btn-finish').hide();
+                    } */
+                }
+            });
+        });
+
+        function onFinishWizard(){
+            //here you can do something, sent the form to server via ajax and show a success message with swal
+
+            swal("Good job!", "You clicked the finish button!", "success");
+        }
+	</script>
+	
 </html>
 
 
