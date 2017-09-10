@@ -244,12 +244,12 @@
 									</div>
 									<div class="content">
 										<ul class="nav">
-											<li><a href="#tab1" data-toggle="tab">즉석 문제</a></li>
-											<li><a onclick="createQuestion.loadQuestion();" href="#tab2" data-toggle="tab">문제 가져오기</a></li>
+											<li><a href="#direct_question" data-toggle="tab">즉석 문제</a></li>
+											<li><a onclick="createQuestion.loadQuestion();" href="#upload_question" data-toggle="tab">문제 가져오기</a></li>
 
 										</ul>
 										<div class="tab-content">
-											<div class="tab-pane" id="tab1">
+											<div class="tab-pane" id="direct_question">
 												<h5 class="text-center">Please tell us more about
 													yourself.</h5>
 												<div class="row">
@@ -262,7 +262,7 @@
 													</div>
 												</div>
 											</div>
-											<div class="tab-pane" id="tab2">
+											<div class="tab-pane" id="upload_question">
 												<h5 class="text-center">Please give us more details
 													about your platform.</h5>
 												<div class="row">
@@ -272,31 +272,32 @@
 															<div class="nav-tabs-navigation">
 																<div class="nav-tabs-wrapper">
 																	<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
-																		<li class="active"><a href="#home"
+																		<li class="active"><a href="#objective"
 																			data-toggle="tab">객관식 문제</a></li>
-																		<li><a href="#profile" data-toggle="tab">주관식
+																		<li><a onclick ="createQuestion.loadSubjectiveQuestion();" href="#subjective" data-toggle="tab">주관식
 																				문제</a></li>
-																		<li><a href="#messages" data-toggle="tab">OX
+																		<li><a href="#ox" data-toggle="tab">OX
 																				문제</a></li>
 																	</ul>
 																</div>
 															</div>
 															<div id="my-tab-content" class="tab-content text-center">
-																<div class="tab-pane active" id="home">
+																<div class="tab-pane active" id="objective">
 																	<div class="content">
-																		<div id="acordeon">
-																			<div class="panel-group" id="accordion">
-																				
-																				
-																			</div>
+																		<div id="objective_header">
+																		</div>
+																		
+																	</div>
+																</div>
+																<div class="tab-pane" id="subjective">
+																	<div class="content">
+																		<div id="subjective_header">
+																			
 																		</div>
 																		<!--  end acordeon -->
 																	</div>
 																</div>
-																<div class="tab-pane" id="profile">
-																	<p>Here is your profile.</p>
-																</div>
-																<div class="tab-pane" id="messages">
+																<div class="tab-pane" id="ox">
 																	<p>Here are your messages.</p>
 																</div>
 															</div>
@@ -309,16 +310,7 @@
 
 										</div>
 									</div>
-									<div class="card-footer">
-										<button type="button"
-											class="btn btn-default btn-fill btn-wd btn-back pull-left">Back</button>
-										<button type="button"
-											class="btn btn-info btn-fill btn-wd btn-next pull-right">Next</button>
-										<button type="button"
-											class="btn btn-info btn-fill btn-wd btn-finish pull-right"
-											onclick="onFinishWizard()">Finish</button>
-										<div class="clearfix"></div>
-									</div>
+									
 								</form>
 							</div>
 						</div>
@@ -464,16 +456,16 @@
 
 			// you can also use the nav-pills-[blue | azure | green | orange | red] for a different color of wizard
             $('#wizardCard').bootstrapWizard({
-            	tabClass: 'nav nav-pills',
+            	/* tabClass: 'nav nav-pills',
             	nextSelector: '.btn-next',
-                previousSelector: '.btn-back',
+                previousSelector: '.btn-back', */
             	onNext: function(tab, navigation, index) {
-            		var $valid = $('#wizardForm').valid();
+            		/* var $valid = $('#wizardForm').valid();
 
             		if(!$valid) {
             			$validator.focusInvalid();
             			return false;
-            		}
+            		} */
             	},
                 onInit : function(tab, navigation, index){
 
