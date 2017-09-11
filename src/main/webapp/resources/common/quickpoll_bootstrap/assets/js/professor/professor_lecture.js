@@ -96,6 +96,17 @@ professorLecture = {
 	},
 	closeMessage : function() {
 
+	},
+	sendDirectQuestion : function() {
+		var direct_question_content = $("#direct_question_content").val();
+		message = {};
+		message.coure_id = "cs";
+		message.type = "sendDirectQuestion";
+		message.id = $("#id").val();
+		message.question_type = 1;
+		message.question_content = direct_question_content;
+
+		sock.send(JSON.stringify(message));
 	}
 
 }

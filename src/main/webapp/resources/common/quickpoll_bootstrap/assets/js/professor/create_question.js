@@ -40,5 +40,8 @@ createQuestion = {
 			var html = '<div class="panel panel-border panel-default"><a data-toggle="collapse" onclick="createQuestion.subjectiveCheck('+i+');"><div class="panel-heading"><h4 class="panel-title"><span id="subjective_question_check'+i+'" style="visibility: hidden" class="ti-check"></span>Q. 물리계층의 전송 단위는?</h4></div></a><div id="objective_collapse'+i+'" class="panel-collapse collapse"><div class="panel-body">1. Bit <br/>2. Byte<br/>3. Frame<br/>4. Packet</div></div></div>';
 			$('#subjective_header').append(html);
 		}
+	},
+	directQuestion : function() {
+		
 	}
 }

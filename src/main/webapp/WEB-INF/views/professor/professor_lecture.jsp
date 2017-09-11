@@ -171,17 +171,18 @@
 										</ul>
 										<div class="tab-content">
 											<div class="tab-pane" id="direct_question">
-												<h5 class="text-center">Please tell us more about
-													yourself.</h5>
+												<h5 class="text-center">학생들에게 궁금한 것을 물어보세요~</h5>
 												<div class="row">
 													<div class="col-md-10 col-md-offset-1">
 														<div class="form-group">
 															<label class="control-label"> 문제 </label> <input
-																class="form-control" type="text" name="question"
+																class="form-control" type="text" id="direct_question_content" name="direct_question_content"
 																placeholder="ex: 궁금한거 물어보세요~" />
 														</div>
+													<button type="button" class="btn btn-info btn-fill btn-wd btn-next pull-right" onclick="professorLecture().sendDirectQuestion();">문제출제</button>
 													</div>
 												</div>
+												
 											</div>
 											<div class="tab-pane" id="upload_question">
 												<h5 class="text-center">Please give us more details
