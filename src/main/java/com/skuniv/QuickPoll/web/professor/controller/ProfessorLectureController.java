@@ -35,4 +35,21 @@ public class ProfessorLectureController {
 		
 		return mv;
 	}
+	
+	// display lecture list
+	@RequestMapping(value = "/lectureList")
+	public ModelAndView displayLectureList(HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/professor/gunyoungList");
+		return mv;
+	}
+	@RequestMapping(value = "/panel")
+	public ModelAndView panel(HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/professor/panel");
+		return mv;
+	}
+	@RequestMapping(value = "/practice")
+	public ModelAndView practice(HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/professor/practice");
+		return mv;
+	}
 }
