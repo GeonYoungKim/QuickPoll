@@ -380,7 +380,7 @@
 <script
 	src="resources/common/quickpoll_bootstrap/assets/js/professor/professor_lecture.js?ver=1"
 	charset="UTF-8"></script>
-	<script src="resources/common/quickpoll_bootstrap/assets/js/professor/create_question.js?ver=1" charset="utf-8"></script>
+	<script src="resources/common/quickpoll_bootstrap/assets/js/professor/create_question.js?ver=2" charset="utf-8"></script>
 <script type="text/javascript">
         $().ready(function(){
 

@@ -32,7 +32,6 @@ createQuestion = {
 			$('#objective_header').append(html);
 		}
 		$('#objective_header').append('<button type="button" class="btn btn-info btn-fill btn-wd btn-next pull-center" onclick="onFinishWizard()">Finish</button>');
-		
 	},
 	loadSubjectiveQuestion : function() {
 		$('#subjective_header').empty();
