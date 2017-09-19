@@ -150,6 +150,7 @@
 								<li><a href="../maps/vector.html">Vector maps</a></li>
 								<li><a href="../maps/fullscreen.html">Full Screen Map</a></li>
 	                        </ul>
+	                        
 	                    </div>
 	                </li>
 					<li>
