@@ -35,11 +35,11 @@ professorLecture = {
 	// evt 파라미터는 웹소켓을 보내준 데이터다.(자동으로 들어옴)
 
 	onMessage : function(evt) {
-		alert(evt);
-		
 		var data = evt.data;
 		alert(data);
-		$("#data").append(data + "<br/>");
+		var parsedJson = JSON.parse(data);
+		if (parsedJson.type == "connect")
+			$('li').remove('#' + parsedJson.id);
 		// sock.close();
 	},
 
