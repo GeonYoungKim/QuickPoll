@@ -18,7 +18,7 @@ $(document).ready(function() {
 		message.coure_id = "cs";
 		message.type = "create";
 		message.id = $("#id").val();
-		
+		message.name = "kim";
 		sock.send(JSON.stringify(message));
 		
 	};
@@ -65,6 +65,7 @@ professorLecture = {
 			message = {};
 			message.coure_id = "cs";
 			message.type = "create";
+			message.name = "kim";
 			message.id = $("#id").val();
 
 			sock.send(JSON.stringify(message));
@@ -89,7 +90,7 @@ professorLecture = {
 			message.coure_id = "cs";
 			message.type = "connect";
 			message.id = $("#id").val();
-
+			message.name="kim";
 			sock.send(JSON.stringify(message));
 
 		};
