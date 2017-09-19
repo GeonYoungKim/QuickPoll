@@ -244,7 +244,7 @@
 										<c:choose>
 											<c:when test="${fn:length(menteeList) > 0}">
 												<c:forEach items="${menteeList}" var="row">
-													<li>
+													<li id="${row.student_id}">
 														<div class="row">
 															<div class="col-xs-3">
 																<div class="avatar">
@@ -255,7 +255,7 @@
 																</div>
 															</div>
 															<div class="col-xs-6">
-																${row.name} <br /> <span class="text-muted"><small>Offline</small></span>
+																${row.name} <br /> <span class="text-muted"><small>${row.student_id}</small></span>
 															</div>
 															<div class="col-xs-3 text-right">
 																<btn class="btn btn-sm btn-success btn-icon"> <i
@@ -378,7 +378,7 @@
 <!-- Paper Dashboard PRO DEMO methods, don't include it in your project! -->
 <script src="resources/common/quickpoll_bootstrap/assets/js/demo.js"></script>
 <script
-	src="resources/common/quickpoll_bootstrap/assets/js/professor/professor_lecture.js?ver=2"
+	src="resources/common/quickpoll_bootstrap/assets/js/professor/professor_lecture.js?ver=3"
 	charset="UTF-8"></script>
 	<script src="resources/common/quickpoll_bootstrap/assets/js/professor/create_question.js?ver=2" charset="utf-8"></script>
 <script type="text/javascript">
