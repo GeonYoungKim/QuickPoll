@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class ConnectDB {
 	@Autowired
-	private SqlSessionTemplate sqlSession; // sqlsession
+	private SqlSessionTemplate sqlSession; // connect DB	
 	
 	public Object insert(String queryId, Object params){
 		return sqlSession.insert(queryId, params);
