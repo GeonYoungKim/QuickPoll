@@ -3,7 +3,6 @@
  * version: 1.8.1
  * https://github.com/wenzhixin/bootstrap-table/
  */
-
 ! function ($) {
     'use strict';
 
@@ -228,7 +227,6 @@
         classes: 'table table-hover',
         locale: undefined,
         height: undefined,
-        undefinedText: '-',
         sortName: undefined,
         sortOrder: 'asc',
         striped: false,
