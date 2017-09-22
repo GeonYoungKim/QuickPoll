@@ -248,7 +248,7 @@
 										</ul>
 										<div class="tab-content">
 											<div class="tab-pane" id="tab1">
-												<h5 class="text-center">문제 대기 중 입니다.</h5>
+												<h5 id="waitting_text" class="text-center">문제 대기 중 입니다.</h5>
 
 												<div class="row">
 													<div id="student_question_content"
@@ -277,18 +277,16 @@
 			                        					-->
 
 														<!-- Subjective Question  -->
-														<div class="form-group">
+														<!-- <div class="form-group">
 															<label class="control-label"> Q. 질문해보세요~ </label> <input
 																class="form-control" type="text"
 																id="direct_question_content"
 																name="direct_question_content"
 																placeholder="ex: 제출하실 답을 적어주세요" />
 														</div>
-
-
 														<button type="button"
 															class="btn btn-info btn-fill btn-wd btn-next pull-right"
-															onclick="">제출하기</button>
+															onclick="">제출하기</button> -->
 													</div>
 												</div>
 											</div>

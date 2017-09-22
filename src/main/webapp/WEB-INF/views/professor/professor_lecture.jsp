@@ -98,59 +98,7 @@
 		</div>
 
 		<div class="main-panel">
-			<nav class="navbar navbar-default">
-				<div class="container-fluid">
-					<div class="navbar-minimize">
-						<button id="minimizeSidebar" class="btn btn-fill btn-icon">
-							<i class="ti-more-alt"></i>
-						</button>
-					</div>
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle">
-							<span class="sr-only">Toggle navigation</span> <span
-								class="icon-bar bar1"></span> <span class="icon-bar bar2"></span>
-							<span class="icon-bar bar3"></span>
-						</button>
-						<a class="navbar-brand" href="#userpage">User Page</a>
-					</div>
-					<div class="collapse navbar-collapse">
-						<form class="navbar-form navbar-left navbar-search-form"
-							role="search">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-search"></i></span>
-								<input type="text" value="" class="form-control"
-									placeholder="Search...">
-							</div>
-						</form>
-						<ul class="nav navbar-nav navbar-right">
-							<li><a href="#stats" class="dropdown-toggle btn-magnify"
-								data-toggle="dropdown"> <i class="ti-panel"></i>
-									<p>Stats</p>
-							</a></li>
-							<li class="dropdown"><a href="#notifications"
-								class="dropdown-toggle btn-rotate" data-toggle="dropdown"> <i
-									class="ti-bell"></i> <span class="notification">5</span>
-									<p class="hidden-md hidden-lg">
-										Notifications <b class="caret"></b>
-									</p>
-							</a>
-								<ul class="dropdown-menu">
-									<li><a href="#not1">Notification 1</a></li>
-									<li><a href="#not2">Notification 2</a></li>
-									<li><a href="#not3">Notification 3</a></li>
-									<li><a href="#not4">Notification 4</a></li>
-									<li><a href="#another">Another notification</a></li>
-								</ul></li>
-							<li><a href="#settings" class="btn-rotate"> <i
-									class="ti-settings"></i>
-									<p class="hidden-md hidden-lg">Settings</p>
-							</a></li>
-						</ul>
-					</div>
-				</div>
-			</nav>
-
-			<div class="content">
+			<div id="question_content" class="content">
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-lg-6 col-md-7">
@@ -161,7 +109,7 @@
 										<p class="category">Split a complicated flow in multiple
 											steps</p>
 									</div>
-									<div class="content">
+									<div  class="content">
 										<ul class="nav">
 											<li><a href="#direct_question" data-toggle="tab">즉석
 													문제</a></li>
@@ -179,7 +127,7 @@
 																class="form-control" type="text" id="direct_question_content" name="direct_question_content"
 																placeholder="ex: 궁금한거 물어보세요~" />
 														</div>
-													<button type="button" class="btn btn-info btn-fill btn-wd btn-next pull-right" onclick="professorLecture().sendDirectQuestion();">문제출제</button>
+													<button type="button" class="btn btn-info btn-fill btn-wd btn-next pull-right" id="sendDirectQuestionBtn">문제출제</button>
 													</div>
 												</div>
 												
@@ -378,7 +326,7 @@
 <!-- Paper Dashboard PRO DEMO methods, don't include it in your project! -->
 <script src="resources/common/quickpoll_bootstrap/assets/js/demo.js"></script>
 <script
-	src="resources/common/quickpoll_bootstrap/assets/js/professor/professor_lecture.js?ver=3"
+	src="resources/common/quickpoll_bootstrap/assets/js/professor/professor_lecture.js?ver=4"
 	charset="UTF-8"></script>
 	<script src="resources/common/quickpoll_bootstrap/assets/js/professor/create_question.js?ver=2" charset="utf-8"></script>
 <script type="text/javascript">
@@ -475,7 +423,7 @@
             swal("Good job!", "You clicked the finish button!", "success");
         }
 	</script>
-	
+
 </html>
 
 

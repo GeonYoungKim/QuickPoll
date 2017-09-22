@@ -36,7 +36,12 @@ public class ProfessorLectureController {
 		
 		return mv;
 	}
-	
+	@RequestMapping(value = "/testtable", method = RequestMethod.GET)
+	public ModelAndView testtable(HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/professor/testtable");
+		
+		return mv;
+	}
 	// display lecture list
 	@RequestMapping(value = "/lectureList", method = RequestMethod.GET)
 	public ModelAndView displayLectureList(HttpServletRequest request) throws Exception {
