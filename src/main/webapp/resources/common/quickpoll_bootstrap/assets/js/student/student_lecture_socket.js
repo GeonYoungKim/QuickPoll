@@ -1,6 +1,6 @@
 $(document).ready(function() {
-	
 	var sock;
+	
 	var message = {};
 	sock = new SockJS("http://localhost:8080/QuickPollSocketServer/echo");
 	
@@ -23,6 +23,21 @@ $(document).ready(function() {
 		message.name="kim";
 		sock.send(JSON.stringify(message));
 	};
+	
+	displaySubjectiveQuestion = function() {
+		$('#waitting_text').html("");
+		$('#student_question_content').empty();
+		$('#student_question_content').html('<div class="form-group"><label class="control-label"> Q. 질문해보세요~ </label> <input class="form-control" type="text" id="direct_question_anwser" name="direct_question_anwser" placeholder="ex: 제출하실 답을 적어주세요" /></div><button type="button" class="btn btn-info btn-fill btn-wd btn-next pull-right" id="submitDirectQuestionAnswer">제출하기</button>');
+		$("#submitDirectQuestionAnswer").click(function() {
+			alert('click');
+			message = {};
+			message.coure_id = "cs";
+			message.type = "directQuestionAnswer";
+			message.id = $("#student_id").val();
+			message.question_anwser = $('#direct_question_anwser').val();
+			sock.send(JSON.stringify(message));
+		});
+	}
 });
 studentLectureSocket = {
 
@@ -37,10 +52,11 @@ studentLectureSocket = {
 
 	onMessage : function(evt) {
 		var data = evt.data;
-		alert(data);
 		var parsedJson = JSON.parse(data);
-		if (parsedJson.type == "connect")
-			$('li').remove('#' + parsedJson.id);
+		if (parsedJson.type == "sendDirectQuestion") {
+			displaySubjectiveQuestion();
+		}
+			
 		// sock.close();
 	},
 
@@ -52,7 +68,8 @@ studentLectureSocket = {
 	
 	closeMessage : function() {
 
-	}
+	},
+	
 	
 
 }
