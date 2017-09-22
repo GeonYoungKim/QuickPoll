@@ -42,7 +42,7 @@ public class ProfessorHomeController {
 		mv.addObject("professorInfo", list);
 		return mv;
 	}
-	@RequestMapping(value = "/menteeList")
+	@RequestMapping(value = "/menteeList", method = RequestMethod.GET)
 	public ModelAndView studentList(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("menteeList");
 		int id = Integer.parseInt(request.getParameter("id"));

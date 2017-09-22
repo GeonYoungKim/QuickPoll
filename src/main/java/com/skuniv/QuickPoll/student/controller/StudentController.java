@@ -1,4 +1,4 @@
-package com.skuniv.QuickPoll.controller;
+package com.skuniv.QuickPoll.student.controller;
 
 import java.util.List;
 import java.util.Map;
