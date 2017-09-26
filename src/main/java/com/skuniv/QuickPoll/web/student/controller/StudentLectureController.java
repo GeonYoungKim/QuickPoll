@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class StudentLectureController {
-
+	//test
 
 	// select list for student
 	@RequestMapping(value = "/studentLectureMain", method = RequestMethod.GET)
