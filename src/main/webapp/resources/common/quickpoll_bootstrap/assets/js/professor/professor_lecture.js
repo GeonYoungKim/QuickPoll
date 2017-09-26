@@ -2,7 +2,7 @@ $(document).ready(function() {
 	
 	var sock = null;
 	var message = {};
-	sock = new SockJS("http://localhost:8080/QuickPollSocketServer/echo");
+    sock = new SockJS("http://localhost:8080/QuickPollSocketServer/echo");
 	
 // 자바스크립트 안에 function을 집어넣을 수 있음.
 	
