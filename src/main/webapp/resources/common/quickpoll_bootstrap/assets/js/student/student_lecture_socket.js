@@ -2,8 +2,8 @@ $(document).ready(function() {
 	var sock;
 	
 	var message = {};
+//	sock = new SockJS("http://13.124.224.234:8080/QuickPollSocketServer/echo");
 	sock = new SockJS("http://localhost:8080/QuickPollSocketServer/echo");
-	
 // 자바스크립트 안에 function을 집어넣을 수 있음.
 	
 // 데이터가 나한테 전달되읐을 때 자동으로 실행되는 function
@@ -17,25 +17,36 @@ $(document).ready(function() {
 	sock.onopen = function() {
 		alert($('#student_id'));
 		message = {};
-		message.coure_id = "cs";
+		message.course_id = "cs";
 		message.type = "connect";
 		message.id = $("#student_id").val();
 		message.name="kim";
 		sock.send(JSON.stringify(message));
 	};
 	
-	displaySubjectiveQuestion = function() {
+	displaySubjectiveQuestion = function(obj) {
 		$('#waitting_text').html("");
 		$('#student_question_content').empty();
-		$('#student_question_content').html('<div class="form-group"><label class="control-label"> Q. 질문해보세요~ </label> <input class="form-control" type="text" id="direct_question_anwser" name="direct_question_anwser" placeholder="ex: 제출하실 답을 적어주세요" /></div><button type="button" class="btn btn-info btn-fill btn-wd btn-next pull-right" id="submitDirectQuestionAnswer">제출하기</button>');
+		$('#student_question_content').html('<div class="form-group"><label class="control-label"> Q. ' + obj.question_content + '</label> <input class="form-control" type="text" id="direct_question_anwser" name="direct_question_anwser" placeholder="ex: 제출하실 답을 적어주세요" /></div><button type="button" class="btn btn-info btn-fill btn-wd btn-next pull-right" id="submitDirectQuestionAnswer">제출하기</button>');
 		$("#submitDirectQuestionAnswer").click(function() {
-			alert('click');
 			message = {};
-			message.coure_id = "cs";
+			message.course_id = "cs";
 			message.type = "directQuestionAnswer";
 			message.id = $("#student_id").val();
 			message.question_anwser = $('#direct_question_anwser').val();
 			sock.send(JSON.stringify(message));
+			swal({  title: "제출 완료!",
+        	    text: "정상적으로 제출이 되었습니다.",
+        	    type: "success",
+        	    confirmButtonText: "확인",
+        	    closeOnConfirm: false,
+        	    closeOnCancel: false
+            },function(isConfirm){
+                if (isConfirm){
+                	location.href="/QuickPoll";       
+                }
+            });
+//			swal("제출 완료!", "정상적으로 제출되었습니다.", "success");
 		});
 	}
 });
@@ -54,7 +65,7 @@ studentLectureSocket = {
 		var data = evt.data;
 		var parsedJson = JSON.parse(data);
 		if (parsedJson.type == "sendDirectQuestion") {
-			displaySubjectiveQuestion();
+			displaySubjectiveQuestion(parsedJson);
 		}
 			
 		// sock.close();
