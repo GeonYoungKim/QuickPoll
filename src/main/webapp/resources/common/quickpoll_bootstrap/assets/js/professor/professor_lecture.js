@@ -16,7 +16,7 @@ $(document).ready(function() {
 	
 	sock.onopen = function() {			
 		message = {};
-		message.course_id = "cs1";
+		message.course_id = "cs";
 		message.type = "create";
 		message.id = $("#id").val();
 		message.name = "kim";
@@ -29,7 +29,7 @@ $(document).ready(function() {
 		message = {};
 		message.type = "sendDirectQuestion";
 		message.id = $("#id").val();
-		message.course_id = "cs1";
+		message.course_id = "cs";
 		message.question_type = 1;
 		message.question_content = direct_question_content;
 		sock.send(JSON.stringify(message));
@@ -117,4 +117,3 @@ professorLecture = {
 	}
 
 }
-
