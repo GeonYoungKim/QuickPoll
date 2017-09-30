@@ -25,11 +25,13 @@ $(document).ready(function() {
 	};
 	
 	displaySubjectiveQuestion = function(obj) {
+		alert();
 		$('#waitting_text').html("");
 		$('#student_question_content').empty();
 		$('#student_question_content').html('<div class="form-group"><label class="control-label"> Q. ' + obj.question_content + '</label> <input class="form-control" type="text" id="direct_question_anwser" name="direct_question_anwser" placeholder="ex: 제출하실 답을 적어주세요" /></div><button type="button" class="btn btn-info btn-fill btn-wd btn-next pull-right" id="submitDirectQuestionAnswer">제출하기</button>');
 		$("#submitDirectQuestionAnswer").click(function() {
 			message = {};
+			message.quickpoll_question_id = obj.quickpoll_question_id; 
 			message.course_id = "cs";
 			message.type = "directQuestionAnswer";
 			message.id = $("#student_id").val();

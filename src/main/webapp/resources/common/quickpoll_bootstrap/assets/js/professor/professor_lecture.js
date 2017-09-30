@@ -41,6 +41,23 @@ $(document).ready(function() {
 
        
 	});
+	$("#sendObjectiveQuestionBtn").click(function() {
+		var direct_question_content = $("#direct_question_content").val();
+		message = {};
+		message.type = "sendDirectQuestion";
+		message.id = $("#id").val();
+		message.course_id = "cs";
+		message.question_type = 1;
+		message.question_content = direct_question_content;
+		sock.send(JSON.stringify(message));
+		var table_html = '<div class="content"><div class="container-fluid"><div class="row"><div class="col-md-12"><div class="card"><div id="table_content" class="content"><div class="toolbar"></div><table id="bootstrap-table" class="table"><thead><th data-field="state" data-checkbox="true"></th><th data-field="id" class="text-center">번호</th><th data-field="city">답안</th></thead><tbody><tr><td></td><td>1</td><td>1</td></tr></tbody></table></div></div></div></div></div></div>'
+		$('#question_content').html(table_html);
+		
+//		$('#question_content').html('<button type="button" class="btn btn-info btn-fill btn-wd btn-next pull-center" id="sendDirectQuestionBtn">결과보기</button>');
+		
+
+       
+	});
 	$("#close").click(function() {
 		location.href="/QuickPollSocketServer/";
 	});

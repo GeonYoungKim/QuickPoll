@@ -19,7 +19,7 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 			<version>${org.springframework-version}</version>
-			<exclusions>
+			<exclusions> 
 				<!-- Exclude Commons Logging in favor of SLF4j -->
 				<exclusion>
 					<groupId>commons-logging</groupId>
@@ -37,7 +37,7 @@
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-dbcp</artifactId>
 			<scope>provided</scope>
-			<version>7.0.53</version>
+			<version>7.0.53</version> 
 		</dependency>
 
 		<dependency>
