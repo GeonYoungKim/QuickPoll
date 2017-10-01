@@ -1,5 +1,6 @@
 package com.skuniv.QuickPoll.service;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,5 +33,11 @@ public class ProfessorService {
 	
 	public List<Map<String, Object>> selectMenteeList(int professor_id) throws Exception {
 		return professorDao.selectMenteeList(professor_id);
+	}
+	public List<LinkedHashMap<String, Object>> selectObjectiveQuestionList(String course_id) throws Exception {
+		return professorDao.selectObjectiveQuestionList(course_id);
+	}
+	public List<LinkedHashMap<String, Object>> selectSubjectiveQuestionList(String course_id) throws Exception {
+		return professorDao.selectSubjectiveQuestionList(course_id);
 	}
 }

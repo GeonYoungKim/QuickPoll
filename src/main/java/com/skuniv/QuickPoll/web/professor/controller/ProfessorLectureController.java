@@ -1,5 +1,6 @@
 package com.skuniv.QuickPoll.web.professor.controller;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,10 +24,15 @@ public class ProfessorLectureController {
 	public ModelAndView mainView(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/professor/professor_lecture");
 		int id = Integer.parseInt(request.getParameter("id"));
+		String course_id = request.getParameter("course_id");
 		List<Map<String, Object>> professorList = professorService.selectProfessorList(id);
 		List<Map<String, Object>> menteeList = professorService.selectMenteeList(id);
+		List<LinkedHashMap<String, Object>> objectiveQuestionList = professorService.selectObjectiveQuestionList(course_id);
+		List<LinkedHashMap<String, Object>> subjectiveQuestionList = professorService.selectSubjectiveQuestionList(course_id);
 		mv.addObject("professorInfo", professorList);
 		mv.addObject("menteeList", menteeList);
+		mv.addObject("objectiveQuestionList", objectiveQuestionList);
+		mv.addObject("subjectiveQuestionList", subjectiveQuestionList);
 		return mv;
 	}
 	

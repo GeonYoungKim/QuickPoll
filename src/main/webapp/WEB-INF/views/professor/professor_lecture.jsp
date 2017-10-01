@@ -109,7 +109,7 @@
 										<p class="category">Split a complicated flow in multiple
 											steps</p>
 									</div>
-									<div  class="content">
+									<div class="content">
 										<ul class="nav">
 											<li><a href="#direct_question" data-toggle="tab">즉석
 													문제</a></li>
@@ -124,13 +124,17 @@
 													<div class="col-md-10 col-md-offset-1">
 														<div class="form-group">
 															<label class="control-label"> 문제 </label> <input
-																class="form-control" type="text" id="direct_question_content" name="direct_question_content"
+																class="form-control" type="text"
+																id="direct_question_content"
+																name="direct_question_content"
 																placeholder="ex: 궁금한거 물어보세요~" />
 														</div>
-													<button type="button" class="btn btn-info btn-fill btn-wd btn-next pull-right" id="sendDirectQuestionBtn">문제출제</button>
+														<button type="button"
+															class="btn btn-info btn-fill btn-wd btn-next pull-right"
+															id="sendDirectQuestionBtn">문제출제</button>
 													</div>
 												</div>
-												
+
 											</div>
 											<div class="tab-pane" id="upload_question">
 												<h5 class="text-center">Please give us more details
@@ -154,14 +158,76 @@
 															<div id="my-tab-content" class="tab-content text-center">
 																<div class="tab-pane active" id="objective">
 																	<div class="content">
-																		<div id="objective_header"></div>
+																		<div id="objective_header">
+																			<c:choose>
+																				<c:when
+																					test="${fn:length(objectiveQuestionList) > 0}">
+																					<c:forEach items="${objectiveQuestionList}"
+																						var="row" varStatus="status">
+																						<div class="panel panel-border panel-default">
+																							<a data-toggle="collapse"
+																								onclick="createQuestion.checkCollapse('${status.count}');"
+																								href="#objective_collapse${status.count}"><div
+																									class="panel-heading">
+																									<h4 class="panel-title">
+																										<span
+																											id="objective_question_check${status.count}"
+																											style="visibility: hidden" class="ti-check"></span>${row.question_content}<i
+																											class="ti-angle-down"></i>
+																									</h4>
+																								</div></a>
+																							<div id="objective_collapse${status.count}"
+																								class="panel-collapse collapse">
+																								<div class="panel-body">
+																									1. ${row.example1} <br />2. ${row.example2}<br />3.
+																									${row.example3}<br />4. ${row.example4}
+																								</div>
+																							</div>
+																						</div>
+																					</c:forEach>
+																				</c:when>
+																				<c:otherwise>
+																					<!-- 데이터 없을 경우 -->
+																				</c:otherwise>
+																			</c:choose>
+																			<button type="button"
+																				class="btn btn-info btn-fill btn-wd btn-next pull-center"
+																				id="sendObjectiveQuestionBtn">Finish</button>
+																		</div>
 
 																	</div>
 																</div>
 																<div class="tab-pane" id="subjective">
 																	<div class="content">
-																		<div id="subjective_header"></div>
-																		<!--  end acordeon -->
+																		<div id="subjective_header">
+																		<c:choose>
+																			<c:when
+																				test="${fn:length(subjectiveQuestionList) > 0}">
+																				<c:forEach items="${subjectiveQuestionList}"
+																					var="row" varStatus="status">
+																					<div class="panel panel-border panel-default">
+																						<a data-toggle="collapse"
+																							onclick="createQuestion.subjectiveCheck('${status.count}');"><div
+																								class="panel-heading">
+																								<h4 class="panel-title">
+																									<span
+																										id="subjective_question_check${status.count}"
+																										style="visibility: hidden" class="ti-check"></span>${row.question_content}
+																								</h4>
+																							</div></a>
+
+																					</div>
+
+																				</c:forEach>
+																			</c:when>
+																			<c:otherwise>
+																				<!-- 데이터 없을 경우 -->
+																			</c:otherwise>
+																		</c:choose>
+																		<button type="button"
+																			class="btn btn-info btn-fill btn-wd btn-next pull-center"
+																			onclick="onFinishWizard()">Finish</button>
+																		</div>
 																	</div>
 																</div>
 																<div class="tab-pane" id="ox">
@@ -326,9 +392,11 @@
 <!-- Paper Dashboard PRO DEMO methods, don't include it in your project! -->
 <script src="resources/common/quickpoll_bootstrap/assets/js/demo.js"></script>
 <script
-	src="resources/common/quickpoll_bootstrap/assets/js/professor/professor_lecture.js?ver=4"
+	src="resources/common/quickpoll_bootstrap/assets/js/professor/professor_lecture.js?ver=2"
 	charset="UTF-8"></script>
-	<script src="resources/common/quickpoll_bootstrap/assets/js/professor/create_question.js?ver=2" charset="utf-8"></script>
+<script
+	src="resources/common/quickpoll_bootstrap/assets/js/professor/create_question.js?ver=1"
+	charset="utf-8"></script>
 <script type="text/javascript">
         $().ready(function(){
 
