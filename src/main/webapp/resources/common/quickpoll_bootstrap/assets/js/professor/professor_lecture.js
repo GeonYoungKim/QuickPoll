@@ -42,16 +42,31 @@ $(document).ready(function() {
        
 	});
 	$("#sendObjectiveQuestionBtn").click(function() {
-		var direct_question_content = $("#direct_question_content").val();
+		var cnt = $('#objective_header').children().length;
+		var objective_question_content;
 		message = {};
-		message.type = "sendDirectQuestion";
+		message.type = "sendObjectiveQuestion";
 		message.id = $("#id").val();
 		message.course_id = "cs";
-		message.question_type = 1;
-		message.question_content = direct_question_content;
+		message.question_type = 2;
+		for (var i = 1; i < cnt; i++) {
+			if($('#objective_question_check'+i+'').css('visibility') == "visible") {
+				objective_question_content = $.trim($('#objective_question_content'+i+'').text());
+				message.question_content = objective_question_content;
+				var example1 = $('#example'+i+"_1").text();
+				var example2 = $("#example"+i+"_2").text();
+				var example3 = $("#example"+i+"_3").text();
+				var example4 = $("#example"+i+"_4").text();
+				message.example1 = example1.substring(3,example1.length);
+				message.example2 = example2.substring(3,example2.length);
+				message.example3 = example3.substring(3,example3.length);
+				message.example4 = example4.substring(3,example4.length);
+				break;
+			}
+		}
 		sock.send(JSON.stringify(message));
-		var table_html = '<div class="content"><div class="container-fluid"><div class="row"><div class="col-md-12"><div class="card"><div id="table_content" class="content"><div class="toolbar"></div><table id="bootstrap-table" class="table"><thead><th data-field="state" data-checkbox="true"></th><th data-field="id" class="text-center">번호</th><th data-field="city">답안</th></thead><tbody><tr><td></td><td>1</td><td>1</td></tr></tbody></table></div></div></div></div></div></div>'
-		$('#question_content').html(table_html);
+//		var table_html = '<div class="content"><div class="container-fluid"><div class="row"><div class="col-md-12"><div class="card"><div id="table_content" class="content"><div class="toolbar"></div><table id="bootstrap-table" class="table"><thead><th data-field="state" data-checkbox="true"></th><th data-field="id" class="text-center">번호</th><th data-field="city">답안</th></thead><tbody><tr><td></td><td>1</td><td>1</td></tr></tbody></table></div></div></div></div></div></div>'
+//		$('#question_content').html(table_html);
 		
 //		$('#question_content').html('<button type="button" class="btn btn-info btn-fill btn-wd btn-next pull-center" id="sendDirectQuestionBtn">결과보기</button>');
 		

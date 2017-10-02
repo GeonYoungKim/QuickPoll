@@ -255,26 +255,34 @@
 														class="col-md-10 col-md-offset-1">
 
 														<!-- objective question  -->
-														<!--
+														<!-- 
 														<div class="panel panel-border panel-default"> 
 															<div class="panel-heading">
 																<h4 class="panel-title">Q. 물리계층의 전송 단위는?</h4>
 															</div>
 															<br/>	
+															<div id="example1">
 															<button class="btn btn-icon btn-github">
 					                            				<i>1</i>
-				                        					</button> Frame<br/><br/>
+				                        					</button>Frame<br/><br/>
+				                        					</div>
+				                        					<div id="example2">
 					                        				<button class="btn btn-icon btn-github">
 					                            				<i>2</i>
 				                        					</button>Data<br/><br/>
+				                        					</div>
+				                        					<div id="example3">
 				                        					<button class="btn btn-icon btn-github">
 					                            				<i>3</i>
 				                        					</button>Packet<br/><br/>
+				                        					</div>
+				                        					<div id="example4">
 				                        					<button class="btn btn-icon btn-github">
 					                            				<i>4</i>
 				                        					</button>Bit<br/><br/>
-				                        					</div>	
-			                        					-->
+				                        					</div>
+			                        					</div>	
+			                        					 -->
 
 														<!-- Subjective Question  -->
 														<!-- <div class="form-group">
@@ -401,7 +409,7 @@
 <script type="text/javascript"
 	src="resources/common/quickpoll_bootstrap/assets/js/sockjs-0.3.4.js"></script>
 <script
-	src="resources/common/quickpoll_bootstrap/assets/js/student/student_lecture_socket.js?ver=1"
+	src="resources/common/quickpoll_bootstrap/assets/js/student/student_lecture_socket.js?ver=2"
 	charset="UTF-8"></script>
 <script type="text/javascript">
         $().ready(function(){
