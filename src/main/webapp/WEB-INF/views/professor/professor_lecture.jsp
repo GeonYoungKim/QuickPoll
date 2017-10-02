@@ -169,7 +169,7 @@
 																								onclick="createQuestion.checkCollapse('${status.count}');"
 																								href="#objective_collapse${status.count}"><div
 																									class="panel-heading">
-																									<h4 class="panel-title">
+																									<h4 id="objective_question_content${status.count}" class="panel-title">
 																										<span
 																											id="objective_question_check${status.count}"
 																											style="visibility: hidden" class="ti-check"></span>${row.question_content}<i
@@ -179,8 +179,10 @@
 																							<div id="objective_collapse${status.count}"
 																								class="panel-collapse collapse">
 																								<div class="panel-body">
-																									1. ${row.example1} <br />2. ${row.example2}<br />3.
-																									${row.example3}<br />4. ${row.example4}
+																									<div id="example${status.count}_1">1. ${row.example1}<br /></div>
+																									<div id="example${status.count}_2">2. ${row.example2}<br /></div>
+																									<div id="example${status.count}_3">3. ${row.example3}<br /></div>
+																									<div id="example${status.count}_4">4. ${row.example4}<br /></div>
 																								</div>
 																							</div>
 																						</div>
@@ -392,10 +394,10 @@
 <!-- Paper Dashboard PRO DEMO methods, don't include it in your project! -->
 <script src="resources/common/quickpoll_bootstrap/assets/js/demo.js"></script>
 <script
-	src="resources/common/quickpoll_bootstrap/assets/js/professor/professor_lecture.js?ver=2"
+	src="resources/common/quickpoll_bootstrap/assets/js/professor/professor_lecture.js?ver=1"
 	charset="UTF-8"></script>
 <script
-	src="resources/common/quickpoll_bootstrap/assets/js/professor/create_question.js?ver=1"
+	src="resources/common/quickpoll_bootstrap/assets/js/professor/create_question.js?ver=2"
 	charset="utf-8"></script>
 <script type="text/javascript">
         $().ready(function(){

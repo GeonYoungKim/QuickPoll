@@ -23,9 +23,14 @@ $(document).ready(function() {
 		message.name="kim";
 		sock.send(JSON.stringify(message));
 	};
-	
+	displayObjectiveQuestion = function(obj) {
+		alert("in");
+		$('#waitting_text').html("");
+		$('#student_question_content').empty();
+		var objective_html = '<div class="panel panel-border panel-default"><div class="panel-heading"><h4 class="panel-title">Q. ' + obj.question_content + '</h4></div><br/><div id="example1"><button class="btn btn-icon btn-github"><i>1</i></button>' + obj.example1 + '<br/><br/></div><div id="example2"><button class="btn btn-icon btn-github"><i>2</i></button>' + obj.example2 + '<br/><br/></div><div id="example3"><button class="btn btn-icon btn-github"><i>3</i></button>' + obj.example3 + '<br/><br/></div><div id="example4"><button class="btn btn-icon btn-github"><i>4</i></button>' + obj.example4 + '<br/><br/></div></div>';
+		$('#student_question_content').html(objective_html);
+	}
 	displaySubjectiveQuestion = function(obj) {
-		alert();
 		$('#waitting_text').html("");
 		$('#student_question_content').empty();
 		$('#student_question_content').html('<div class="form-group"><label class="control-label"> Q. ' + obj.question_content + '</label> <input class="form-control" type="text" id="direct_question_anwser" name="direct_question_anwser" placeholder="ex: 제출하실 답을 적어주세요" /></div><button type="button" class="btn btn-info btn-fill btn-wd btn-next pull-right" id="submitDirectQuestionAnswer">제출하기</button>');
@@ -68,6 +73,8 @@ studentLectureSocket = {
 		var parsedJson = JSON.parse(data);
 		if (parsedJson.type == "sendDirectQuestion") {
 			displaySubjectiveQuestion(parsedJson);
+		} else if (parsedJson.type == "sendObjectiveQuestion") {
+			displayObjectiveQuestion(parsedJson);
 		}
 			
 		// sock.close();
