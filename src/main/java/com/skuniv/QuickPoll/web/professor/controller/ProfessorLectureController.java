@@ -48,6 +48,12 @@ public class ProfessorLectureController {
 		
 		return mv;
 	}
+	@RequestMapping(value = "/testchart", method = RequestMethod.GET)
+	public ModelAndView chart(HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/professor/testchart");
+		
+		return mv;
+	}
 	// display lecture list
 	@RequestMapping(value = "/lectureList", method = RequestMethod.GET)
 	public ModelAndView displayLectureList(HttpServletRequest request) throws Exception {

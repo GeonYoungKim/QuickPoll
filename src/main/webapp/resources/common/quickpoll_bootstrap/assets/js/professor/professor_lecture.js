@@ -1,85 +1,214 @@
-$(document).ready(function() {
-	
-	var sock = null;
-	var message = {};
-//    sock = new SockJS("http://13.124.224.234:8080/QuickPollSocketServer/echo");
-	sock = new SockJS("http://localhost:8080/QuickPollSocketServer/echo");
-// 자바스크립트 안에 function을 집어넣을 수 있음.
-	
-// 데이터가 나한테 전달되읐을 때 자동으로 실행되는 function
-	
-	sock.onmessage = professorLecture.onMessage;
-	
-// 데이터를 끊고싶을때 실행하는 메소드
-	
-	sock.onclose = professorLecture.onClose;
-	
-	sock.onopen = function() {			
-		message = {};
-		message.course_id = "cs";
-		message.type = "create";
-		message.id = $("#id").val();
-		message.name = "kim";
-		sock.send(JSON.stringify(message));
-		
-	};
-	
-	$("#sendDirectQuestionBtn").click(function() {
-		var direct_question_content = $("#direct_question_content").val();
-		message = {};
-		message.type = "sendDirectQuestion";
-		message.id = $("#id").val();
-		message.course_id = "cs";
-		message.question_type = 1;
-		message.question_content = direct_question_content;
-		sock.send(JSON.stringify(message));
-		var table_html = '<div class="content"><div class="container-fluid"><div class="row"><div class="col-md-12"><div class="card"><div id="table_content" class="content"><div class="toolbar"></div><table id="bootstrap-table" class="table"><thead><th data-field="state" data-checkbox="true"></th><th data-field="id" class="text-center">번호</th><th data-field="city">답안</th></thead><tbody><tr><td></td><td>1</td><td>1</td></tr></tbody></table></div></div></div></div></div></div>'
-		$('#question_content').html(table_html);
-		
-//		$('#question_content').html('<button type="button" class="btn btn-info btn-fill btn-wd btn-next pull-center" id="sendDirectQuestionBtn">결과보기</button>');
-		
+$(document)
+		.ready(
+				function() {
 
-       
-	});
-	$("#sendObjectiveQuestionBtn").click(function() {
-		var cnt = $('#objective_header').children().length;
-		var objective_question_content;
-		message = {};
-		message.type = "sendObjectiveQuestion";
-		message.id = $("#id").val();
-		message.course_id = "cs";
-		message.question_type = 2;
-		for (var i = 1; i < cnt; i++) {
-			if($('#objective_question_check'+i+'').css('visibility') == "visible") {
-				objective_question_content = $.trim($('#objective_question_content'+i+'').text());
-				message.question_content = objective_question_content;
-				var example1 = $('#example'+i+"_1").text();
-				var example2 = $("#example"+i+"_2").text();
-				var example3 = $("#example"+i+"_3").text();
-				var example4 = $("#example"+i+"_4").text();
-				message.example1 = example1.substring(3,example1.length);
-				message.example2 = example2.substring(3,example2.length);
-				message.example3 = example3.substring(3,example3.length);
-				message.example4 = example4.substring(3,example4.length);
-				break;
-			}
-		}
-		sock.send(JSON.stringify(message));
-//		var table_html = '<div class="content"><div class="container-fluid"><div class="row"><div class="col-md-12"><div class="card"><div id="table_content" class="content"><div class="toolbar"></div><table id="bootstrap-table" class="table"><thead><th data-field="state" data-checkbox="true"></th><th data-field="id" class="text-center">번호</th><th data-field="city">답안</th></thead><tbody><tr><td></td><td>1</td><td>1</td></tr></tbody></table></div></div></div></div></div></div>'
-//		$('#question_content').html(table_html);
-		
-//		$('#question_content').html('<button type="button" class="btn btn-info btn-fill btn-wd btn-next pull-center" id="sendDirectQuestionBtn">결과보기</button>');
-		
+					var sock = null;
+					var message = {};
+					// sock = new
+					// SockJS("http://13.124.224.234:8080/QuickPollSocketServer/echo");
+					sock = new SockJS(
+							"http://localhost:8080/QuickPollSocketServer/echo");
+					// 자바스크립트 안에 function을 집어넣을 수 있음.
 
-       
-	});
-	$("#close").click(function() {
-		location.href="/QuickPollSocketServer/";
-	});
-	
-});
+					// 데이터가 나한테 전달되읐을 때 자동으로 실행되는 function
+
+					sock.onmessage = professorLecture.onMessage;
+
+					// 데이터를 끊고싶을때 실행하는 메소드
+
+					sock.onclose = professorLecture.onClose;
+
+					sock.onopen = function() {
+						message = {};
+						message.course_id = "cs";
+						message.type = "create";
+						message.id = $("#id").val();
+						message.name = "kim";
+						sock.send(JSON.stringify(message));
+
+					};
+
+					$("#sendDirectQuestionBtn")
+							.click(
+									function() {
+										var direct_question_content = $(
+												"#direct_question_content")
+												.val();
+										message = {};
+										message.type = "sendDirectQuestion";
+										message.id = $("#id").val();
+										message.course_id = "cs";
+										message.question_type = 1;
+										message.question_content = direct_question_content;
+										sock.send(JSON.stringify(message));
+										var table_html = '<div class="content"><div class="container-fluid"><div class="row"><div class="col-md-12"><div class="card"><div id="table_content" class="content"><div class="toolbar"></div><table id="bootstrap-table" class="table"><thead><th data-field="state" data-checkbox="true"></th><th data-field="id" class="text-center">번호</th><th data-field="city">답안</th></thead><tbody><tr><td></td><td>1</td><td>1</td></tr></tbody></table></div></div></div></div></div></div>'
+										$('#question_content').html(table_html);
+
+										// $('#question_content').html('<button
+										// type="button" class="btn btn-info
+										// btn-fill btn-wd btn-next pull-center"
+										// id="sendDirectQuestionBtn">결과보기</button>');
+
+									});
+					$("#sendObjectiveQuestionBtn")
+							.click(
+									function() {
+										var cnt = $('#objective_header')
+												.children().length;
+										var objective_question_content;
+										message = {};
+										message.type = "sendObjectiveQuestion";
+										message.id = $("#id").val();
+										message.course_id = "cs";
+										message.question_type = 2;
+										for (var i = 1; i < cnt; i++) {
+											if ($(
+													'#objective_question_check'
+															+ i + '').css(
+													'visibility') == "visible") {
+												objective_question_content = $
+														.trim($(
+																'#objective_question_content'
+																		+ i
+																		+ '')
+																.text());
+												message.question_content = objective_question_content;
+												var example1 = $(
+														'#example' + i + "_1")
+														.text();
+												var example2 = $(
+														"#example" + i + "_2")
+														.text();
+												var example3 = $(
+														"#example" + i + "_3")
+														.text();
+												var example4 = $(
+														"#example" + i + "_4")
+														.text();
+												message.example1 = example1
+														.substring(3,
+																example1.length);
+												message.example2 = example2
+														.substring(3,
+																example2.length);
+												message.example3 = example3
+														.substring(3,
+																example3.length);
+												message.example4 = example4
+														.substring(3,
+																example4.length);
+												break;
+											}
+										}
+										sock.send(JSON.stringify(message));
+										var watting_html = '<div class="content"><div class="row"><div id="" class="col-md-10 col-md-offset-1"><div class="panel panel-border panel-default"><div class="panel-heading"><h4 class="panel-title">Q. '
+												+ message.question_content
+												+ '</h4></div><br /><div id="example1"><button class="btn btn-icon btn-github"><i>1</i></button>'
+												+ message.example1
+												+ '<br /><br /></div><div id="example2"><button class="btn btn-icon btn-github"><i>2</i></button>'
+												+ message.example2
+												+ '<br /><br /></div><div id="example3"><button class="btn btn-icon btn-github"><i>3</i></button>'
+												+ message.example3
+												+ '<br /><br /></div><div id="example4"><button class="btn btn-icon btn-github"><i>4</i></button>'
+												+ message.example4
+												+ '<br /><br /></div></div></div><div class="col-md-10 col-md-offset-1"><div class="card card-circle-chart"data-background="color" data-color="blue"><div class="header text-center"><h5 class="title">제출현황</h5><p class="description">해당 문제에 제출자 현황입니다.</p></div><div class="content"><div id="chartDashboard" class="chart-circle"data-percent="10">1/10</div></div></div><button type="button" class="btn btn-info btn-fill btn-wd btn-next pull-right" onclick="objectiveQuestionResultBtn();">결과보기</button></div></div></div>';
+
+										// var table_html = '<div
+										// class="content"><div
+										// class="container-fluid"><div
+										// class="row"><div
+										// class="col-md-12"><div
+										// class="card"><div id="table_content"
+										// class="content"><div
+										// class="toolbar"></div><table
+										// id="bootstrap-table"
+										// class="table"><thead><th
+										// data-field="state"
+										// data-checkbox="true"></th><th
+										// data-field="id"
+										// class="text-center">번호</th><th
+										// data-field="city">답안</th></thead><tbody><tr><td></td><td>1</td><td>1</td></tr></tbody></table></div></div></div></div></div></div>'
+										$('#question_content').html(
+												watting_html);
+
+										// $('#question_content').html('<button
+										// type="button" class="btn btn-info
+										// btn-fill btn-wd btn-next pull-center"
+										// id="sendDirectQuestionBtn">결과보기</button>');
+
+										demo.initOverviewDashboard();
+										demo.initCirclePercentage();
+
+										objectiveQuestionResultBtn = function() {
+											var result_html = '<div class="content"><div class="row"><div id="" class="col-md-10 col-md-offset-1"><div class="panel panel-border panel-default"><div class="panel-heading"><h4 class="panel-title">Q. '
+													+ message.question_content
+													+ '</h4></div><br /><div id="example1"><button class="btn btn-icon btn-github"><i>1</i></button>'
+													+ message.example1
+													+ '<br /><br /></div><div id="example2"><button class="btn btn-icon btn-github"><i>2</i></button>'
+													+ message.example2
+													+ '<br /><br /></div><div id="example3"><button class="btn btn-icon btn-github"><i>3</i></button>'
+													+ message.example3
+													+ '<br /><br /></div><div id="example4"><button class="btn btn-icon btn-github"><i>4</i></button>'
+													+ message.example4
+													+ '<br /><br /></div></div></div><div class="col-lg-3 col-sm-6">'
+													+ '<div class="card card-circle-chart" data-background="color" data-color="blue">'
+													+ '<div class="header text-center">'
+													+ '   <h5 class="title">Dashboard</h5>'
+													+ '    <p class="description">Monthly sales target</p>'
+													+ ' </div>'
+													+ '<div class="content">'
+													+ '	<div id="chartDashboard" class="chart-circle" data-percent="10">1/10</div>'
+													+ '</div>'
+													+ '</div>'
+													+ '</div>'
+													+ '<div class="col-lg-3 col-sm-6">'
+													+ '<div class="card card-circle-chart" data-background="color" data-color="green">'
+													+ '	<div class="header text-center">'
+													+ '    <h5 class="title">Orders</h5>'
+													+ '   <p class="description">Completed</p>'
+													+ '</div>'
+													+ '<div class="content">'
+													+ '	<div id="chartOrders" class="chart-circle" data-percent="34">34%</div>'
+													+ '</div>'
+													+ '</div>'
+													+ '</div>'
+													+ '<div class="col-lg-3 col-sm-6">'
+													+ '<div class="card card-circle-chart" data-background="color" data-color="orange">'
+													+ '<div class="header text-center">'
+													+ '  <h5 class="title">New Visitors</h5>'
+													+ '   <p class="description">Out of total number</p>'
+													+ ' </div>'
+													+ '<div class="content">'
+													+ '				<div id="chartNewVisitors" class="chart-circle" data-percent="62">62%</div>'
+													+ '</div>'
+													+ '</div>'
+													+ '</div>'
+													+ '<div class="col-lg-3 col-sm-6">'
+													+ '<div class="card card-circle-chart" data-background="color" data-color="brown">'
+													+ '<div class="header text-center">'
+													+ '  <h5 class="title">Subscriptions</h5>'
+													+ '  <p class="description">Monthly newsletter</p>'
+													+ '</div>'
+													+ '<div class="content">'
+													+ '	<div id="chartSubscriptions" class="chart-circle" data-percent="10">10%</div>'
+													+ '</div>'
+													+ '</div>'
+													+ '</div><button type="button" class="btn btn-info btn-fill btn-wd btn-next pull-right" onclick="objectiveQuestionResultBtn();">결과보기</button></div></div></div>';
+											$('#question_content').html(
+													result_html);
+											demo.initOverviewDashboard();
+											demo.initCirclePercentage();
+										};
+
+									});
+
+					$("#close").click(function() {
+						location.href = "/QuickPollSocketServer/";
+					});
+
+				});
 professorLecture = {
-	
+
 	// 웸소켓을 지정한 url로 연결한다.
 
 	sendMessage : function() {
@@ -91,49 +220,55 @@ professorLecture = {
 
 	onMessage : function(evt) {
 		var data = evt.data;
-//		alert(data);
+		// alert(data);
 		var parsedJson = JSON.parse(data);
 		if (parsedJson.type == "connect")
 			$('li').remove('#' + parsedJson.id);
 		else if (parsedJson.type == "directQuestionAnswer") {
-			var length = ($('#bootstrap-table > tbody > tr').length)+1;
-			var tr_html = '<tr data-index="'+(length-1)+'"><td class="bs-checkbox"><input data-index="'+(length-1)+'" name="btSelectItem" type="checkbox"></td><td class="text-center" style="">'+length+'</td><td style="">'+parsedJson.question_anwser+'</td></tr>'
+			var length = ($('#bootstrap-table > tbody > tr').length) + 1;
+			var tr_html = '<tr data-index="'
+					+ (length - 1)
+					+ '"><td class="bs-checkbox"><input data-index="'
+					+ (length - 1)
+					+ '" name="btSelectItem" type="checkbox"></td><td class="text-center" style="">'
+					+ length + '</td><td style="">'
+					+ parsedJson.question_anwser + '</td></tr>'
 			$('#bootstrap-table > tbody:last').append(tr_html);
 			var $table = $('#bootstrap-table');
-            $table.bootstrapTable({
-                toolbar: ".toolbar",
-                clickToSelect: true,
-                showRefresh: true,
-                search: true,
-                showToggle: true,
-                showColumns: true,
-                pagination: true,
-                searchAlign: 'left',
-                pageSize: 8,
-                clickToSelect: false,
-                pageList: [8,10,25,50,100],
+			$table.bootstrapTable({
+				toolbar : ".toolbar",
+				clickToSelect : true,
+				showRefresh : true,
+				search : true,
+				showToggle : true,
+				showColumns : true,
+				pagination : true,
+				searchAlign : 'left',
+				pageSize : 8,
+				clickToSelect : false,
+				pageList : [ 8, 10, 25, 50, 100 ],
 
-                formatShowingRows: function(pageFrom, pageTo, totalRows){
-                    //do nothing here, we don't want to show the text "showing x of y from..."
-                },
-                formatRecordsPerPage: function(pageNumber){
-                    return pageNumber + " rows visible";
-                },
-                icons: {
-                    refresh: 'fa fa-refresh',
-                    toggle: 'fa fa-th-list',
-                    columns: 'fa fa-columns',
-                    detailOpen: 'fa fa-plus-circle',
-                    detailClose: 'ti-close'
-                }
-            });
+				formatShowingRows : function(pageFrom, pageTo, totalRows) {
+					//do nothing here, we don't want to show the text "showing x of y from..."
+				},
+				formatRecordsPerPage : function(pageNumber) {
+					return pageNumber + " rows visible";
+				},
+				icons : {
+					refresh : 'fa fa-refresh',
+					toggle : 'fa fa-th-list',
+					columns : 'fa fa-columns',
+					detailOpen : 'fa fa-plus-circle',
+					detailClose : 'ti-close'
+				}
+			});
 
-            //activate the tooltips after the data table is initialized
-            $('[rel="tooltip"]').tooltip();
+			//activate the tooltips after the data table is initialized
+			$('[rel="tooltip"]').tooltip();
 
-            $(window).resize(function () {
-                $table.bootstrapTable('resetView');
-            });
+			$(window).resize(function() {
+				$table.bootstrapTable('resetView');
+			});
 		}
 		// sock.close();
 	},
@@ -143,7 +278,7 @@ professorLecture = {
 		$("#data").append("연결 끊김");
 
 	},
-	
+
 	closeMessage : function() {
 
 	}
