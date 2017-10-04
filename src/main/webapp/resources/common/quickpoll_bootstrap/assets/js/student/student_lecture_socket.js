@@ -27,20 +27,96 @@ $(document).ready(function() {
 		alert("in");
 		$('#waitting_text').html("");
 		$('#student_question_content').empty();
-		var objective_html = '<div class="panel panel-border panel-default"><div class="panel-heading"><h4 class="panel-title">Q. ' + obj.question_content + '</h4></div><br/><div id="example1"><button class="btn btn-icon btn-github"><i>1</i></button>' + obj.example1 + '<br/><br/></div><div id="example2"><button class="btn btn-icon btn-github"><i>2</i></button>' + obj.example2 + '<br/><br/></div><div id="example3"><button class="btn btn-icon btn-github"><i>3</i></button>' + obj.example3 + '<br/><br/></div><div id="example4"><button class="btn btn-icon btn-github"><i>4</i></button>' + obj.example4 + '<br/><br/></div></div>';
+		var objective_html = '<div class="panel panel-border panel-default">'+
+								'<div class="panel-heading">'+
+									'<h4 class="panel-title">Q. ' + obj.question_content + '</h4>'+
+								'</div>'+
+								'<br />'+						
+								'<div id="objective_question_header_student">'+
+									'<div class="panel panel-border panel-default">'+
+										'<a data-toggle="collapse"'+
+											'onclick="studentLectureController.checkExample(1);">'+
+											'<div class="panel-heading">'+
+												'<h4 class="panel-title">'+
+												'<span id="objective_question_check_example1"'+
+													'style="visibility: hidden" class="ti-check"></span>1. ' + obj.example1 +
+													'</h4>'+
+											'</div></a>'+
+									'</div>'+
+									'<div class="panel panel-border panel-default">'+
+										'<a data-toggle="collapse"'+
+											'onclick="studentLectureController.checkExample(2);">'+
+											'<div class="panel-heading">'+
+												'<h4 class="panel-title">'+
+												'<span id="objective_question_check_example2"'+
+												'style="visibility: hidden" class="ti-check"></span>2. ' + obj.example2 +
+												'</h4>'+
+										'</div></a>'+
+									'</div>'+
+									'<div class="panel panel-border panel-default">'+
+										'<a data-toggle="collapse"'+
+										'onclick="studentLectureController.checkExample(3);">'+
+										'<div class="panel-heading">'+
+											'<h4 class="panel-title">'+
+												'<span id="objective_question_check_example3"'+
+													'style="visibility: hidden" class="ti-check"></span>3. ' + obj.example3 +
+											'</h4>'+
+										'</div></a>'+
+									'</div>'+
+									'<div class="panel panel-border panel-default">'+
+										'<a data-toggle="collapse"'+
+										'onclick="studentLectureController.checkExample(4);">'+
+										'<div class="panel-heading">'+
+											'<h4 class="panel-title">'+
+												'<span id="objective_question_check_example4"'+
+													'style="visibility: hidden" class="ti-check"></span>4. ' + obj.example4 +
+											'</h4>'+
+										'</div></a>'+
+									'</div>'+
+								'</div>'+
+							'</div>'+
+							'<button type="button" class="btn btn-info btn-fill btn-wd btn-next pull-right" onclick="sendObjectiveQuestionAnswer();">제출하기</button>';
 		$('#student_question_content').html(objective_html);
+		
+		sendObjectiveQuestionAnswer = function() {
+			message = {};
+			message.quickpoll_question_id = obj.quickpoll_question_id; 
+			message.course_id = "cs";
+			message.type = "objectiveQuestionAnswer";
+			message.id = $("#student_id").val();
+			for (var i = 1; i <= 4; i++) {
+				if ($('#objective_question_check_example' + i + '').css('visibility') == "visible") {
+					message.question_answer = i;
+					break;
+				}
+			}
+			alert("answer : " +message.question_answer);
+			sock.send(JSON.stringify(message));
+			swal({  title: "제출 완료!",
+        	    text: "정상적으로 제출이 되었습니다.",
+        	    type: "success",
+        	    confirmButtonText: "확인",
+        	    closeOnConfirm: false,
+        	    closeOnCancel: false
+            },function(isConfirm){
+                if (isConfirm){
+                	location.href="/QuickPoll";       
+                }
+            });
+		}
 	}
+	
 	displaySubjectiveQuestion = function(obj) {
 		$('#waitting_text').html("");
 		$('#student_question_content').empty();
-		$('#student_question_content').html('<div class="form-group"><label class="control-label"> Q. ' + obj.question_content + '</label> <input class="form-control" type="text" id="direct_question_anwser" name="direct_question_anwser" placeholder="ex: 제출하실 답을 적어주세요" /></div><button type="button" class="btn btn-info btn-fill btn-wd btn-next pull-right" id="submitDirectQuestionAnswer">제출하기</button>');
+		$('#student_question_content').html('<div class="form-group"><label class="control-label"> Q. ' + obj.question_content + '</label> <input class="form-control" type="text" id="direct_question_answer" name="direct_question_answer" placeholder="ex: 제출하실 답을 적어주세요" /></div><button type="button" class="btn btn-info btn-fill btn-wd btn-next pull-right" id="submitDirectQuestionAnswer">제출하기</button>');
 		$("#submitDirectQuestionAnswer").click(function() {
 			message = {};
 			message.quickpoll_question_id = obj.quickpoll_question_id; 
 			message.course_id = "cs";
 			message.type = "directQuestionAnswer";
 			message.id = $("#student_id").val();
-			message.question_anwser = $('#direct_question_anwser').val();
+			message.question_answer = $('#direct_question_answer').val();
 			sock.send(JSON.stringify(message));
 			swal({  title: "제출 완료!",
         	    text: "정상적으로 제출이 되었습니다.",

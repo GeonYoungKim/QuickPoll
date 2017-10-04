@@ -237,62 +237,47 @@
 					<div class="row">
 						<div class="col-md-8 col-md-offset-2">
 							<div class="card card-wizard" id="wizardCard">
-								<form id="wizardForm" method="" action="">
-									<div class="header text-center">
-										<h4 class="title">QuickPoll</h4>
-										<p class="category">수업에 적극적으로 참여해 보세요~</p>
-									</div>
-									<div class="content">
-										<ul class="nav">
-											<li><a href="#tab1" data-toggle="tab">문제 풀기</a></li>
-										</ul>
-										<div class="tab-content">
-											<div class="tab-pane" id="tab1">
-												<h5 id="waitting_text" class="text-center">문제 대기 중 입니다.</h5>
 
-												<div class="row">
+								<div class="header text-center">
+									<h4 class="title">QuickPoll</h4>
+									<p class="category">수업에 적극적으로 참여해 보세요~</p>
+								</div>
+								<div class="content">
+									<ul class="nav">
+										<li><a href="#tab1" data-toggle="tab">문제 풀기</a></li>
+									</ul>
+									<div class="tab-content">
+										<div class="tab-pane" id="tab1">
+											<h5 id="waitting_text" class="text-center">문제 대기 중 입니다.</h5>
 
-													<div id="student_question_content"
-														class="col-md-10 col-md-offset-1">
+											<div class="row">
 
-														<!-- objective question  -->
-														<div class="panel panel-border panel-default">
-															<div class="panel-heading">
-																<h4 class="panel-title">Q. 물리계층의 전송 단위는?</h4>
-															</div>
-															<br />
-															<div id="example1">
-																<button class="btn btn-icon btn-github">
-																	<i>1</i>
-																</button>
-																Frame<br />
-																<br />
-															</div>
-															<div id="example2">
-																<button class="btn btn-icon btn-github">
-																	<i>2</i>
-																</button>
-																Data<br />
-																<br />
-															</div>
-															<div id="example3">
-																<button class="btn btn-icon btn-github">
-																	<i>3</i>
-																</button>
-																Packet<br />
-																<br />
-															</div>
-															<div id="example4">
-																<button class="btn btn-icon btn-github">
-																	<i>4</i>
-																</button>
-																Bit<br />
-																<br />
+												<div id="student_question_content"
+													class="col-md-10 col-md-offset-1">
+
+													<!-- objective question  -->
+													<%-- <div class="panel panel-border panel-default">
+														<div class="panel-heading">
+															<h4 class="panel-title">Q. 물리계층의 전송 단위는?</h4>
+														</div>
+														<br />
+														<div id="objective_question_header_student">
+															<div class="panel panel-border panel-default">
+																<a data-toggle="collapse"
+																	onclick="createQuestion.subjectiveCheck('${status.count}');"><div
+																		class="panel-heading">
+																		<h4 class="panel-title">
+																			<span id="subjective_question_check${status.count}"
+																				style="visibility: hidden" class="ti-check"></span>1.
+																			bit
+																		</h4>
+																	</div></a>
 															</div>
 														</div>
-
-														<!-- Subjective Question  -->
-														<!-- <div class="form-group">
+													</div>
+ --%>
+													<!-- Subjective Question  -->
+													<!-- <div class="form-group">
 															<label class="control-label"> Q. 질문해보세요~ </label> <input
 																class="form-control" type="text"
 																id="direct_question_content"
@@ -302,25 +287,12 @@
 														<button type="button"
 															class="btn btn-info btn-fill btn-wd btn-next pull-right"
 															onclick="">제출하기</button> -->
-													</div>
-													<div class="col-md-10 col-md-offset-1">
-														<div class="card card-circle-chart"
-															data-background="color" data-color="blue">
-															<div class="header text-center">
-																<h5 class="title">Dashboard</h5>
-																<p class="description">Monthly sales target</p>
-															</div>
-															<div class="content">
-																<div id="chartDashboard" class="chart-circle"
-																	data-percent="10">1/10</div>
-															</div>
-														</div>
-													</div>
 												</div>
-											</div>
+																							</div>
 										</div>
 									</div>
-								</form>
+								</div>
+
 							</div>
 						</div>
 					</div>
@@ -429,7 +401,10 @@
 <script type="text/javascript"
 	src="resources/common/quickpoll_bootstrap/assets/js/sockjs-0.3.4.js"></script>
 <script
-	src="resources/common/quickpoll_bootstrap/assets/js/student/student_lecture_socket.js?ver=2"
+	src="resources/common/quickpoll_bootstrap/assets/js/student/student_lecture_socket.js?ver=1"
+	charset="UTF-8"></script>
+	<script
+	src="resources/common/quickpoll_bootstrap/assets/js/student/student_lecture_controller.js?ver=1"
 	charset="UTF-8"></script>
 <script type="text/javascript">
         $().ready(function(){
