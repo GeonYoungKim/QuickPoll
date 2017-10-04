@@ -251,38 +251,45 @@
 												<h5 id="waitting_text" class="text-center">문제 대기 중 입니다.</h5>
 
 												<div class="row">
+
 													<div id="student_question_content"
 														class="col-md-10 col-md-offset-1">
 
 														<!-- objective question  -->
-														<!-- 
-														<div class="panel panel-border panel-default"> 
+														<div class="panel panel-border panel-default">
 															<div class="panel-heading">
 																<h4 class="panel-title">Q. 물리계층의 전송 단위는?</h4>
 															</div>
-															<br/>	
+															<br />
 															<div id="example1">
-															<button class="btn btn-icon btn-github">
-					                            				<i>1</i>
-				                        					</button>Frame<br/><br/>
-				                        					</div>
-				                        					<div id="example2">
-					                        				<button class="btn btn-icon btn-github">
-					                            				<i>2</i>
-				                        					</button>Data<br/><br/>
-				                        					</div>
-				                        					<div id="example3">
-				                        					<button class="btn btn-icon btn-github">
-					                            				<i>3</i>
-				                        					</button>Packet<br/><br/>
-				                        					</div>
-				                        					<div id="example4">
-				                        					<button class="btn btn-icon btn-github">
-					                            				<i>4</i>
-				                        					</button>Bit<br/><br/>
-				                        					</div>
-			                        					</div>	
-			                        					 -->
+																<button class="btn btn-icon btn-github">
+																	<i>1</i>
+																</button>
+																Frame<br />
+																<br />
+															</div>
+															<div id="example2">
+																<button class="btn btn-icon btn-github">
+																	<i>2</i>
+																</button>
+																Data<br />
+																<br />
+															</div>
+															<div id="example3">
+																<button class="btn btn-icon btn-github">
+																	<i>3</i>
+																</button>
+																Packet<br />
+																<br />
+															</div>
+															<div id="example4">
+																<button class="btn btn-icon btn-github">
+																	<i>4</i>
+																</button>
+																Bit<br />
+																<br />
+															</div>
+														</div>
 
 														<!-- Subjective Question  -->
 														<!-- <div class="form-group">
@@ -295,6 +302,19 @@
 														<button type="button"
 															class="btn btn-info btn-fill btn-wd btn-next pull-right"
 															onclick="">제출하기</button> -->
+													</div>
+													<div class="col-md-10 col-md-offset-1">
+														<div class="card card-circle-chart"
+															data-background="color" data-color="blue">
+															<div class="header text-center">
+																<h5 class="title">Dashboard</h5>
+																<p class="description">Monthly sales target</p>
+															</div>
+															<div class="content">
+																<div id="chartDashboard" class="chart-circle"
+																	data-percent="10">1/10</div>
+															</div>
+														</div>
 													</div>
 												</div>
 											</div>
@@ -504,6 +524,13 @@
 
             swal("Good job!", "You clicked the finish button!", "success");
         }
+	</script>
+<script type="text/javascript">
+    	$(document).ready(function(){
+			demo.initOverviewDashboard();
+			demo.initCirclePercentage();
+
+    	});
 	</script>
 
 </html>
