@@ -73,11 +73,11 @@ $(document)
 												message.example2 = example2.substring(3,example2.length);
 												message.example3 = example3.substring(3,example3.length);
 												message.example4 = example4.substring(3,example4.length);
+												message.question_answer = $('#objective_question_answer_'+i).val();
 												break;
 											}
 										}
 										sock.send(JSON.stringify(message));
-										
 										var watting_html = '<div class="content"><div class="row"><div id="" class="col-md-10 col-md-offset-1">'+ 
 											'<div class="panel panel-border panel-default">'+
 										'<div class="panel-heading">'+
@@ -89,8 +89,8 @@ $(document)
 												'<a data-toggle="collapse"'+
 													'onclick="">'+
 													'<div class="panel-heading">'+
-														'<h4 class="panel-title">'+
-														'<span id=""'+
+														'<h4 id="objectvie_question_example1" class="panel-title">'+
+														'<span '+
 															'style="visibility: hidden" class="ti-check"></span>1. ' + message.example1 +
 															'</h4>'+
 													'</div></a>'+
@@ -99,8 +99,8 @@ $(document)
 												'<a data-toggle="collapse"'+
 													'onclick="">'+
 													'<div class="panel-heading">'+
-														'<h4 class="panel-title">'+
-														'<span id=""'+
+														'<h4 id="objectvie_question_example2" class="panel-title">'+
+														'<span '+
 														'style="visibility: hidden" class="ti-check"></span>2. ' + message.example2 +
 														'</h4>'+
 												'</div></a>'+
@@ -109,8 +109,8 @@ $(document)
 												'<a data-toggle="collapse"'+
 												'onclick="">'+
 												'<div class="panel-heading">'+
-													'<h4 class="panel-title">'+
-														'<span id=""'+
+													'<h4 id="objectvie_question_example3" class="panel-title">'+
+														'<span '+
 															'style="visibility: hidden" class="ti-check"></span>3. ' + message.example3 +
 													'</h4>'+
 												'</div></a>'+
@@ -119,8 +119,8 @@ $(document)
 												'<a data-toggle="collapse"'+
 												'onclick="">'+
 												'<div class="panel-heading">'+
-													'<h4 class="panel-title">'+
-														'<span id=""'+
+													'<h4 id="objectvie_question_example4" class="panel-title">'+
+														'<span '+
 															'style="visibility: hidden" class="ti-check"></span>4. ' + message.example4 +
 													'</h4>'+
 												'</div></a>'+
@@ -150,54 +150,79 @@ $(document)
 										demo.initCirclePercentage();
 
 										objectiveQuestionResultBtn = function() {
-											var result_html = '<div class="col-lg-3 col-sm-6">'+
-												'<div class="card card-circle-chart" data-background="color" data-color="blue">'+
-											'<div class="header text-center">'+
-				                                '<h5 class="title">Dashboard</h5>'+
-				                                '<p class="description">Monthly sales target</p>'+
-				                            '</div>'+
-											'<div class="content">'+
-												'<div id="chartDashboard" class="chart-circle" data-percent="10">1/10</div>'+
+											alert("resultBtn Click!");
+											var query = {
+													quickpoll_question_id : $('#quickpoll_question_id').val()
+												};
+												$.ajax({
+													type : "GET",
+													url : "resultListForObjectiveQuestion",
+													data : query,
+													dataType : "json",
+													contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+													success : function(json) {
+														if (message.question_answer == 1) {
+															$('#objectvie_question_example1').css("background-color", "yellow");
+														} else if (message.question_answer == 2) {
+															$('#objectvie_question_example2').css("background-color", "yellow");
+														} else if (message.question_answer == 3) {
+															$('#objectvie_question_example3').css("background-color", "yellow");
+														} else if (message.question_answer == 4) {
+															$('#objectvie_question_example4').css("background-color", "yellow");
+														}
+														var list = json.resultListForObjectiveQuestion;
+														
+														//list[0].answer1;
+														var result_html = '<div class="col-lg-3 col-sm-6">'+
+														'<div class="card card-circle-chart" data-background="color" data-color="blue">'+
+													'<div class="header text-center">'+
+						                                '<h5 class="title">1번 선택 인원</h5>'+
+						                                '<p class="description"></p>'+
+						                            '</div>'+
+													'<div class="content">'+
+														'<div id="chartDashboard" class="chart-circle" data-percent="'+list.answer1/list.totalPeople*100+'">'+list.answer1+'</div>'+
+													'</div>'+
+												'</div>'+
 											'</div>'+
-										'</div>'+
-									'</div>'+
-									'<div class="col-lg-3 col-sm-6">'+
-										'<div class="card card-circle-chart" data-background="color" data-color="green">'+
-											'<div class="header text-center">'+
-				                                '<h5 class="title">Orders</h5>'+
-				                                '<p class="description">Completed</p>'+
-				                            '</div>'+
-											'<div class="content">'+
-												'<div id="chartOrders" class="chart-circle" data-percent="34">34%</div>'+
+											'<div class="col-lg-3 col-sm-6">'+
+												'<div class="card card-circle-chart" data-background="color" data-color="green">'+
+													'<div class="header text-center">'+
+						                                '<h5 class="title">2번 선택 인원</h5>'+
+						                                '<p class="description"></p>'+
+						                            '</div>'+
+													'<div class="content">'+
+														'<div id="chartOrders" class="chart-circle" data-percent="'+list.answer2/list.totalPeople*100+'">'+list.answer2+'</div>'+
+													'</div>'+
+												'</div>'+
 											'</div>'+
-										'</div>'+
-									'</div>'+
-									'<div class="col-lg-3 col-sm-6">'+
-										'<div class="card card-circle-chart" data-background="color" data-color="orange">'+
-											'<div class="header text-center">'+
-				                                '<h5 class="title">New Visitors</h5>'+
-				                                '<p class="description">Out of total number</p>'+
-				                            '</div>'+
-											'<div class="content">'+
-												'<div id="chartNewVisitors" class="chart-circle" data-percent="62">62%</div>'+
+											'<div class="col-lg-3 col-sm-6">'+
+												'<div class="card card-circle-chart" data-background="color" data-color="orange">'+
+													'<div class="header text-center">'+
+						                                '<h5 class="title">3번 선택 인원</h5>'+
+						                                '<p class="description"></p>'+
+						                            '</div>'+
+													'<div class="content">'+
+														'<div id="chartNewVisitors" class="chart-circle" data-percent="'+list.answer3/list.totalPeople*100+'">'+list.answer3+'</div>'+
+													'</div>'+
+												'</div>'+
 											'</div>'+
-										'</div>'+
-									'</div>'+
-									'<div class="col-lg-3 col-sm-6">'+
-										'<div class="card card-circle-chart" data-background="color" data-color="brown">'+
-											'<div class="header text-center">'+
-				                                '<h5 class="title">Subscriptions</h5>'+
-				                                '<p class="description">Monthly newsletter</p>'+
-				                            '</div>'+
-											'<div class="content">'+
-												'<div id="chartSubscriptions" class="chart-circle" data-percent="10">10%</div>'+
-											'</div>'+
-										'</div>'+
-									'</div>';
-											$('#result_objective_question').html(result_html);
-
-											demo.initOverviewDashboard();
-											demo.initCirclePercentage();
+											'<div class="col-lg-3 col-sm-6">'+
+												'<div class="card card-circle-chart" data-background="color" data-color="brown">'+
+													'<div class="header text-center">'+
+						                                '<h5 class="title">4번 선택 인원</h5>'+
+						                                '<p class="description"></p>'+
+						                            '</div>'+
+													'<div class="content">'+
+														'<div id="chartSubscriptions" class="chart-circle" data-percent="'+list.answer4/list.totalPeople*100+'">'+list.answer4+'</div>'+
+													'</div>'+
+												'</div>'+
+											'</div>';
+														$('#result_objective_question').html(result_html);
+														demo.initOverviewDashboard();
+														demo.initCirclePercentage();
+													}
+												});
+											
 										};
 
 									});
@@ -274,6 +299,8 @@ professorLecture = {
 			$('#connected_student_percent').html('<div id="chartDashboard" class="chart-circle" data-percent="'+percent+'">' + parsedJson.summitedCount+' / 전체인원</div>');
 			demo.initOverviewDashboard();
 			demo.initCirclePercentage();
+		} else if (parsedJson.type == "sendObjectiveQuestion") {
+			$('#quickpoll_question_id').val(parsedJson.quickpoll_question_id);
 		}
 		// sock.close();
 	},

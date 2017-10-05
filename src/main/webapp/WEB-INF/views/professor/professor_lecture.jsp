@@ -48,6 +48,7 @@
 </head>
 
 <body>
+	<input type="hidden" id="quickpoll_question_id">
 	<div class="wrapper">
 		<div class="sidebar" data-background-color="brown"
 			data-active-color="danger">
@@ -183,6 +184,7 @@
 																									<div id="example${status.count}_2">2. ${row.example2}<br /></div>
 																									<div id="example${status.count}_3">3. ${row.example3}<br /></div>
 																									<div id="example${status.count}_4">4. ${row.example4}<br /></div>
+																									<input type="hidden" id="objective_question_answer_${status.count}" value="${row.question_answer}">
 																								</div>
 																							</div>
 																						</div>

@@ -53,4 +53,14 @@
 				course_id = #{course_id}
 		]]>
 	</select>
+	<select id="selectResultListForObjectiveQuestion" resultType="hashmap" parameterType="Integer">
+		<![CDATA[
+			SELECT
+			    *
+			FROM
+			    quickpollanswer
+			WHERE
+				quickpoll_question_id = #{quickpoll_question_id}
+		]]>
+	</select> 
 </mapper>

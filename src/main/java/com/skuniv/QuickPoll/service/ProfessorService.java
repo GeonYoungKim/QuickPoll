@@ -1,5 +1,7 @@
 package com.skuniv.QuickPoll.service;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +22,24 @@ public class ProfessorService {
 	}
 	public List<Map<String, Object>> selectProfessorList(int professor_id) throws Exception {
 		return professorDao.selectProfessorList(professor_id);
+	}
+	public Map<String, Object> selectResultListForObjectiveQuestion(int quickpoll_question_id) throws Exception {
+		List<Map<String, Object>> resultList = professorDao.selectResultListForObjectiveQuestion(quickpoll_question_id);
+		return parsingAnswer(resultList);
+	}
+	public Map<String, Object> parsingAnswer(List<Map<String, Object>> resultList) {
+		int answer_array[] = new int[5];
+		Map<String, Object> parsingMap = new HashMap<String, Object>();
+		for (int i = 0 ; i < resultList.size(); i++) {
+			String value = (String)resultList.get(i).get("question_answer");
+			answer_array[Integer.parseInt(value)] ++;
+		}
+		parsingMap.put("answer1", answer_array[1]);
+		parsingMap.put("answer2", answer_array[2]);
+		parsingMap.put("answer3", answer_array[3]);
+		parsingMap.put("answer4", answer_array[4]);
+		parsingMap.put("totalPeople", resultList.size());
+		return parsingMap;
 	}
 	public boolean selectProfessorPassword(int professor_id, String input_password) throws Exception {
 		String professor_password = professorDao.selectProfessorPassword(professor_id);
