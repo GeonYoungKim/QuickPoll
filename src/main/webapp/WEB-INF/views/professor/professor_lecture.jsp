@@ -196,7 +196,7 @@
 																			</c:choose>
 																			<button type="button"
 																				class="btn btn-info btn-fill btn-wd btn-next pull-center"
-																				id="sendObjectiveQuestionBtn">Finish</button>
+																				id="sendObjectiveQuestionBtn">출제 하기</button>
 																		</div>
 
 																	</div>
@@ -213,11 +213,12 @@
 																						<a data-toggle="collapse"
 																							onclick="createQuestion.subjectiveCheck('${status.count}');"><div
 																								class="panel-heading">
-																								<h4 class="panel-title">
+																								<h4 id="subjective_question_content${status.count}" class="panel-title">
 																									<span
 																										id="subjective_question_check${status.count}"
 																										style="visibility: hidden" class="ti-check"></span>${row.question_content}
 																								</h4>
+																								<input type="hidden" id="subjective_question_answer_${status.count}" value="${row.question_answer}">
 																							</div></a>
 
 																					</div>
@@ -230,7 +231,7 @@
 																		</c:choose>
 																		<button type="button"
 																			class="btn btn-info btn-fill btn-wd btn-next pull-center"
-																			onclick="onFinishWizard()">Finish</button>
+																			id="sendSubjectiveQuestionBtn">출제 하기</button>
 																		</div>
 																	</div>
 																</div>

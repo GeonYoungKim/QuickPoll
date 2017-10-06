@@ -50,6 +50,68 @@ $(document)
 										// id="sendDirectQuestionBtn">결과보기</button>');
 
 									});
+					
+					
+					$('#sendSubjectiveQuestionBtn').click(function() {
+						
+						var cnt = $('#subjective_header')
+						.children().length;
+						var subjective_question_content;
+						message = {};
+						message.type = "sendSubjectiveQuestion";
+						message.id = $("#id").val();
+						message.course_id = "cs";
+						message.question_type = 3;
+						for (var i = 1; i < cnt; i++) {
+							if ($('#subjective_question_check'+ i + '').css('visibility') == "visible") {
+								subjective_question_content = $.trim($('#subjective_question_content'+ i+ '').text());
+								message.question_content = subjective_question_content;
+								message.question_answer = $('#subjective_question_answer_'+i).val();
+								break;
+							}	
+						}
+						sock.send(JSON.stringify(message));
+						
+						var watting_html = '<div class="content"><div class="row"><div id="" class="col-md-10 col-md-offset-1">'+ 
+											'<div class="panel panel-border panel-default">'+
+										'<div class="panel-heading">'+
+											'<h4 class="panel-title">주관식 문제</h4>'+
+										'</div>'+
+										'<br />'+						
+										'<div id="subjective_question_header_student">'+
+											'<div class="panel panel-border panel-default">'+
+												'<a data-toggle="collapse"'+
+												'<div class="panel-heading">'+
+													'<h4 class="panel-title">'+
+												'<span style="visibility: hidden" class="ti-check"></span>'+
+												'Q. '+ message.question_content +
+											'</h4>'+
+												'</div></a>'+
+											'</div>'+
+										'</div>'+
+									'</div></div>'+
+									'<div id="result_objective_question">'+
+									'<div class="col-md-10 col-md-offset-1">'+
+										'<div class="card card-circle-chart" data-background="color" data-color="blue">'+
+											'<div class="header text-center"><h5 class="title">제출현황</h5><p class="description">해당 문제에 제출자 현황입니다.</p></div>'+
+											'<div id="connected_student_percent" class="content">'+
+												'<div id="chartDashboard" class="chart-circle" data-percent="0">0 / 전체인원</div>'+
+											'</div>'+
+										'</div>'+
+										'</div>'+
+									'<button type="button" class="btn btn-info btn-fill btn-wd btn-next pull-right" onclick="objectiveQuestionResultBtn();">결과보기</button>'+
+									'</div></div></div>';
+						$('#question_content').html(
+								watting_html);
+						
+						
+						
+
+						demo.initOverviewDashboard();
+						demo.initCirclePercentage();
+					});
+					
+					
 					$("#sendObjectiveQuestionBtn")
 							.click(
 									function() {
