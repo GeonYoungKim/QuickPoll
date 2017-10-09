@@ -150,66 +150,67 @@
 	                    <div class="col-md-12">
 	                        <div class="card">
 	                            <div class="header">
-	                                <h4 class="title">Collapsible Accordion</h4>
-	                                <p class="category">Bootstrap default style</p>
+	                                <h4 class="title">과목 List</h4>
+	                                <p class="category">각 과목 보기에서 선택해 주세요.</p>
 	                            </div>
 	                            <div class="content">
 	    	                       <div id="acordeon">
-	    	                            <div class="" id="accordion">
-	    	                                
-		    	                                <table id="bootstrap-table" class="table panel-grou p" data-toggle="collapse">
-													<thead>
-														<th data-field="state"></th>
-														<th data-field="id" class="text-center">ID</th>
-														<th data-field="name" data-sortable="true">Name</th>
-														<th data-field="salary" data-sortable="true">Salary</th>
-														<th data-field="country" data-sortable="true">Country</th>
-														<th data-field="city">City</th>
-														<th>List</th>
-													</thead>
-													<tbody class="panel-default">
-														<tr class="panel-heading panel-border">
-															<td></td>
-															<td>1</td>
-															<td>Hello</td>
-															<td>$36,738</td>
-															<td>Niger</td>
-															<td>Oud-Turnhout</td>
-															<td class="panel-default">
-																<div data-toggle="collapse"  href="#collapseOne">
-																	<div class="panel-heading">
-																		<i class="ti-angle-down panel-default"></i>
-																	</div>
-																</div>
-															</td>
-														</tr>
-														<tr id="collapseOne" class="panel-collapse collapse panel-body">
-															<td></td>
-															<td>
-																<ul class="nav">
-																	<li><a href="">1. 퀵폴보기</a></li>
-																	<li><a href="">2. 퀵폴만들기</a></li>
-																	<li><a href="">3. 참여도</a></li>
-																</ul>
-															</td>
-															<td></td>
-															<td></td>
-															<td></td>
-															<td></td>
-														</tr>
-													</tbody>
-												</table>
-												<div class="panel-default">
-		    	                                <a data-toggle="collapse" href="#collapseTwo">
-		    	                                    
+	    	                           <div class="panel-grou p" id="accordion">
+	    	                                <div class="panel panel-border panel-default">
+		    	                                <a data-toggle="collapse" href="#collapseOne">
+		    	                                    <div class="panel-heading">
 		    	                                        <h4 class="panel-title">
-		    	                                        	Default Collapsible Item 1
+		    	                                        	운영체재
 		    	                                        	<i class="ti-angle-down"></i>
 		    	                                        </h4>
-		    	                                    
+		    	                                    </div>
+		    	                                </a>
+		    	                                <div id="collapseOne" class="panel-collapse collapse">
+		    	                                	<div class="panel-body">
+		    	                                    	<ul class="nav">
+															<li><a href="quickpoll">1. 퀵폴보기</a></li>
+															<li><a href="quickpoll">2. 퀵폴만들기</a></li>
+															<li><a href="quickpoll">3. 참여도</a></li>
+														</ul>    	
+		    	                                    </div>
+		    	                                </div>
+	    	                                </div>
+	    	                                <div class="panel panel-border panel-default">
+		    	                                <a data-toggle="collapse" href="#collapseTwo">
+		    	                                    <div class="panel-heading">
+		    	                                    	<h4 class="panel-title">
+		    	                                        	모바일 프로그래밍
+		    	                                        	<i class="ti-angle-down"></i>
+		    	                                        </h4>
+		    	                                    </div>
 		    	                                </a>
 		    	                                <div id="collapseTwo" class="panel-collapse collapse">
-		    	                                    	asdf
+		    	                                	<div class="panel-body">
+		    	                                    	<ul class="nav">
+															<li><a href="quickpoll">1. 퀵폴보기</a></li>
+															<li><a href="quickpoll">2. 퀵폴만들기</a></li>
+															<li><a href="quickpoll">3. 참여도</a></li>
+														</ul> 
+		    	                                    </div>
+		    	                                </div>
+	    	                                </div>
+	    	                                <div class="panel panel-border panel-default">
+		    	                                <a data-toggle="collapse" href="#collapseThree">
+		    	                                    <div class="panel-heading">
+		    	                                        <h4 class="panel-title">
+		    	                                        	자바 프로그래밍
+		    	                                        	<i class="ti-angle-down"></i>
+		    	                                        </h4>
+		    	                                    </div>
+		    	                                </a>
+		    	                                <div id="collapseThree" class="panel-collapse collapse">
+		    	                                	<div class="panel-body">
+		    	                                    	<ul class="nav">
+															<li><a href="quickpoll">1. 퀵폴보기</a></li>
+															<li><a href="quickpoll">2. 퀵폴만들기</a></li>
+															<li><a href="quickpoll">3. 참여도</a></li>
+														</ul> 	
+		    	                                    </div>
 		    	                                </div>
 	    	                                </div>
 	    	                            </div>

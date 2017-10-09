@@ -70,4 +70,9 @@ public class ProfessorLectureController {
 		ModelAndView mv = new ModelAndView("/professor/practice");
 		return mv;
 	}
+	@RequestMapping(value = "/divlist")
+	public ModelAndView divlist(HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/professor/divlist");
+		return mv;
+	}
 }

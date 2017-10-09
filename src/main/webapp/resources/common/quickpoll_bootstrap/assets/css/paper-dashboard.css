@@ -9099,7 +9099,7 @@ input.textarea {
 .panel-default a {
   color: #66615b;
 }
-.panel-default a:hover, .panel-default a:active, .panel-default a:focus {
+.panel-default a:hover, .panel-default , .panel-default  {
   color: #EB5E28;
 }
 .panel-default a .panel-title > i {
