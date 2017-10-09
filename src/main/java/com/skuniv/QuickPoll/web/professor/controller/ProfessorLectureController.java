@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.skuniv.QuickPoll.service.ProfessorService;
 
@@ -20,19 +22,23 @@ public class ProfessorLectureController {
 	private ProfessorService professorService;
 
 	// main
-	@RequestMapping(value = "/professorLecture", method = RequestMethod.GET)
-	public ModelAndView mainView(HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("/professor/professor_lecture");
+	@RequestMapping(value = "/redirectProfessorLecture", method = RequestMethod.GET)
+	public String mainDisplay(HttpServletRequest request, RedirectAttributes redirectAttributes) throws Exception {
 		int id = Integer.parseInt(request.getParameter("id"));
 		String course_id = request.getParameter("course_id");
 		List<Map<String, Object>> professorList = professorService.selectProfessorList(id);
 		List<Map<String, Object>> menteeList = professorService.selectMenteeList(id);
 		List<LinkedHashMap<String, Object>> objectiveQuestionList = professorService.selectObjectiveQuestionList(course_id);
 		List<LinkedHashMap<String, Object>> subjectiveQuestionList = professorService.selectSubjectiveQuestionList(course_id);
-		mv.addObject("professorInfo", professorList);
-		mv.addObject("menteeList", menteeList);
-		mv.addObject("objectiveQuestionList", objectiveQuestionList);
-		mv.addObject("subjectiveQuestionList", subjectiveQuestionList);
+		redirectAttributes.addFlashAttribute("professorInfo", professorList);
+		redirectAttributes.addFlashAttribute("menteeList", menteeList);
+		redirectAttributes.addFlashAttribute("objectiveQuestionList", objectiveQuestionList);
+		redirectAttributes.addFlashAttribute("subjectiveQuestionList", subjectiveQuestionList);
+	    return "redirect:/professorLecture";
+	}
+	@RequestMapping(value = "/professorLecture", method = RequestMethod.GET)
+	public ModelAndView mainView(HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/professor/professor_lecture");
 		return mv;
 	}
 	
@@ -55,24 +61,10 @@ public class ProfessorLectureController {
 		return mv;
 	}
 	// display lecture list
-	@RequestMapping(value = "/lectureList", method = RequestMethod.GET)
+	
+	@RequestMapping(value = "/lectureList")
 	public ModelAndView displayLectureList(HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("/professor/gunyoungList");
-		return mv;
-	}
-	@RequestMapping(value = "/panel", method = RequestMethod.GET)
-	public ModelAndView panel(HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("/professor/panel");
-		return mv;
-	}
-	@RequestMapping(value = "/practice", method = RequestMethod.GET)
-	public ModelAndView practice(HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("/professor/practice");
-		return mv;
-	}
-	@RequestMapping(value = "/divlist")
-	public ModelAndView divlist(HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("/professor/divlist");
+		ModelAndView mv = new ModelAndView("/professor/lectureList");
 		return mv;
 	}
 }
