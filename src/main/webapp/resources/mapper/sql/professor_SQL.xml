@@ -53,7 +53,7 @@
 				course_id = #{course_id}
 		]]>
 	</select>
-	<select id="selectResultListForObjectiveQuestion" resultType="hashmap" parameterType="Integer">
+	<select id="selectResultListForQuickPollAnswer" resultType="hashmap" parameterType="Integer">
 		<![CDATA[
 			SELECT
 			    *

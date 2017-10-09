@@ -190,7 +190,7 @@
 	            <div class="container-fluid">
 
 					<div class="row">
-						<div class="col-lg-3 col-sm-6">
+						<div class="col-lg-6 col-sm-6">
 							<div class="card card-circle-chart" data-background="color" data-color="blue">
 								<div class="header text-center">
 	                                <h5 class="title">Dashboard</h5>
@@ -201,7 +201,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-lg-3 col-sm-6">
+						<div class="col-lg-6 col-sm-6">
 							<div class="card card-circle-chart" data-background="color" data-color="green">
 								<div class="header text-center">
 	                                <h5 class="title">Orders</h5>
