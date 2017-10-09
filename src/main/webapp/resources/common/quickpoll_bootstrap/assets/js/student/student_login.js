@@ -1,23 +1,21 @@
-loginJS = {
-
+studentLoginJS = {
 	loginCheck : function() {
 		var input_id = $('#id').val();
+		alert(input_id);
 		var input_pwd = $('#password').val();
 		var query = {
-				id : input_id,
+				student_id : input_id,
 				password : input_pwd
 		};
 		$
 				.ajax({
 					type : "GET",
-					url : "loginCheck",
+					url : "loginCheckForStudent",
 					data : query,
 					dataType : "json",
 					success : function(json) {
-						
-						alert(json.loginState);
 						if (json.loginState) {
-							location.href = "redirectLectureList?id="+json.id+"";
+							location.href = "redirectStudentLectureList?student_id=" + json.student_id;
 						} else {
 							alert("틀렸습니다.")
 							$('#id').val("");
