@@ -258,7 +258,7 @@
 	                            <div class="content">
 	    	                       <div id="acordeon">
 	    	                            <div class="panel-grou p" id="accordion">
-	    	                                <div class="panel panel-border panel-default">
+	    	                                <div class="panel panel-default">
 		    	                                <a data-toggle="collapse" href="#collapseOne">
 		    	                                    <div class="panel-heading">
 		    	                                        <h4 class="panel-title">
