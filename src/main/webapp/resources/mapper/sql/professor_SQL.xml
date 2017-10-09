@@ -33,4 +33,34 @@
 				professor_id = #{professor_id}
 		]]>
 	</select>
+	<select id="selectObjectiveQuestionList" resultType="java.util.LinkedHashMap" parameterType="String">
+		<![CDATA[
+			SELECT
+			    *
+			FROM
+			    ObjectiveQuestion
+			WHERE
+				course_id = #{course_id}
+		]]>
+	</select>
+	<select id="selectSubjectiveQuestionList" resultType="java.util.LinkedHashMap" parameterType="String">
+		<![CDATA[
+			SELECT
+			    *
+			FROM
+			    SubjectiveQuestion
+			WHERE
+				course_id = #{course_id}
+		]]>
+	</select>
+	<select id="selectResultListForQuickPollAnswer" resultType="hashmap" parameterType="Integer">
+		<![CDATA[
+			SELECT
+			    *
+			FROM
+			    quickpollanswer
+			WHERE
+				quickpoll_question_id = #{quickpoll_question_id}
+		]]>
+	</select> 
 </mapper>
