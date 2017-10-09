@@ -14,7 +14,6 @@ public class ProfessorDao extends ConnectDB {
 	public String selectProfessorPassword(int professor_id) {
 		return (String)selectOne("professor.selectProfessorPassword", professor_id);
 	}
-
 	//
 	public List<Map<String, Object>>selectProfessorList(int professor_id) {
 		return (List<Map<String,Object>>)selectList("professor.selectProfessorList", professor_id);
@@ -32,4 +31,13 @@ public class ProfessorDao extends ConnectDB {
 	public List<LinkedHashMap<String, Object>>selectSubjectiveQuestionList(String course_id) {
 		return (List<LinkedHashMap<String, Object>>)selectList("professor.selectSubjectiveQuestionList", course_id);
 	}
+	public List<LinkedHashMap<String, Object>>selectCourseList(int professor_id) {
+		return (List<LinkedHashMap<String, Object>>)selectList("professor.selectCourseList", professor_id);
+	}
+	public void insertCourse(Map<String, Object> map) {	
+		insert("professor.insertCourse", map);
+	}
+	
+	
+	
 }

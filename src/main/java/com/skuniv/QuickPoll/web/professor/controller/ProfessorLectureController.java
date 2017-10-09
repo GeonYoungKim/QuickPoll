@@ -1,5 +1,6 @@
 package com.skuniv.QuickPoll.web.professor.controller;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -66,5 +67,23 @@ public class ProfessorLectureController {
 	public ModelAndView displayLectureList(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/professor/lectureList");
 		return mv;
+	}
+	
+	@RequestMapping(value = "/insertCourse", method = RequestMethod.GET)
+	public void insertCourse(HttpServletRequest request) throws Exception {
+		String course_id = request.getParameter("course_id");
+		String course_name = request.getParameter("course_name");
+		int period = Integer.parseInt(request.getParameter("period"));
+		String day = request.getParameter("day");
+		float credit = Float.parseFloat(request.getParameter("credit"));
+		int professor_id = Integer.parseInt(request.getParameter("professor_id"));
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("course_id", course_id);
+		map.put("course_name", course_name);
+		map.put("period", period);
+		map.put("day", day);
+		map.put("credit", credit);
+		map.put("professor_id", professor_id);
+		professorService.insertCourse(map);
 	}
 }

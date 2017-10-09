@@ -8,6 +8,8 @@
 	href="resources/common/quickpoll_bootstrap/assets/img/apple-icon.png">
 <link rel="icon" type="image/png" sizes="96x96"
 	href="resources/common/quickpoll_bootstrap/assets/img/favicon.png">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 <title>Quick Poll Homepage</title>
@@ -156,64 +158,41 @@
 	                            <div class="content">
 	    	                       <div id="acordeon">
 	    	                           <div class="panel-grou p" id="accordion">
-	    	                                <div class="panel panel-border panel-default">
-		    	                                <a data-toggle="collapse" href="#collapseOne">
+	    	                           
+	    	                           <c:choose>
+											<c:when
+												test="${fn:length(courseListInfo) > 0}">
+												<c:forEach items="${courseListInfo}"
+													var="row" varStatus="status">
+													<div class="panel panel-border panel-default">
+		    	                                <a data-toggle="collapse" href="#lecture_${status.count}">
 		    	                                    <div class="panel-heading">
 		    	                                        <h4 class="panel-title">
-		    	                                        	운영체재
+		    	                                        	${row.course_name}
 		    	                                        	<i class="ti-angle-down"></i>
 		    	                                        </h4>
 		    	                                    </div>
 		    	                                </a>
-		    	                                <div id="collapseOne" class="panel-collapse collapse">
+		    	                                <div id="lecture_${status.count}" class="panel-collapse collapse">
 		    	                                	<div class="panel-body">
 		    	                                    	<ul class="nav">
 															<li><a href="quickpoll">1. 퀵폴보기</a></li>
-															<li><a href="redirectProfessorLecture?id=${professorInfo[0].professor_id}&course_id=cs">2. 퀵폴만들기</a></li>
+															<li><a href="redirectProfessorLecture?id=${professorInfo[0].professor_id}&course_id=${row.course_id}">2. 퀵폴만들기</a></li>
 															<li><a href="quickpoll">3. 참여도</a></li>
-															<input type="hidden" id="course_id" value="cs">
+															<input type="hidden" id="course_id_${status.count}" value="${row.course_id}">
 														</ul>    	
 		    	                                    </div>
 		    	                                </div>
 	    	                                </div>
-	    	                                <div class="panel panel-border panel-default">
-		    	                                <a data-toggle="collapse" href="#collapseTwo">
-		    	                                    <div class="panel-heading">
-		    	                                    	<h4 class="panel-title">
-		    	                                        	모바일 프로그래밍
-		    	                                        	<i class="ti-angle-down"></i>
-		    	                                        </h4>
-		    	                                    </div>
-		    	                                </a>
-		    	                                <div id="collapseTwo" class="panel-collapse collapse">
-		    	                                	<div class="panel-body">
-		    	                                    	<ul class="nav">
-															<li><a href="quickpoll">1. 퀵폴보기</a></li>
-															<li><a href="quickpoll">2. 퀵폴만들기</a></li>
-															<li><a href="quickpoll">3. 참여도</a></li>
-														</ul> 
-		    	                                    </div>
-		    	                                </div>
-	    	                                </div>
-	    	                                <div class="panel panel-border panel-default">
-		    	                                <a data-toggle="collapse" href="#collapseThree">
-		    	                                    <div class="panel-heading">
-		    	                                        <h4 class="panel-title">
-		    	                                        	자바 프로그래밍
-		    	                                        	<i class="ti-angle-down"></i>
-		    	                                        </h4>
-		    	                                    </div>
-		    	                                </a>
-		    	                                <div id="collapseThree" class="panel-collapse collapse">
-		    	                                	<div class="panel-body">
-		    	                                    	<ul class="nav">
-															<li><a href="quickpoll">1. 퀵폴보기</a></li>
-															<li><a href="quickpoll">2. 퀵폴만들기</a></li>
-															<li><a href="quickpoll">3. 참여도</a></li>
-														</ul> 	
-		    	                                    </div>
-		    	                                </div>
-	    	                                </div>
+												</c:forEach>
+											</c:when>
+											<c:otherwise>
+												<!-- 데이터 없을 경우 -->
+											</c:otherwise>
+										</c:choose>
+	    	                                
+	    	                                
+	    	                               
 	    	                            </div>
 	    	                        </div><!--  end acordeon -->
 	                            </div>

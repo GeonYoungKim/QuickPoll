@@ -23,6 +23,7 @@ public class ProfessorService {
 	public List<Map<String, Object>> selectProfessorList(int professor_id) throws Exception {
 		return professorDao.selectProfessorList(professor_id);
 	}
+	
 	public Map<String, Object> selectResultListForObjectiveQuestion(int quickpoll_question_id) throws Exception {
 		List<Map<String, Object>> resultList = professorDao.selectResultListForQuickPollAnswer(quickpoll_question_id);
 		return parsingObjectiveAnswer(resultList);
@@ -78,5 +79,11 @@ public class ProfessorService {
 	}
 	public List<LinkedHashMap<String, Object>> selectSubjectiveQuestionList(String course_id) throws Exception {
 		return professorDao.selectSubjectiveQuestionList(course_id);
+	}
+	public void insertCourse(Map<String, Object> map) {	
+		professorDao.insert("professor.insertCourse", map);
+	}
+	public List<LinkedHashMap<String, Object>> selectCourseList(int professor_id) throws Exception {
+		return professorDao.selectCourseList(professor_id);
 	}
 }

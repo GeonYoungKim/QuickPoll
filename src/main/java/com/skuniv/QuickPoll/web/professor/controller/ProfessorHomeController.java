@@ -1,5 +1,6 @@
 package com.skuniv.QuickPoll.web.professor.controller;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -34,7 +35,10 @@ public class ProfessorHomeController {
 		int id = Integer.parseInt(request.getParameter("id"));
 		//professor 
 		List<Map<String, Object>> list = professorService.selectProfessorList(id);
+		List<LinkedHashMap<String, Object>> courseList = professorService.selectCourseList(id);
+		System.out.println(courseList.get(0).get("course_name"));
 		redirectAttributes.addFlashAttribute("professorInfo", list);
+		redirectAttributes.addFlashAttribute("courseListInfo", courseList);
 	    return "redirect:/lectureList";
 	}
 	@RequestMapping(value = "/menteeList", method = RequestMethod.GET)
