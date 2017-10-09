@@ -23,6 +23,32 @@ $(document).ready(function() {
 		message.name="kim";
 		sock.send(JSON.stringify(message));
 	};
+	displayDirectQuestion = function(obj) {
+		$('#waitting_text').html("");
+		$('#student_question_content').empty();
+		$('#student_question_content').html('<div class="form-group"><label class="control-label"> Q. ' + obj.question_content + '</label> <input class="form-control" type="text" id="direct_question_answer" name="direct_question_answer" placeholder="ex: 제출하실 답을 적어주세요" /></div><button type="button" class="btn btn-info btn-fill btn-wd btn-next pull-right" id="submitDirectQuestionAnswer">제출하기</button>');
+		$("#submitDirectQuestionAnswer").click(function() {
+			message = {};
+			message.quickpoll_question_id = obj.quickpoll_question_id; 
+			message.course_id = "cs";
+			message.type = "directQuestionAnswer";
+			message.id = $("#student_id").val();
+			message.question_answer = $('#direct_question_answer').val();
+			sock.send(JSON.stringify(message));
+			swal({  title: "제출 완료!",
+        	    text: "정상적으로 제출이 되었습니다.",
+        	    type: "success",
+        	    confirmButtonText: "확인",
+        	    closeOnConfirm: false,
+        	    closeOnCancel: false
+            },function(isConfirm){
+                if (isConfirm){
+                	location.href="/QuickPoll";       
+                }
+            });
+//			swal("제출 완료!", "정상적으로 제출되었습니다.", "success");
+		});
+	}
 	displayObjectiveQuestion = function(obj) {
 		alert("in");
 		$('#waitting_text').html("");
@@ -109,14 +135,14 @@ $(document).ready(function() {
 	displaySubjectiveQuestion = function(obj) {
 		$('#waitting_text').html("");
 		$('#student_question_content').empty();
-		$('#student_question_content').html('<div class="form-group"><label class="control-label"> Q. ' + obj.question_content + '</label> <input class="form-control" type="text" id="direct_question_answer" name="direct_question_answer" placeholder="ex: 제출하실 답을 적어주세요" /></div><button type="button" class="btn btn-info btn-fill btn-wd btn-next pull-right" id="submitDirectQuestionAnswer">제출하기</button>');
-		$("#submitDirectQuestionAnswer").click(function() {
+		$('#student_question_content').html('<div class="form-group"><label class="control-label"> Q. ' + obj.question_content + '</label> <input class="form-control" type="text" id="subjective_question_answer" name="direct_question_answer" placeholder="ex: 제출하실 답을 적어주세요" /></div><button type="button" class="btn btn-info btn-fill btn-wd btn-next pull-right" id="submitSubjectiveQuestionAnswer">제출하기</button>');
+		$("#submitSubjectiveQuestionAnswer").click(function() {
 			message = {};
 			message.quickpoll_question_id = obj.quickpoll_question_id; 
 			message.course_id = "cs";
-			message.type = "directQuestionAnswer";
+			message.type = "subjectiveQuestionAnswer";
 			message.id = $("#student_id").val();
-			message.question_answer = $('#direct_question_answer').val();
+			message.question_answer = $('#subjective_question_answer').val();
 			sock.send(JSON.stringify(message));
 			swal({  title: "제출 완료!",
         	    text: "정상적으로 제출이 되었습니다.",
@@ -148,9 +174,11 @@ studentLectureSocket = {
 		var data = evt.data;
 		var parsedJson = JSON.parse(data);
 		if (parsedJson.type == "sendDirectQuestion") {
-			displaySubjectiveQuestion(parsedJson);
+			displayDirectQuestion(parsedJson);
 		} else if (parsedJson.type == "sendObjectiveQuestion") {
 			displayObjectiveQuestion(parsedJson);
+		} else if (parsedJson.type == "sendSubjectiveQuestion") {
+			displaySubjectiveQuestion(parsedJson);
 		}
 			
 		// sock.close();
