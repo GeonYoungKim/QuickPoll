@@ -63,4 +63,39 @@
 				quickpoll_question_id = #{quickpoll_question_id}
 		]]>
 	</select> 
+	<select id="selectCourseList" resultType="java.util.LinkedHashMap" parameterType="Integer">
+		<![CDATA[
+			SELECT
+			    *
+			FROM
+			    course
+			WHERE
+				professor_id = #{professor_id} 
+			GROUP BY 
+				course_name
+		]]>
+	</select>
+	
+	<insert id="insertCourse" parameterType="hashmap">
+		<![CDATA[
+			INSERT 
+				INTO course(
+			    	course_id,
+			    	course_name,
+			    	periood,
+			    	day, 
+			    	credit,
+			    	professor_id
+			    )
+				VALUES(
+					#{course_id},
+		    		#{course_name},
+		    		#{period},
+		    		#{day},
+		    		#{credit},
+		    		#{professor_id}
+			    )
+			    
+		]]>
+	</insert>
 </mapper>
