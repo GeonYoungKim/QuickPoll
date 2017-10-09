@@ -31,11 +31,11 @@ public class ProfessorController {
 	@RequestMapping(value = "/resultListForSubjectiveQuestion")
 	public ModelAndView getResultListForSubjectiveQuestion(HttpServletRequest request) throws Exception {
 		int quickpoll_question_id = Integer.parseInt(request.getParameter("quickpoll_question_id"));
-		String answer = request.getParameter("subjective_question_answer");
 		System.out.println("quickpoll_question_id : " + quickpoll_question_id);
-		
 		ModelAndView mv = new ModelAndView("jsonView");
-		Map<String, Integer> resultList = professorService.selectResultListForSubjectiveQuestion(quickpoll_question_id, answer);
+		Map<String, Integer> resultList = professorService.selectResultListForSubjectiveQuestion(quickpoll_question_id);
+		System.out.println(resultList.keySet());
+		System.out.println(resultList.values());
 		mv.addObject("resultListForSubjectiveQuestion", resultList);
 		return mv;
 	}

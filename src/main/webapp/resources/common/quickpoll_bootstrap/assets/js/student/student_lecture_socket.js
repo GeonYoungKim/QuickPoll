@@ -143,6 +143,7 @@ $(document).ready(function() {
 			message.type = "subjectiveQuestionAnswer";
 			message.id = $("#student_id").val();
 			message.question_answer = $('#subjective_question_answer').val();
+			message.connectedPeople = obj.connectedPeople;
 			sock.send(JSON.stringify(message));
 			swal({  title: "제출 완료!",
         	    text: "정상적으로 제출이 되었습니다.",
