@@ -125,7 +125,8 @@
 							<li class="dropdown"><a href="#notigfications"
 								class="dropdown-toggle" data-toggle="dropdown"> <i
 									class="ti-bell"></i> <span class="notification">5</span>
-									<p class="hidden-md hidden-lg">
+									<p class="hidden-md hi
+									dden-lg">
 										Notifications <b class="caret"></b>
 									</p>
 							</a>
