@@ -83,7 +83,7 @@
                                         </div>
                                     </div>
                                     <div class="footer text-center">
-                                        <button onclick="loginJS.loginCheck()" class="btn btn-fill btn-wd ">Let's go</button>
+                                        <button onclick="studentLoginJS.loginCheck()" class="btn btn-fill btn-wd ">Let's go</button>
                                         <div class="forgot">
                                             <a href="#pablo">Forgot your password?</a>
                                         </div>
@@ -161,7 +161,7 @@
 
 	<!-- Paper Dashboard PRO DEMO methods, don't include it in your project! -->
 	<script src="resources/common/quickpoll_bootstrap/assets/js/demo.js"></script>
-	<script src="resources/common/quickpoll_bootstrap/assets/js/login.js?ver=1" charset="UTF-8"></script>
+	<script src="resources/common/quickpoll_bootstrap/assets/js/student/student_login.js?ver=1" charset="UTF-8"></script>
 	<script type="text/javascript">
         $().ready(function(){
             demo.checkFullPageBackgroundImage();
