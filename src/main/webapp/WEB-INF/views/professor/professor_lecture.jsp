@@ -49,6 +49,7 @@
 
 <body>
 	<input type="hidden" id="quickpoll_question_id">
+	<input type="hidden" id="quickpoll_question_connected_people">
 	<div class="wrapper">
 		<div class="sidebar" data-background-color="brown"
 			data-active-color="danger">
@@ -397,7 +398,7 @@
 <!-- Paper Dashboard PRO DEMO methods, don't include it in your project! -->
 <script src="resources/common/quickpoll_bootstrap/assets/js/demo.js"></script>
 <script
-	src="resources/common/quickpoll_bootstrap/assets/js/professor/professor_lecture.js?ver=3"
+	src="resources/common/quickpoll_bootstrap/assets/js/professor/professor_lecture.js?ver=4"
 	charset="UTF-8"></script>
 <script
 	src="resources/common/quickpoll_bootstrap/assets/js/professor/create_question.js?ver=2"

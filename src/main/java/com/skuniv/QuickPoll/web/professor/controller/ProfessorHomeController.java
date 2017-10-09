@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skuniv.QuickPoll.service.ProfessorService;
 
@@ -28,19 +29,13 @@ public class ProfessorHomeController {
 	 * Simply selects the home view to render by returning its name.
 	 * @throws Exception 
 	 */
-	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public ModelAndView mainDisplay(HttpServletRequest request) throws Exception {
+	@RequestMapping(value = "/redirectLectureList", method = RequestMethod.GET)
+	public String mainDisplay(HttpServletRequest request, RedirectAttributes redirectAttributes) throws Exception {
 		int id = Integer.parseInt(request.getParameter("id"));
-//		List<Map<String, Object>> list = (List<Map<String, Object>>) request.getSession().getAttribute("professorInfo");
-//		System.out.println(list.get(0).get("professor_id"));
-//		System.out.println(list.get(0).keySet());
-//		System.out.println(list.get(0).values());
-		
 		//professor 
 		List<Map<String, Object>> list = professorService.selectProfessorList(id);
-		ModelAndView mv = new ModelAndView("lectureList");
-		mv.addObject("professorInfo", list);
-		return mv;
+		redirectAttributes.addFlashAttribute("professorInfo", list);
+	    return "redirect:/lectureList";
 	}
 	@RequestMapping(value = "/menteeList", method = RequestMethod.GET)
 	public ModelAndView studentList(HttpServletRequest request) throws Exception {

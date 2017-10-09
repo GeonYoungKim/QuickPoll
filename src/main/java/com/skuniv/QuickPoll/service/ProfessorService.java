@@ -27,9 +27,9 @@ public class ProfessorService {
 		List<Map<String, Object>> resultList = professorDao.selectResultListForQuickPollAnswer(quickpoll_question_id);
 		return parsingObjectiveAnswer(resultList);
 	}
-	public Map<String, Integer> selectResultListForSubjectiveQuestion(int quickpoll_question_id, String answer) throws Exception {
+	public Map<String, Integer> selectResultListForSubjectiveQuestion(int quickpoll_question_id) throws Exception {
 		List<Map<String, Object>> resultList = professorDao.selectResultListForQuickPollAnswer(quickpoll_question_id);
-		return parsingSubjectiveAnswer(resultList, answer);
+		return parsingSubjectiveAnswer(resultList);
 	}
 	public Map<String, Object> parsingObjectiveAnswer(List<Map<String, Object>> resultList) {
 		int answer_array[] = new int[5];
@@ -45,7 +45,7 @@ public class ProfessorService {
 		parsingMap.put("totalPeople", resultList.size());
 		return parsingMap;
 	}
-	public Map<String, Integer> parsingSubjectiveAnswer(List<Map<String, Object>> resultList, String answer) {
+	public Map<String, Integer> parsingSubjectiveAnswer(List<Map<String, Object>> resultList) {
 		Map<String, Integer> parsingMap = new HashMap<String, Integer>();
 		for (int i = 0; i < resultList.size(); i++) {
 			String value = (String)resultList.get(i).get("question_answer");
@@ -57,6 +57,7 @@ public class ProfessorService {
 			}
 		}
 		TreeMap<String, Integer> sortedParsingMap = new TreeMap<String, Integer>(parsingMap);
+		sortedParsingMap.descendingMap();
 		return sortedParsingMap;
 	}
 	public boolean selectProfessorPassword(int professor_id, String input_password) throws Exception {

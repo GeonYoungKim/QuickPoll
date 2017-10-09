@@ -169,8 +169,9 @@
 		    	                                	<div class="panel-body">
 		    	                                    	<ul class="nav">
 															<li><a href="quickpoll">1. 퀵폴보기</a></li>
-															<li><a href="quickpoll">2. 퀵폴만들기</a></li>
+															<li><a href="redirectProfessorLecture?id=${professorInfo[0].professor_id}&course_id=cs">2. 퀵폴만들기</a></li>
 															<li><a href="quickpoll">3. 참여도</a></li>
+															<input type="hidden" id="course_id" value="cs">
 														</ul>    	
 		    	                                    </div>
 		    	                                </div>

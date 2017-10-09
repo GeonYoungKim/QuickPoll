@@ -70,7 +70,7 @@ $(document)
 							}	
 						}
 						sock.send(JSON.stringify(message));
-						
+			
 						var watting_html = '<div class="content"><div class="row"><div id="" class="col-md-10 col-md-offset-1">'+ 
 											'<div class="panel panel-border panel-default">'+
 										'<div class="panel-heading">'+
@@ -94,7 +94,7 @@ $(document)
 										'<div class="card card-circle-chart" data-background="color" data-color="blue">'+
 											'<div class="header text-center"><h5 class="title">제출현황</h5><p class="description">해당 문제에 제출자 현황입니다.</p></div>'+
 											'<div id="connected_student_percent" class="content">'+
-												'<div id="chartDashboard" class="chart-circle" data-percent="0">0 / 전체인원</div>'+
+												'<div id="chartDashboard" class="chart-circle" data-percent="0">0명</div>'+
 											'</div>'+
 										'</div>'+
 										'</div>'+
@@ -107,91 +107,75 @@ $(document)
 						demo.initCirclePercentage();
 						
 						subjectiveQuestionResultBtn = function() {
-							alert("resultBtn Click!");
-//							var query = {
-//									quickpoll_question_id : $('#quickpoll_question_id').val()
-//								};
-//								$.ajax({
-//									type : "GET",
-//									url : "resultListForSubjectiveQuestion",
-//									data : query,
-//									dataType : "json",
-//									contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-//									success : function(json) {
-//										if (message.question_answer == 1) {
-//											$('#objectvie_question_example1').css("background-color", "yellow");
-//										} else if (message.question_answer == 2) {
-//											$('#objectvie_question_example2').css("background-color", "yellow");
-//										} else if (message.question_answer == 3) {
-//											$('#objectvie_question_example3').css("background-color", "yellow");
-//										} else if (message.question_answer == 4) {
-//											$('#objectvie_question_example4').css("background-color", "yellow");
-//										}
-//										var list = json.resultListForObjectiveQuestion;
-//										
-//										//list[0].answer1;
-//										
-//									}
-//								});
+							var connected_people = $('#quickpoll_question_connected_people').val();				
+							var query = {
+									quickpoll_question_id : $('#quickpoll_question_id').val()
+								};
+								$.ajax({
+									type : "GET",
+									url : "resultListForSubjectiveQuestion",
+									data : query,
+									dataType : "json",
+									contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+									success : function(json) {
+										var list = json.resultListForSubjectiveQuestion;
+										var answer_count = 0;
+										$("#subjective_question_content").html('<h4 id="subjective_question_content" class="panel-title">'+
+												'<span style="visibility: hidden" class="ti-check"></span>'+
+															'Q. '+ message.question_content + '<br/>'+ '<h2 style="color:red;">  정답 : '+message.question_answer+'</h2>'+
+														'</h4>');
+										var result_html = '<div class="col-md-12">'+
+				                        '<div class="card ">'+
+				                            '<div class="header">'+
+				                                '<h4 class="title">제출된 답안</h4>'+
+				                                '<p class="category">가장 많이 나온 답변 순서대로 정렬</p>'+
+				                            '</div>'+
+				                            '<div class="content">'+
+				                                '<div class="row">'+
+				                                    '<div class="col-md-5">'+
+				                                        '<div class="table-responsive">'+
+				                                            '<table class="table">'+
+				                                                '<tbody>';
+										for(key in list) {
+											if (key == message.question_answer) answer_count = list[key];
+											result_html += '<tr>'+
+				                                            '<td>'+key+'</td>'+
+				                                            '<td class="text-right">'+
+				                                                ''+list[key]+'명'+
+				                                            '</td>'+
+				                                            '<td class="text-right">'+
+				                                                ''+Math.ceil(list[key]/connected_people*100)+'%'+
+				                                            '</td>'+
+				                                        '</tr>';
+										}
+										result_html += '</tbody>'+
+				                                            '</table>'+
+				                                        '</div>'+
+				                                    '</div>'+
+				                                    '<div class="col-lg-6 col-sm-6">'+
+				        							'<div class="card card-circle-chart" data-background="color" data-color="blue">'+
+				        						'<div class="header text-center">'+
+				                                    '<h5 class="title">정답 선택 인원</h5>'+
+				                                    '<p class="description"></p>'+
+				                                '</div>'+
+				        						'<div class="content">'+
+				        							'<div id="chartDashboard" class="chart-circle" data-percent="'+answer_count/connected_people*100+'">'+answer_count+'명 / '+connected_people +'명</div>'+
+				        						'</div>'+
+				        					'</div>'+
+				        				'</div>'+
+				                                '</div>'+
+				                            '</div>'+
+				                        '</div>'+
+				                    '</div>';
+										$('#result_subjective_question').empty();
+										$('#result_subjective_question').append(result_html);
+										demo.initOverviewDashboard();
+										demo.initCirclePercentage();
+			
+									}
+								});
 							
-							$("#subjective_question_content").html('<h4 id="subjective_question_content" class="panel-title">'+
-									'<span style="visibility: hidden" class="ti-check"></span>'+
-												'Q. '+ message.question_content + '<br/>'+ '<h2 style="color:red;">  정답 : '+$('#subjective_question_answer_'+i).val()+'</h2>'+
-											'</h4>');
-							var result_html = '<div class="col-md-12">'+
-	                        '<div class="card ">'+
-	                            '<div class="header">'+
-	                                '<h4 class="title">제출된 답안</h4>'+
-	                                '<p class="category">가장 많이 나온 답변 순서대로 정렬</p>'+
-	                            '</div>'+
-	                            '<div class="content">'+
-	                                '<div class="row">'+
-	                                    '<div class="col-md-5">'+
-	                                        '<div class="table-responsive">'+
-	                                            '<table class="table">'+
-	                                                '<tbody>'+
-	                                                    '<tr>'+
-	                                                        '<td>Bit</td>'+
-	                                                        '<td class="text-right">'+
-	                                                            '10명'+
-	                                                        '</td>'+
-	                                                        '<td class="text-right">'+
-	                                                            '50%'+
-	                                                        '</td>'+
-	                                                    '</tr>'+
-	                                                    '<tr>'+
-                                                        '<td>Data</td>'+
-                                                        '<td class="text-right">'+
-                                                            '3명'+
-                                                        '</td>'+
-                                                        '<td class="text-right">'+
-                                                            '10%'+
-                                                        '</td>'+
-                                                    '</tr>'+
-	                                                '</tbody>'+
-	                                            '</table>'+
-	                                        '</div>'+
-	                                    '</div>'+
-	                                    '<div class="col-lg-6 col-sm-6">'+
-	        							'<div class="card card-circle-chart" data-background="color" data-color="green">'+
-	        						'<div class="header text-center">'+
-	                                    '<h5 class="title">정답 선택 인원</h5>'+
-	                                    '<p class="description"></p>'+
-	                                '</div>'+
-	        						'<div class="content">'+
-	        							'<div id="chartDashboard" class="chart-circle" data-percent="10">10</div>'+
-	        						'</div>'+
-	        					'</div>'+
-	        				'</div>'+
-	                                '</div>'+
-	                            '</div>'+
-	                        '</div>'+
-	                    '</div>';
-							$('#result_subjective_question').empty();
-							$('#result_subjective_question').append(result_html);
-							demo.initOverviewDashboard();
-							demo.initCirclePercentage();
-							
+														
 						};
 
 					});
@@ -447,13 +431,15 @@ professorLecture = {
 			demo.initOverviewDashboard();
 			demo.initCirclePercentage();
 		} else if (parsedJson.type == "subjectiveQuestionAnswer") {
-			var percent = 10/parsedJson.summitedCount;
-			alert(percent);
-			$('#connected_student_percent').html('<div id="chartDashboard" class="chart-circle" data-percent="'+percent+'">' + parsedJson.summitedCount+' / 전체인원</div>');
+			var summitedCount = parsedJson.summitedCount;
+			var connectedPeople = parsedJson.connectedPeople;
+			var percent = summitedCount/connectedPeople * 100;
+			$('#connected_student_percent').html('<div id="chartDashboard" class="chart-circle" data-percent="'+percent+'">' + summitedCount+' / '+ connectedPeople + '</div>');
 			demo.initOverviewDashboard();
 			demo.initCirclePercentage();
 		} else if (parsedJson.type == "sendObjectiveQuestion" || parsedJson.type == "sendSubjectiveQuestion") {
 			$('#quickpoll_question_id').val(parsedJson.quickpoll_question_id);
+			$('#quickpoll_question_connected_people').val(parsedJson.connectedPeople);
 		} 
 		// sock.close();
 	},
