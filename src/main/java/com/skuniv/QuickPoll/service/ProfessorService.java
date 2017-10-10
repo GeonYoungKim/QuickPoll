@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import com.skuniv.QuickPoll.dao.ProfessorDao;
 
+import model.CourseVo;
+
 @Service("ProfessorService")
 public class ProfessorService {
 	@Resource(name = "ProfessorDao")
@@ -85,5 +87,8 @@ public class ProfessorService {
 	}
 	public List<LinkedHashMap<String, Object>> selectCourseList(int professor_id) throws Exception {
 		return professorDao.selectCourseList(professor_id);
+	}
+	public void groupByCourse(List<LinkedHashMap<String, Object>> courseList) {
+		
 	}
 }
