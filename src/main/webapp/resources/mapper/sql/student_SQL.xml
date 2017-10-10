@@ -46,9 +46,7 @@
 				FROM 
 					enroll 
 				WHERE 
-					student_id = #{student_id} ) 
-			GROUP BY
-				course_name;
+					student_id = #{student_id} )
 				
 		]]>
 	</select>

@@ -84,11 +84,11 @@
 					</div>
 				</div>
 				<ul class="nav">
-					<li><a href="main?id=${professorInfo[0].professor_id}"> <i
+					<li class="active"><a href="quickpollList?id=${professorInfo[0].professor_id}"> <i
 							class="ti-view-list-alt"></i>
 							<p>강의 목록</p>
 					</a></li>
-					<li class="active"><a
+					<li ><a
 						href="menteeList?id=${professorInfo[0].professor_id}"> <i
 							class="ti-clipboard"></i>
 							<p>멘티 목록</p>
@@ -181,13 +181,12 @@
 																					var="row" varStatus="status">
 																					<div class="panel panel-border panel-default">
 																						<a data-toggle="collapse"
-																							onclick="createQuestion.subjectiveCheck('${status.count}');"><div
-																								class="panel-heading">
+																							onclick="quickpollList.displayDetailSubjectiveQuickPoll('${status.count}');">
+																							<div class="panel-heading">
 																								<h4 id="subjective_question_content${status.count}" class="panel-title">
-																									<span
-																										id="subjective_question_check${status.count}"
-																										style="visibility: hidden" class="ti-check"></span>${row.question_content}
+																									${row.question_content}
 																								</h4>
+																								<input type="hidden" id="subjective_quickpoll_question_id_${status.count}" value="${row.quickpoll_question_id}">
 																								<input type="hidden" id="subjective_question_answer_${status.count}" value="${row.question_answer}">
 																							</div></a>
 

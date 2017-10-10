@@ -68,5 +68,12 @@ public class StudentLectureController {
 		mv.addObject("courseListInfo", courseList);
 		return mv;
 	}
-	
+	@RequestMapping(value = "/getlist", method = RequestMethod.GET)
+	public ModelAndView getList(HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("jsonView");
+		int student_id = Integer.parseInt(request.getParameter("student_id"));
+		List<LinkedHashMap<String, Object>> courseList = studentService.selectStudentEnrollList(student_id);
+		mv.addObject("courseListInfo", courseList);
+		return mv;
+	}
 }

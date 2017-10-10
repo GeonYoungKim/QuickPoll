@@ -65,6 +65,7 @@ public class ProfessorService {
 		}
 		TreeMap<String, Integer> sortedParsingMap = new TreeMap<String, Integer>(parsingMap);
 		sortedParsingMap.descendingMap();
+		sortedParsingMap.put("totalPeople", resultList.size());
 		return sortedParsingMap;
 	}
 	public boolean selectProfessorPassword(int professor_id, String input_password) throws Exception {
