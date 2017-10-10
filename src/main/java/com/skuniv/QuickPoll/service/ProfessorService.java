@@ -1,5 +1,6 @@
 package com.skuniv.QuickPoll.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -93,11 +94,70 @@ public class ProfessorService {
 	public void insertCourse(Map<String, Object> map) {	
 		professorDao.insert("professor.insertCourse", map);
 	}
-	public List<LinkedHashMap<String, Object>> selectCourseList(int professor_id) throws Exception {
-		return professorDao.selectCourseList(professor_id);
+	public List<CourseVo> selectCourseList(int professor_id) throws Exception {
+		return groupByCourse(professorDao.selectCourseList(professor_id));
 	}
-	
-	public void groupByCourse(List<LinkedHashMap<String, Object>> courseList) {
+
+	public List<CourseVo> groupByCourse(List<LinkedHashMap<String, Object>> courseList) {
+		HashMap<String , HashMap<String,List<Integer>>> group_by_name=new HashMap<String, HashMap<String,List<Integer>>>();
+		HashMap<String ,List<Integer>> group_by_day =new HashMap<String, List<Integer>>();
+		List <Integer> periodList=new ArrayList<Integer>();		
+		List<CourseVo> courseVoList=new ArrayList<CourseVo>();
+		CourseVo courseVo=new CourseVo();
+		String course_id="";
+		String course_name="";
+		String day="";
+		System.out.println(courseList.size());
+		for(int i=0;i<courseList.size();i++) {
+			
+			if(i==0) {
+				courseVo=new CourseVo();
+				group_by_name=new HashMap<String, HashMap<String,List<Integer>>>();
+				group_by_day =new HashMap<String, List<Integer>>();
+				periodList=new ArrayList<Integer>();
+				courseVo.setCourse_id(courseList.get(i).get("course_id").toString());
+				courseVo.setCredit((Double) courseList.get(i).get("credit"));
+				courseVo.setProfessor_id((Integer) courseList.get(i).get("professor_id"));
+				
+			}else {
+				group_by_name=new HashMap<String, HashMap<String,List<Integer>>>();
+				group_by_day =new HashMap<String, List<Integer>>();
+				if(courseList.get(i).get("course_id").toString().equals(course_id)&&courseList.get(i).get("course_name").toString().equals(course_name)) {
+					if(courseList.get(i).get("day").toString().equals(day)) {
+						periodList=new ArrayList<Integer>();
+						periodList.add((Integer)courseList.get(i-1).get("periood"));
+						periodList.add((Integer)courseList.get(i).get("periood"));
+						group_by_day.put(courseList.get(i).get("day").toString(), periodList);
+						group_by_name.put(courseList.get(i).get("course_name").toString(), group_by_day);
+						courseVo.setGroup_by_name(group_by_name);
+						courseVoList.add(courseVo);
+					}else {
+						group_by_name=new HashMap<String, HashMap<String,List<Integer>>>();
+						group_by_day =new HashMap<String, List<Integer>>();
+						periodList=new ArrayList<Integer>();
+						
+						periodList.add((Integer)courseList.get(i-1).get("periood"));
+						group_by_day.put(courseList.get(i-1).get("day").toString(), periodList);
+						periodList=new ArrayList<Integer>();
+						periodList.add((Integer)courseList.get(i).get("periood"));
+						group_by_day.put(courseList.get(i).get("day").toString(), periodList);
+						group_by_name.put(courseList.get(i).get("course_name").toString(), group_by_day);
+						courseVo.setGroup_by_name(group_by_name);
+						courseVoList.add(courseVo);
+					}
+				}else {
+					courseVo=new CourseVo();
+					courseVo.setCourse_id(courseList.get(i).get("course_id").toString());
+					courseVo.setCredit((Double) courseList.get(i).get("credit"));
+					courseVo.setProfessor_id((Integer) courseList.get(i).get("professor_id"));					
+				}
+			}
+			course_id=courseList.get(i).get("course_id").toString();
+			course_name=(String) courseList.get(i).get("course_name").toString();
+			day=(String) courseList.get(i).get("day").toString();
+		}	
 		
+		return courseVoList;
+	
 	}
 }
