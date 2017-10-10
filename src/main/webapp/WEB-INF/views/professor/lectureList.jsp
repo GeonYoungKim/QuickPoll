@@ -169,7 +169,7 @@
 		    	                                <a data-toggle="collapse" href="#lecture_${status.count}">
 		    	                                    <div class="panel-heading">
 		    	                                        <h4 class="panel-title">
-		    	                                        	${row.course_name}
+		    	                                        		${row.course_name} &emsp; - &emsp; ${row.day}   	                                        	
 		    	                                        	<i class="ti-angle-down"></i>
 		    	                                        </h4>
 		    	                                    </div>
@@ -181,6 +181,9 @@
 															<li><a href="redirectProfessorLecture?id=${professorInfo[0].professor_id}&course_id=${row.course_id}">2. 퀵폴만들기</a></li>
 															<li><a href="quickpoll">3. 참여도</a></li>
 															<input type="hidden" id="course_id_${status.count}" value="${row.course_id}">
+															<input type="hidden" id="course_period_${status.count}" value="${row.period}">
+															<input type="hidden" id="course_credit_${status.count}" value="${row.credit}">
+															<input type="hidden" id="course_professor_id_${status.count}" value="${row.professor_id}">
 														</ul>    	
 		    	                                    </div>
 		    	                                </div>

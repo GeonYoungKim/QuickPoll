@@ -71,8 +71,6 @@
 			    course
 			WHERE
 				professor_id = #{professor_id} 
-			GROUP BY 
-				course_name
 		]]>
 	</select>
 	
