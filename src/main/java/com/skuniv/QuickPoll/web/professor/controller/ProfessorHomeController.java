@@ -62,6 +62,7 @@ public class ProfessorHomeController {
 		mv.addObject("subjectiveQuestionList", subjectiveQuickPollList);
 		return mv;
 	}
+	
 	@RequestMapping(value = "/menteeList", method = RequestMethod.GET)
 	public ModelAndView studentList(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("menteeList");

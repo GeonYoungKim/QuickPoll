@@ -23,4 +23,10 @@ public class StudentDao extends ConnectDB {
 	public List<LinkedHashMap<String, Object>>selectStudentEnrollList(int student_id) {
 		return (List<LinkedHashMap<String, Object>>)selectList("student.selectStudentEnrollList", student_id);
 	}
+	public List<LinkedHashMap<String, Object>>selectObjectiveQuickPollList(String course_id) {
+		return (List<LinkedHashMap<String, Object>>)selectList("student.selectObjectiveQuickPollList", course_id);
+	}
+	public List<LinkedHashMap<String, Object>>selectSubjectiveQuickPollList(String course_id) {
+		return (List<LinkedHashMap<String, Object>>)selectList("student.selectSubjectiveQuickPollList", course_id);
+	}
 }
