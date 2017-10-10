@@ -23,23 +23,33 @@ public class ProfessorLectureController {
 	private ProfessorService professorService;
 
 	// main
-	@RequestMapping(value = "/redirectProfessorLecture", method = RequestMethod.GET)
-	public String mainDisplay(HttpServletRequest request, RedirectAttributes redirectAttributes) throws Exception {
+//	@RequestMapping(value = "/redirectProfessorLecture", method = RequestMethod.GET)
+//	public String mainDisplay(HttpServletRequest request, RedirectAttributes redirectAttributes) throws Exception {
+//		int id = Integer.parseInt(request.getParameter("id"));
+//		String course_id = request.getParameter("course_id");
+//		List<Map<String, Object>> professorList = professorService.selectProfessorList(id);
+//		List<Map<String, Object>> menteeList = professorService.selectMenteeList(id);
+//		List<LinkedHashMap<String, Object>> objectiveQuestionList = professorService.selectObjectiveQuestionList(course_id);
+//		List<LinkedHashMap<String, Object>> subjectiveQuestionList = professorService.selectSubjectiveQuestionList(course_id);
+//		redirectAttributes.addFlashAttribute("professorInfo", professorList);
+//		redirectAttributes.addFlashAttribute("menteeList", menteeList);
+//		redirectAttributes.addFlashAttribute("objectiveQuestionList", objectiveQuestionList);
+//		redirectAttributes.addFlashAttribute("subjectiveQuestionList", subjectiveQuestionList);
+//	    return "redirect:/professorLecture";
+//	}
+	@RequestMapping(value = "/professorLecture", method = RequestMethod.GET)
+	public ModelAndView mainView(HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/professor/professor_lecture");
 		int id = Integer.parseInt(request.getParameter("id"));
 		String course_id = request.getParameter("course_id");
 		List<Map<String, Object>> professorList = professorService.selectProfessorList(id);
 		List<Map<String, Object>> menteeList = professorService.selectMenteeList(id);
 		List<LinkedHashMap<String, Object>> objectiveQuestionList = professorService.selectObjectiveQuestionList(course_id);
 		List<LinkedHashMap<String, Object>> subjectiveQuestionList = professorService.selectSubjectiveQuestionList(course_id);
-		redirectAttributes.addFlashAttribute("professorInfo", professorList);
-		redirectAttributes.addFlashAttribute("menteeList", menteeList);
-		redirectAttributes.addFlashAttribute("objectiveQuestionList", objectiveQuestionList);
-		redirectAttributes.addFlashAttribute("subjectiveQuestionList", subjectiveQuestionList);
-	    return "redirect:/professorLecture";
-	}
-	@RequestMapping(value = "/professorLecture", method = RequestMethod.GET)
-	public ModelAndView mainView(HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("/professor/professor_lecture");
+		mv.addObject("professorInfo", professorList);
+		mv.addObject("menteeList", menteeList);
+		mv.addObject("objectiveQuestionList", objectiveQuestionList);
+		mv.addObject("subjectiveQuestionList", subjectiveQuestionList);
 		return mv;
 	}
 	

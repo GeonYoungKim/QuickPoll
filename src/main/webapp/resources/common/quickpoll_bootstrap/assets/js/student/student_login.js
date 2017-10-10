@@ -15,7 +15,7 @@ studentLoginJS = {
 					dataType : "json",
 					success : function(json) {
 						if (json.loginState) {
-							location.href = "redirectStudentLectureList?student_id=" + json.student_id;
+							location.href = "studentLectureList?student_id=" + json.student_id;
 						} else {
 							alert("틀렸습니다.")
 							$('#id').val("");

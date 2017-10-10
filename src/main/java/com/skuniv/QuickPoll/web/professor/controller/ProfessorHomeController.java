@@ -37,16 +37,29 @@ public class ProfessorHomeController {
 	 * Simply selects the home view to render by returning its name.
 	 * @throws Exception 
 	 */
-	@RequestMapping(value = "/redirectLectureList", method = RequestMethod.GET)
-	public String mainDisplay(HttpServletRequest request, RedirectAttributes redirectAttributes) throws Exception {
+//	@RequestMapping(value = "/redirectLectureList", method = RequestMethod.GET)
+//	public String mainDisplay(HttpServletRequest request, RedirectAttributes redirectAttributes) throws Exception {
+//		int id = Integer.parseInt(request.getParameter("id"));
+//		//professor 
+//		List<Map<String, Object>> list = professorService.selectProfessorList(id);
+//		List<CourseVo> courseList = professorService.selectCourseList(id);
+//		
+//		redirectAttributes.addFlashAttribute("professorInfo", list);
+//		redirectAttributes.addFlashAttribute("courseListInfo", courseList);
+//	    return "redirect:/lectureList";
+//	}
+	@RequestMapping(value = "/quickpollList")
+	public ModelAndView disPlayQuickPollList(HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/professor/quickpollList");
 		int id = Integer.parseInt(request.getParameter("id"));
-		//professor 
-		List<Map<String, Object>> list = professorService.selectProfessorList(id);
-		List<CourseVo> courseList = professorService.selectCourseList(id);
-		
-		redirectAttributes.addFlashAttribute("professorInfo", list);
-		redirectAttributes.addFlashAttribute("courseListInfo", courseList);
-	    return "redirect:/lectureList";
+		String course_id = request.getParameter("course_id");
+		List<Map<String, Object>> professorList = professorService.selectProfessorList(id);
+		List<LinkedHashMap<String, Object>> objectiveQuickPollList = professorService.selectObjectiveQuickPollList(course_id);
+		List<LinkedHashMap<String, Object>> subjectiveQuickPollList = professorService.selectSubjectiveQuickPollList(course_id);
+		mv.addObject("professorInfo", professorList);
+		mv.addObject("objectiveQuestionList", objectiveQuickPollList);
+		mv.addObject("subjectiveQuestionList", subjectiveQuickPollList);
+		return mv;
 	}
 	@RequestMapping(value = "/menteeList", method = RequestMethod.GET)
 	public ModelAndView studentList(HttpServletRequest request) throws Exception {

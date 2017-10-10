@@ -48,9 +48,7 @@
 </head>
 
 <body>
-	<input type="hidden" id="quickpoll_question_id">
-	<input type="hidden" id="quickpoll_question_connected_people">
-	<input type="hidden" id="course_id" value="${objectiveQuestionList[0].course_id}">
+	
 	<div class="wrapper">
 		<div class="sidebar" data-background-color="brown"
 			data-active-color="danger">
@@ -104,44 +102,23 @@
 			<div id="question_content" class="content">
 				<div class="container-fluid">
 					<div class="row">
-						<div class="col-lg-6 col-md-7">
+						<div class="col-md-8 col-md-offset-2">
 							<div class="card card-wizard" id="wizardCard">
 								<form id="wizardForm" method="" action="">
 									<div class="header text-center">
-										<h4 class="title">Awesome Wizard</h4>
-										<p class="category">Split a complicated flow in multiple
-											steps</p>
+										<h4 class="title">퀵폴 보기</h4>
+										<p class="category">진행했었던 퀵폴을 볼 수 있습니다.</p>
 									</div>
 									<div class="content">
 										<ul class="nav">
-											<li><a href="#direct_question" data-toggle="tab">즉석
-													문제</a></li>
 											<li><a onclick="createQuestion.loadQuestion();"
-												href="#upload_question" data-toggle="tab">문제 가져오기</a></li>
+												href="#upload_question" data-toggle="tab">지난 퀵폴 보기</a></li>
 
 										</ul>
 										<div class="tab-content">
-											<div class="tab-pane" id="direct_question">
-												<h5 class="text-center">학생들에게 궁금한 것을 물어보세요~</h5>
-												<div class="row">
-													<div class="col-md-10 col-md-offset-1">
-														<div class="form-group">
-															<label class="control-label"> 문제 </label> <input
-																class="form-control" type="text"
-																id="direct_question_content"
-																name="direct_question_content"
-																placeholder="ex: 궁금한거 물어보세요~" />
-														</div>
-														<button type="button"
-															class="btn btn-info btn-fill btn-wd btn-next pull-right"
-															id="sendDirectQuestionBtn">문제출제</button>
-													</div>
-												</div>
-
-											</div>
+											
 											<div class="tab-pane" id="upload_question">
-												<h5 class="text-center">Please give us more details
-													about your platform.</h5>
+												<h5 class="text-center">결과를 보고 싶은 퀵폴을 선택하세요~</h5>
 												<div class="row">
 													<div class="col-md-10 col-md-offset-1">
 
@@ -169,27 +146,19 @@
 																						var="row" varStatus="status">
 																						<div class="panel panel-border panel-default">
 																							<a data-toggle="collapse"
-																								onclick="createQuestion.checkCollapse('${status.count}');"
-																								href="#objective_collapse${status.count}"><div
+																								onclick="quickpollList.displayDetailObjectiveQuickPoll('${status.count}');"
+																								href=""><div
 																									class="panel-heading">
-																									<h4 id="objective_question_content${status.count}" class="panel-title">
-																										<span
-																											id="objective_question_check${status.count}"
-																											style="visibility: hidden" class="ti-check"></span>${row.question_content}<i
-																											class="ti-angle-down"></i>
+																									<h4 id="objective_question_content_${status.count}" class="panel-title">
+																										${row.question_content}
 																									</h4>
+																									<input type="hidden" id="quickpoll_question_id_${status.count}" value="${row.quickpoll_question_id}">
+																									<input type="hidden" id="example1_${status.count}" value="${row.example1}">
+																									<input type="hidden" id="example2_${status.count}" value="${row.example2}">
+																									<input type="hidden" id="example3_${status.count}" value="${row.example3}">
+																									<input type="hidden" id="example4_${status.count}" value="${row.example4}">
+																									<input type="hidden" id="quickpoll_question_answer_${status.count}" value="${row.question_answer}">
 																								</div></a>
-																							<div id="objective_collapse${status.count}"
-																								class="panel-collapse collapse">
-																								<div class="panel-body">
-																									<div id="example${status.count}_1">1. ${row.example1}<br /></div>
-																									<div id="example${status.count}_2">2. ${row.example2}<br /></div>
-																									<div id="example${status.count}_3">3. ${row.example3}<br /></div>
-																									<div id="example${status.count}_4">4. ${row.example4}<br /></div>
-																									<input type="hidden" id="objective_question_answer_${status.count}" value="${row.question_answer}">
-																									<input type="hidden" id="objective_question_id_${status.count}" value="${row.objective_question_id}">
-																								</div>
-																							</div>
 																						</div>
 																					</c:forEach>
 																				</c:when>
@@ -197,9 +166,7 @@
 																					<!-- 데이터 없을 경우 -->
 																				</c:otherwise>
 																			</c:choose>
-																			<button type="button"
-																				class="btn btn-info btn-fill btn-wd btn-next pull-center"
-																				id="sendObjectiveQuestionBtn">출제 하기</button>
+																			
 																		</div>
 
 																	</div>
@@ -222,7 +189,6 @@
 																										style="visibility: hidden" class="ti-check"></span>${row.question_content}
 																								</h4>
 																								<input type="hidden" id="subjective_question_answer_${status.count}" value="${row.question_answer}">
-																								<input type="hidden" id="subjective_question_id_${status.count}" value="${row.subjective_question_id}">
 																							</div></a>
 
 																					</div>
@@ -233,9 +199,7 @@
 																				<!-- 데이터 없을 경우 -->
 																			</c:otherwise>
 																		</c:choose>
-																		<button type="button"
-																			class="btn btn-info btn-fill btn-wd btn-next pull-center"
-																			id="sendSubjectiveQuestionBtn">출제 하기</button>
+																		
 																		</div>
 																	</div>
 																</div>
@@ -257,45 +221,7 @@
 							</div>
 						</div>
 
-						<div class="col-lg-6 col-md-7">
-							<div class="card">
-								<div class="header">
-									<h4 class="title">비접속</h4>
-								</div>
-								<div class="content">
-									<ul class="list-unstyled team-members">
-										<c:choose>
-											<c:when test="${fn:length(menteeList) > 0}">
-												<c:forEach items="${menteeList}" var="row">
-													<li id="${row.student_id}">
-														<div class="row">
-															<div class="col-xs-3">
-																<div class="avatar">
-																	<img
-																		src="resources/common/profile_image/${row.profile_img}"
-																		alt="Circle Image"
-																		class="img-circle img-no-padding img-responsive">
-																</div>
-															</div>
-															<div class="col-xs-6">
-																${row.name} <br /> <span class="text-muted"><small>${row.student_id}</small></span>
-															</div>
-															<div class="col-xs-3 text-right">
-																<btn class="btn btn-sm btn-success btn-icon"> <i
-																	class="fa fa-envelope"></i></btn>
-															</div>
-														</div>
-													</li>
-												</c:forEach>
-											</c:when>
-											<c:otherwise>
-												<!-- 데이터 없을 경우 -->
-											</c:otherwise>
-										</c:choose>
-									</ul>
-								</div>
-							</div>
-						</div>
+						
 					</div>
 				</div>
 			</div>
@@ -401,11 +327,9 @@
 <!-- Paper Dashboard PRO DEMO methods, don't include it in your project! -->
 <script src="resources/common/quickpoll_bootstrap/assets/js/demo.js"></script>
 <script
-	src="resources/common/quickpoll_bootstrap/assets/js/professor/professor_lecture.js?ver=4"
+	src="resources/common/quickpoll_bootstrap/assets/js/professor/quickpoll_list.js?ver=2"
 	charset="UTF-8"></script>
-<script
-	src="resources/common/quickpoll_bootstrap/assets/js/professor/create_question.js?ver=2"
-	charset="utf-8"></script>
+
 <script type="text/javascript">
         $().ready(function(){
 

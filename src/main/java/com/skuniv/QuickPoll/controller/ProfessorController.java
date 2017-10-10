@@ -24,7 +24,7 @@ public class ProfessorController {
 		ModelAndView mv = new ModelAndView("/professor/login");
 		return mv;
 	}
-
+	
 	@RequestMapping(value = "/loginCheckForProfessor")
 	public ModelAndView studentList(HttpServletRequest request) throws Exception {
 		int professor_id = Integer.parseInt(request.getParameter("id"));
@@ -57,4 +57,5 @@ public class ProfessorController {
 		mv.addObject("resultListForSubjectiveQuestion", resultList);
 		return mv;
 	}
+	
 }
