@@ -53,6 +53,26 @@
 				course_id = #{course_id}
 		]]>
 	</select>
+	<select id="selectObjectiveQuickPollList" resultType="java.util.LinkedHashMap" parameterType="String">
+		<![CDATA[
+			SELECT
+			    o.example1, o.example2, o.example3, o.example4, o.question_answer, q.*
+			FROM
+			    ObjectiveQuestion o, QuickPollQuestion q
+			WHERE
+				q.question_type = 2 AND q.course_id = #{course_id} AND q.question_id = o.objective_question_id
+		]]>
+	</select>
+	<select id="selectSubjectiveQuickPollList" resultType="java.util.LinkedHashMap" parameterType="String">
+		<![CDATA[
+			SELECT
+			    s.question_answer, q.*
+			FROM
+			    SubjectiveQuestion s, QuickPollQuestion q 
+			WHERE
+				q.question_type = 3 AND q.course_id = #{course_id} AND q.question_id = s.subjective_question_id
+		]]>
+	</select>
 	<select id="selectResultListForQuickPollAnswer" resultType="hashmap" parameterType="Integer">
 		<![CDATA[
 			SELECT

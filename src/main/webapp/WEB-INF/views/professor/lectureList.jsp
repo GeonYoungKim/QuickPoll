@@ -177,8 +177,8 @@
 		    	                                <div id="lecture_${status.count}" class="panel-collapse collapse">
 		    	                                	<div class="panel-body">
 		    	                                    	<ul class="nav">
-															<li><a href="quickpoll">1. 퀵폴보기</a></li>
-															<li><a href="redirectProfessorLecture?id=${professorInfo[0].professor_id}&course_id=${row.course_id}">2. 퀵폴만들기</a></li>
+															<li><a href="quickpollList?id=${professorInfo[0].professor_id}&course_id=${row.course_id}">1. 퀵폴보기</a></li>
+															<li><a href="professorLecture?id=${professorInfo[0].professor_id}&course_id=${row.course_id}">2. 퀵폴만들기</a></li>
 															<li><a href="quickpoll">3. 참여도</a></li>
 															<input type="hidden" id="course_id_${status.count}" value="${row.course_id}">
 															<input type="hidden" id="course_period_${status.count}" value="${row.period}">

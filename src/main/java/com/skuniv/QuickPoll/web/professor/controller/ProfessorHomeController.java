@@ -48,6 +48,19 @@ public class ProfessorHomeController {
 		redirectAttributes.addFlashAttribute("courseListInfo", courseList);
 	    return "redirect:/lectureList";
 	}
+	@RequestMapping(value = "/quickpollList")
+	public ModelAndView disPlayQuickPollList(HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/professor/quickpollList");
+		int id = Integer.parseInt(request.getParameter("id"));
+		String course_id = request.getParameter("course_id");
+		List<Map<String, Object>> professorList = professorService.selectProfessorList(id);
+		List<LinkedHashMap<String, Object>> objectiveQuickPollList = professorService.selectObjectiveQuickPollList(course_id);
+		List<LinkedHashMap<String, Object>> subjectiveQuickPollList = professorService.selectSubjectiveQuickPollList(course_id);
+		mv.addObject("professorInfo", professorList);
+		mv.addObject("objectiveQuestionList", objectiveQuickPollList);
+		mv.addObject("subjectiveQuestionList", subjectiveQuickPollList);
+		return mv;
+	}
 	@RequestMapping(value = "/menteeList", method = RequestMethod.GET)
 	public ModelAndView studentList(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("menteeList");

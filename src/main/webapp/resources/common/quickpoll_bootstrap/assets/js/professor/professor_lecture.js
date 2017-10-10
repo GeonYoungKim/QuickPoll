@@ -37,7 +37,7 @@ $(document)
 										message = {};
 										message.type = "sendDirectQuestion";
 										message.id = $("#id").val();
-										message.course_id = "cs";
+										message.course_id = $("#course_id").val();
 										message.question_type = 1;
 										message.question_content = direct_question_content;
 										sock.send(JSON.stringify(message));
@@ -59,13 +59,15 @@ $(document)
 						message = {};
 						message.type = "sendSubjectiveQuestion";
 						message.id = $("#id").val();
-						message.course_id = "cs";
+						message.course_id = $("#course_id").val();
 						message.question_type = 3;
+						
 						for (var i = 1; i < cnt; i++) {
 							if ($('#subjective_question_check'+ i + '').css('visibility') == "visible") {
 								subjective_question_content = $.trim($('#subjective_question_content'+ i+ '').text());
 								message.question_content = subjective_question_content;
 								message.question_answer = $('#subjective_question_answer_'+i).val();
+								message.questionId = $('#subjective_question_id_'+i).val();
 								break;
 							}	
 						}
@@ -190,7 +192,7 @@ $(document)
 										message = {};
 										message.type = "sendObjectiveQuestion";
 										message.id = $("#id").val();
-										message.course_id = "cs";
+										message.course_id = $("#course_id").val();
 										message.question_type = 2;
 										for (var i = 1; i < cnt; i++) {
 											if ($('#objective_question_check'+ i + '').css('visibility') == "visible") {
@@ -205,6 +207,7 @@ $(document)
 												message.example3 = example3.substring(3,example3.length);
 												message.example4 = example4.substring(3,example4.length);
 												message.question_answer = $('#objective_question_answer_'+i).val();
+												message.questionId = $('#objective_question_id_'+i).val();
 												break;
 											}
 										}

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 import java.util.TreeMap;
 
 import javax.annotation.Resource;
@@ -82,12 +83,20 @@ public class ProfessorService {
 	public List<LinkedHashMap<String, Object>> selectSubjectiveQuestionList(String course_id) throws Exception {
 		return professorDao.selectSubjectiveQuestionList(course_id);
 	}
+	public List<LinkedHashMap<String, Object>> selectObjectiveQuickPollList(String course_id) throws Exception {
+		return professorDao.selectObjectiveQuickPollList(course_id);
+	}
+	public List<LinkedHashMap<String, Object>> selectSubjectiveQuickPollList(String course_id) throws Exception {
+		return professorDao.selectSubjectiveQuickPollList(course_id);
+	}
+	
 	public void insertCourse(Map<String, Object> map) {	
 		professorDao.insert("professor.insertCourse", map);
 	}
 	public List<LinkedHashMap<String, Object>> selectCourseList(int professor_id) throws Exception {
 		return professorDao.selectCourseList(professor_id);
 	}
+	
 	public void groupByCourse(List<LinkedHashMap<String, Object>> courseList) {
 		
 	}

@@ -39,6 +39,9 @@ public class StudentLectureController {
 	@RequestMapping(value = "/studentLecture", method = RequestMethod.GET)
 	public ModelAndView displayLectureQuickPollView(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/student/student_lecture");
+		int student_id = Integer.parseInt(request.getParameter("student_id"));
+		List<Map<String, Object>> list = studentService.selectStudentInfo(student_id);
+		mv.addObject("studentInfo", list);
 		return mv;
 	}
 	@RequestMapping(value = "/redirectStudentLectureList", method = RequestMethod.GET)
@@ -56,6 +59,13 @@ public class StudentLectureController {
 	@RequestMapping(value = "/studentLectureList", method = RequestMethod.GET)
 	public ModelAndView displayStudentMain(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/student/lectureList");
+		int student_id = Integer.parseInt(request.getParameter("student_id"));
+		//professor 
+		List<Map<String, Object>> list = studentService.selectStudentInfo(student_id);
+		System.out.println(list.get(0).get("name"));
+		List<LinkedHashMap<String, Object>> courseList = studentService.selectStudentEnrollList(student_id);
+		mv.addObject("studentInfo", list);
+		mv.addObject("courseListInfo", courseList);
 		return mv;
 	}
 	

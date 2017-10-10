@@ -178,7 +178,7 @@
 		    	                                	<div class="panel-body">
 		    	                                    	<ul class="nav">
 															<li><a href="quickpoll">1. 퀵폴보기</a></li>
-															<li><a href="redirectstudentLecture?student_id=${studentInfo[0].student_id}&course_id=${row.course_id}">2. 퀵폴만들기</a></li>
+															<li><a href="studentLecture?student_id=${studentInfo[0].student_id}&course_id=${row.course_id}">2. 퀵폴만들기</a></li>
 															<li><a href="quickpoll">3. 참여도</a></li>
 															<input type="hidden" id="course_id_${status.count}" value="${row.course_id}">
 														</ul>    	
