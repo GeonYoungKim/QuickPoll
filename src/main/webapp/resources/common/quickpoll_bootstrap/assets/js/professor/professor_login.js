@@ -17,7 +17,7 @@ loginJS = {
 						
 						alert(json.loginState);
 						if (json.loginState) {
-							location.href = "redirectLectureList?id="+json.id+"";
+							location.href = "lectureList?id="+json.id+"";
 						} else {
 							alert("틀렸습니다.")
 							$('#id').val("");

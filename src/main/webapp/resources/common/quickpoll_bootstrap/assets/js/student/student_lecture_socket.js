@@ -43,7 +43,7 @@ $(document).ready(function() {
         	    closeOnCancel: false
             },function(isConfirm){
                 if (isConfirm){
-                	location.href="/QuickPoll";       
+                	location.href="/QuickPoll/studentLectureList?student_id="+message.id;       
                 }
             });
 //			swal("제출 완료!", "정상적으로 제출되었습니다.", "success");
@@ -126,7 +126,7 @@ $(document).ready(function() {
         	    closeOnCancel: false
             },function(isConfirm){
                 if (isConfirm){
-                	location.href="/QuickPoll";       
+                	location.href="/QuickPoll/studentLectureList?student_id="+message.id;     
                 }
             });
 		}
@@ -153,7 +153,7 @@ $(document).ready(function() {
         	    closeOnCancel: false
             },function(isConfirm){
                 if (isConfirm){
-                	location.href="/QuickPoll";       
+                	location.href="/QuickPoll/studentLectureList?student_id="+message.id;      
                 }
             });
 //			swal("제출 완료!", "정상적으로 제출되었습니다.", "success");

@@ -17,6 +17,8 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.skuniv.QuickPoll.service.ProfessorService;
 
+import model.RealCourseVo;
+
 @Controller
 public class ProfessorLectureController {
 	@Resource(name = "ProfessorService")
@@ -77,12 +79,11 @@ public class ProfessorLectureController {
 	public ModelAndView displayLectureList(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/professor/lectureList");
 		int id = Integer.parseInt(request.getParameter("id"));
-//		//professor 
-//		List<Map<String, Object>> list = professorService.selectProfessorList(id);
-//		List<CourseVo> courseList = professorService.selectCourseList(id);
-//		
-//		redirectAttributes.addFlashAttribute("professorInfo", list);
-//		redirectAttributes.addFlashAttribute("courseListInfo", courseList);
+		//professor 
+		List<Map<String, Object>> list = professorService.selectProfessorList(id);
+		List<RealCourseVo> courseList = professorService.selectCourseList(id);
+		mv.addObject("professorInfo", list);
+		mv.addObject("courseListInfo", courseList);
 		return mv;
 	}
 	

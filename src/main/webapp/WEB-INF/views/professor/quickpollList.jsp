@@ -84,7 +84,7 @@
 					</div>
 				</div>
 				<ul class="nav">
-					<li class="active"><a href="quickpollList?id=${professorInfo[0].professor_id}"> <i
+					<li class="active"><a href="lectureList?id=${professorInfo[0].professor_id}"> <i
 							class="ti-view-list-alt"></i>
 							<p>강의 목록</p>
 					</a></li>

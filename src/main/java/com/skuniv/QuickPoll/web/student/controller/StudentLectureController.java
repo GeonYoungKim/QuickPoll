@@ -68,12 +68,18 @@ public class StudentLectureController {
 		mv.addObject("courseListInfo", courseList);
 		return mv;
 	}
-	@RequestMapping(value = "/getlist", method = RequestMethod.GET)
-	public ModelAndView getList(HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("jsonView");
+	
+	@RequestMapping(value = "/quickpollListForStudent")
+	public ModelAndView disPlayQuickPollList(HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/student/quickpollList");
 		int student_id = Integer.parseInt(request.getParameter("student_id"));
-		List<LinkedHashMap<String, Object>> courseList = studentService.selectStudentEnrollList(student_id);
-		mv.addObject("courseListInfo", courseList);
+		String course_id = request.getParameter("course_id");
+		List<Map<String, Object>> list = studentService.selectStudentInfo(student_id);
+		List<LinkedHashMap<String, Object>> objectiveQuickPollList = studentService.selectObjectiveQuickPollList(course_id);
+		List<LinkedHashMap<String, Object>> subjectiveQuickPollList = studentService.selectSubjectiveQuickPollList(course_id);
+		mv.addObject("studentInfo", list);
+		mv.addObject("objectiveQuestionList", objectiveQuickPollList);
+		mv.addObject("subjectiveQuestionList", subjectiveQuickPollList);
 		return mv;
 	}
 }

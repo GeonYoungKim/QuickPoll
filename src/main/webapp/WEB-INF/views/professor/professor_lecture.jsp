@@ -86,11 +86,11 @@
 					</div>
 				</div>
 				<ul class="nav">
-					<li><a href="main?id=${professorInfo[0].professor_id}"> <i
+					<li class="active"><a href="lectureList?id=${professorInfo[0].professor_id}"> <i
 							class="ti-view-list-alt"></i>
 							<p>강의 목록</p>
 					</a></li>
-					<li class="active"><a
+					<li ><a
 						href="menteeList?id=${professorInfo[0].professor_id}"> <i
 							class="ti-clipboard"></i>
 							<p>멘티 목록</p>

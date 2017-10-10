@@ -161,7 +161,7 @@
 
 	<!-- Paper Dashboard PRO DEMO methods, don't include it in your project! -->
 	<script src="resources/common/quickpoll_bootstrap/assets/js/demo.js"></script>
-	<script src="resources/common/quickpoll_bootstrap/assets/js/professor/professor_login.js?ver=1" charset="UTF-8"></script>
+	<script src="resources/common/quickpoll_bootstrap/assets/js/professor/professor_login.js?ver=2" charset="UTF-8"></script>
 	<script type="text/javascript">
         $().ready(function(){
             demo.checkFullPageBackgroundImage();
