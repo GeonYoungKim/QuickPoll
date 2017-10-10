@@ -1,6 +1,8 @@
 package com.skuniv.QuickPoll.service;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -34,6 +36,21 @@ public class StudentService {
 		else return false;
 	}
 	public List<LinkedHashMap<String, Object>> selectStudentEnrollList(int student_id) throws Exception {
-		return studentDao.selectStudentEnrollList(student_id);
+		return groupByCourseName(studentDao.selectStudentEnrollList(student_id));
+	}
+	public List<LinkedHashMap<String, Object>> groupByCourseName(List<LinkedHashMap<String, Object>> enrollList) {
+		for (int i = 0; i < enrollList.size(); i++) {
+			if ((Float)enrollList.get(i).get("periood") < 3) {
+				String str = enrollList.get(i).get("day") + "요일 " + enrollList.get(i).get("periood") + "교시";
+				str += ", " + enrollList.get(i+1).get("day") +"요일" + enrollList.get(i+1).get("periood") + "교시";
+				enrollList.get(i).put("course_str", str);
+				enrollList.remove(i+1);
+				i++;
+			} else {
+				String str = enrollList.get(i).get("day") + "요일 " + enrollList.get(i).get("periood") + "교시";
+				enrollList.get(i).put("course_str", str);
+			}
+		}
+		return enrollList;
 	}
 }

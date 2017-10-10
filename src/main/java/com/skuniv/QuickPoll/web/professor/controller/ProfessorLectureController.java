@@ -76,6 +76,13 @@ public class ProfessorLectureController {
 	@RequestMapping(value = "/lectureList")
 	public ModelAndView displayLectureList(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/professor/lectureList");
+		int id = Integer.parseInt(request.getParameter("id"));
+//		//professor 
+//		List<Map<String, Object>> list = professorService.selectProfessorList(id);
+//		List<CourseVo> courseList = professorService.selectCourseList(id);
+//		
+//		redirectAttributes.addFlashAttribute("professorInfo", list);
+//		redirectAttributes.addFlashAttribute("courseListInfo", courseList);
 		return mv;
 	}
 	
