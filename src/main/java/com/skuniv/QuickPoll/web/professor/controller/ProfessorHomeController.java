@@ -23,6 +23,7 @@ import com.google.gson.GsonBuilder;
 import com.skuniv.QuickPoll.service.ProfessorService;
 
 import model.CourseVo;
+import model.RealCourseVo;
 
 /**
  * Handles requests for the application home page.
@@ -37,17 +38,17 @@ public class ProfessorHomeController {
 	 * Simply selects the home view to render by returning its name.
 	 * @throws Exception 
 	 */
-//	@RequestMapping(value = "/redirectLectureList", method = RequestMethod.GET)
-//	public String mainDisplay(HttpServletRequest request, RedirectAttributes redirectAttributes) throws Exception {
-//		int id = Integer.parseInt(request.getParameter("id"));
-//		//professor 
-//		List<Map<String, Object>> list = professorService.selectProfessorList(id);
-//		List<CourseVo> courseList = professorService.selectCourseList(id);
-//		
-//		redirectAttributes.addFlashAttribute("professorInfo", list);
-//		redirectAttributes.addFlashAttribute("courseListInfo", courseList);
-//	    return "redirect:/lectureList";
-//	}
+	@RequestMapping(value = "/redirectLectureList", method = RequestMethod.GET)
+	public String mainDisplay(HttpServletRequest request, RedirectAttributes redirectAttributes) throws Exception {
+		int id = Integer.parseInt(request.getParameter("id"));
+		//professor 
+		List<Map<String, Object>> list = professorService.selectProfessorList(id);
+		List<RealCourseVo> courseList = professorService.selectCourseList(id);
+		
+		redirectAttributes.addFlashAttribute("professorInfo", list);
+		redirectAttributes.addFlashAttribute("courseListInfo", courseList);
+	    return "redirect:/lectureList";
+	}
 	@RequestMapping(value = "/quickpollList")
 	public ModelAndView disPlayQuickPollList(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/professor/quickpollList");
@@ -75,7 +76,7 @@ public class ProfessorHomeController {
 	
 	public ModelAndView get(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("jsonView");
-		List<CourseVo> courseList = professorService.selectCourseList(301001);
+		List<RealCourseVo> courseList = professorService.selectCourseList(301001);
 		mv.addObject("courseList",courseList);
 		return mv;
 	}
