@@ -2,6 +2,7 @@ package com.skuniv.QuickPoll.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 import com.skuniv.QuickPoll.dao.ProfessorDao;
 
 import model.CourseVo;
+import model.RealCourseVo;
 
 @Service("ProfessorService")
 public class ProfessorService {
@@ -95,8 +97,40 @@ public class ProfessorService {
 	public void insertCourse(Map<String, Object> map) {	
 		professorDao.insert("professor.insertCourse", map);
 	}
-	public List<CourseVo> selectCourseList(int professor_id) throws Exception {
-		return groupByCourse(professorDao.selectCourseList(professor_id));
+	public List<RealCourseVo> selectCourseList(int professor_id) throws Exception {
+		return reParsingCourse(groupByCourse(professorDao.selectCourseList(professor_id)));
+	}
+	public List<RealCourseVo> reParsingCourse(List<CourseVo> courseVos){
+		List<RealCourseVo> courseVoList=new ArrayList<RealCourseVo>();
+		
+		List<String> courseNames=new ArrayList<String>();
+		List<String> dayWithPeriods=new ArrayList<String>();
+		String str;
+		for(int i=0;i<courseVos.size();i++) {
+			Iterator<String> keySetIterator = courseVos.get(i).getGroup_by_name().keySet().iterator();
+			while (keySetIterator.hasNext()) {
+				String key = keySetIterator.next();
+				Iterator<String> dayKeySetIterator=courseVos.get(i).getGroup_by_name().get(key).keySet().iterator();
+				str="";
+				while (dayKeySetIterator.hasNext()) {
+					String dayKey = dayKeySetIterator.next();
+					str+=dayKey+courseVos.get(i).getGroup_by_name().get(key).get(dayKey)+" ";
+				}
+				System.out.println(str);
+				dayWithPeriods.add(str);
+			    courseNames.add(key);
+			}
+		}	
+		for(int i=0;i<courseVos.size();i++) {
+			RealCourseVo realCourseVo=new RealCourseVo();
+			realCourseVo.setCourse_id(courseVos.get(i).getCourse_id());
+			realCourseVo.setCredit(courseVos.get(i).getCredit());
+			realCourseVo.setProfessor_id(courseVos.get(i).getProfessor_id());
+			realCourseVo.setCourse_name(courseNames.get(i));
+			realCourseVo.setDayWithPeroid(dayWithPeriods.get(i));
+			courseVoList.add(realCourseVo);
+		}		
+		return courseVoList;
 	}
 
 	public List<CourseVo> groupByCourse(List<LinkedHashMap<String, Object>> courseList) {

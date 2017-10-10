@@ -169,8 +169,7 @@
 		    	                                <a data-toggle="collapse" href="#lecture_${status.count}">
 		    	                                    <div class="panel-heading">
 		    	                                        <h4 class="panel-title">
-		    	                                        	${row.group_by_name}
-		    	                                        		   	                                        	
+		    	                                        	    ${row.course_name} &emsp;  ${row.dayWithPeroid}                             	
 		    	                                        	<i class="ti-angle-down"></i>
 		    	                                        </h4>
 		    	                                    </div>
