@@ -1,26 +1,16 @@
 package model;
 
-import java.util.HashMap;
-import java.util.List;
-
-public class CourseVo {
+public class RealCourseVo {
 	private String course_id;
-	private HashMap<String,HashMap<String,List<Integer>>> group_by_name;
-	
 	private int professor_id;
 	private double credit;
-	
+	private String course_name;
+	private String dayWithPeroid;
 	public String getCourse_id() {
 		return course_id;
 	}
 	public void setCourse_id(String course_id) {
 		this.course_id = course_id;
-	}
-	public HashMap<String, HashMap<String, List<Integer>>> getGroup_by_name() {
-		return group_by_name;
-	}
-	public void setGroup_by_name(HashMap<String, HashMap<String, List<Integer>>> group_by_name) {
-		this.group_by_name = group_by_name;
 	}
 	public int getProfessor_id() {
 		return professor_id;
@@ -33,6 +23,18 @@ public class CourseVo {
 	}
 	public void setCredit(double credit) {
 		this.credit = credit;
+	}
+	public String getCourse_name() {
+		return course_name;
+	}
+	public void setCourse_name(String course_name) {
+		this.course_name = course_name;
+	}
+	public String getDayWithPeroid() {
+		return dayWithPeroid;
+	}
+	public void setDayWithPeroid(String dayWithPeroid) {
+		this.dayWithPeroid = dayWithPeroid;
 	}
 	
 
