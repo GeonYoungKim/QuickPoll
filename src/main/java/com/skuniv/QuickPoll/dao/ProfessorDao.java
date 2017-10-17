@@ -40,6 +40,13 @@ public class ProfessorDao extends ConnectDB {
 	public List<LinkedHashMap<String, Object>>selectSubjectiveQuickPollList(String course_id) {
 		return (List<LinkedHashMap<String, Object>>)selectList("professor.selectSubjectiveQuickPollList", course_id);
 	}
+	public List<LinkedHashMap<String, Object>> selectAnswerListForCourse(String course_id) {
+		return (List<LinkedHashMap<String, Object>>)selectList("professor.selectAnswerListForCourse", course_id);
+	}
+	public int selectCountForQuestion(String course_id) {
+		return (Integer)selectOne("professor.selectCountForQuestion", course_id);
+	}
+	
 	public void insertCourse(Map<String, Object> map) {	
 		insert("professor.insertCourse", map);
 	}

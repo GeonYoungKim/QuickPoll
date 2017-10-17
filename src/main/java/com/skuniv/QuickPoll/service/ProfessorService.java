@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.StringTokenizer;
 import java.util.TreeMap;
 
 import javax.annotation.Resource;
@@ -93,7 +93,51 @@ public class ProfessorService {
 	public List<LinkedHashMap<String, Object>> selectSubjectiveQuickPollList(String course_id) throws Exception {
 		return professorDao.selectSubjectiveQuickPollList(course_id);
 	}
-	
+	public List<HashMap<String, Integer>> selectAnswerListForCourse(String course_id) throws Exception {
+		return parsingParticipationRate(professorDao.selectAnswerListForCourse(course_id));
+	}
+	public int selectCountForQuestion(String course_id) throws Exception {
+		return professorDao.selectCountForQuestion(course_id);
+	}
+	public List<HashMap<String, Integer>> parsingParticipationRate(List<LinkedHashMap<String, Object>> answerList) {
+		
+		Map<String, HashMap<String, Integer>> setMap = new HashMap<String, HashMap<String, Integer>>();
+		for (int i = 0 ; i < answerList.size(); i++) {
+			LinkedHashMap<String, Object> map = answerList.get(i);
+			int student_id = (Integer)map.get("student_id");
+			String str_student_id = String.valueOf(student_id);
+			int answer_count = (Integer)map.get("answer_state");
+			answer_count = answer_count == 1 ? 1 : 0;
+			System.out.println("count : " + answer_count);
+			if (setMap.containsKey(str_student_id)) {
+				HashMap<String, Integer> stateMap = setMap.get(str_student_id);
+				stateMap.put("participate_count", stateMap.get("participate_count")+1);
+				stateMap.put("answer_count", stateMap.get("answer_count")+answer_count);
+				setMap.put(str_student_id, stateMap);
+			} else {
+				HashMap<String, Integer> stateMap = new HashMap<String, Integer>();
+				stateMap.put("participate_count", 1);
+				stateMap.put("answer_count", answer_count);
+				setMap.put(str_student_id, stateMap);
+			}
+		}
+		return setParticipationRateList(setMap);
+	}
+	public List<HashMap<String, Integer>> setParticipationRateList(Map<String, HashMap<String, Integer>> setMap) {
+		List<HashMap<String, Integer>> participationRateList = new LinkedList<HashMap<String, Integer>>();
+		Iterator<String> student_id = setMap.keySet().iterator();
+		while (student_id.hasNext()) {
+			String str_student_id = student_id.next();
+			HashMap<String, Integer> stateMap = setMap.get(str_student_id);
+			int participate_count = stateMap.get("participate_count");
+			int answer_count = stateMap.get("answer_count");
+			stateMap.put("student_id", Integer.parseInt(str_student_id));
+			stateMap.put("participate_count", participate_count);
+			stateMap.put("answer_count", answer_count);
+			participationRateList.add(stateMap);
+		}
+		return participationRateList;
+	}
 	public void insertCourse(Map<String, Object> map) {	
 		professorDao.insert("professor.insertCourse", map);
 	}
