@@ -93,7 +93,32 @@
 				professor_id = #{professor_id} 
 		]]>
 	</select>
-	
+	<select id="selectAnswerListForCourse" resultType="java.util.LinkedHashMap" parameterType="String">
+		<![CDATA[
+			SELECT
+				 * 
+			FROM 
+				quickpollanswer 
+			WHERE quickpoll_question_id in (
+											SELECT 
+												quickpoll_question_id 
+											FROM 
+												QuickPollQuestion 
+											WHERE course_id = #{course_id}
+											);
+			
+		]]>
+	</select>
+	<select id="selectCountForQuestion" resultType="Integer" parameterType="String">
+		<![CDATA[
+			SELECT 
+				count(quickpoll_question_id) 
+			FROM
+				QuickPollQuestion 
+			WHERE 
+				course_id=#{course_id} AND question_type != 1; 
+		]]>
+	</select>
 	<insert id="insertCourse" parameterType="hashmap">
 		<![CDATA[
 			INSERT 
