@@ -54,7 +54,19 @@ public class ProfessorLectureController {
 		mv.addObject("subjectiveQuestionList", subjectiveQuestionList);
 		return mv;
 	}
-	
+	@RequestMapping(value = "/participationRate", method = RequestMethod.GET)
+	public ModelAndView displayParticipationRate(HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/professor/participationRate");
+		int id = Integer.parseInt(request.getParameter("id"));
+		String course_id = request.getParameter("course_id");
+		List<Map<String, Object>> professorList = professorService.selectProfessorList(id);
+		List<HashMap<String, Integer>> participationRateList = professorService.selectAnswerListForCourse(course_id);
+		int questionCount = professorService.selectCountForQuestion(course_id);
+		mv.addObject("professorInfo", professorList);
+		mv.addObject("participationRateList", participationRateList);
+		mv.addObject("questionCount", questionCount);
+		return mv;
+	}
 	@RequestMapping(value = "/tab", method = RequestMethod.GET)
 	public ModelAndView tab(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("tab");
@@ -86,7 +98,6 @@ public class ProfessorLectureController {
 		mv.addObject("courseListInfo", courseList);
 		return mv;
 	}
-	
 	@RequestMapping(value = "/insertCourse", method = RequestMethod.GET)
 	public void insertCourse(HttpServletRequest request) throws Exception {
 		String course_id = request.getParameter("course_id");
