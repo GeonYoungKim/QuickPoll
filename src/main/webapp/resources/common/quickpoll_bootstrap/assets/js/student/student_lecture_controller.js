@@ -13,5 +13,30 @@ studentLectureController = {
 			}
 		}
 		// $('#objective_question_number').visibility = visible;
+	},
+	checkLecture : function(courseId, student_id) {
+		var query = {
+				course_id : courseId
+		};
+		$
+				.ajax({
+					type : "GET",
+					url : "/QuickPollSocketServer/checkOpenLecture",
+					data : query,
+					dataType : "json",
+					success : function(json) {
+						if (json.checkState) {
+							location.href = "studentLecture?student_id="+student_id+"&course_id="+courseId;
+						} else {
+							swal(
+									  '오류!',
+									  '진행 중인 퀵폴이 없습니다.',
+									  'error'
+									)
+						}
+					}
+				});
+		
 	}
+
 }

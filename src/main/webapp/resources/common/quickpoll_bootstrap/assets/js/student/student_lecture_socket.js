@@ -17,7 +17,7 @@ $(document).ready(function() {
 	sock.onopen = function() {
 		alert($('#student_id'));
 		message = {};
-		message.course_id = "cs";
+		message.course_id = $("#course_id").val();
 		message.type = "connect";
 		message.id = $("#student_id").val();
 		message.name="kim";
@@ -186,7 +186,7 @@ studentLectureSocket = {
 	},
 
 	onClose : function(evt) {
-
+		location.href="/QuickPoll/studentLectureList?student_id="+message.id;     
 		$("#data").append("연결 끊김");
 
 	},

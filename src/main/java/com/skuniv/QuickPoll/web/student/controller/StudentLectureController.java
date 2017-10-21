@@ -40,7 +40,9 @@ public class StudentLectureController {
 	public ModelAndView displayLectureQuickPollView(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/student/student_lecture");
 		int student_id = Integer.parseInt(request.getParameter("student_id"));
+		String course_id = request.getParameter("course_id");
 		List<Map<String, Object>> list = studentService.selectStudentInfo(student_id);
+		mv.addObject("courseId", course_id);
 		mv.addObject("studentInfo", list);
 		return mv;
 	}
