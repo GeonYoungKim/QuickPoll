@@ -448,9 +448,7 @@ professorLecture = {
 	},
 
 	onClose : function(evt) {
-
-		$("#data").append("연결 끊김");
-
+		location.href="lectureList?id?"+$("#id").val();
 	},
 
 	closeMessage : function() {

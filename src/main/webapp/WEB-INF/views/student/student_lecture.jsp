@@ -47,6 +47,7 @@
 
 <body>
 	<input id="student_id" type="hidden" value="${studentInfo[0].student_id}">
+	<input id="course_id" type="hidden" value="${courseId}">
 	<div class="wrapper">
 		<div class="sidebar" data-background-color="brown"
 			data-active-color="danger">
