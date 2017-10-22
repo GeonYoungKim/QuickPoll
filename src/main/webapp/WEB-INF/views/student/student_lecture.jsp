@@ -319,7 +319,7 @@
 <script type="text/javascript"
 	src="resources/common/quickpoll_bootstrap/assets/js/sockjs-0.3.4.js"></script>
 <script
-	src="resources/common/quickpoll_bootstrap/assets/js/student/student_lecture_socket.js?ver=1"
+	src="resources/common/quickpoll_bootstrap/assets/js/student/student_lecture_socket.js?ver=2"
 	charset="UTF-8"></script>
 	<script
 	src="resources/common/quickpoll_bootstrap/assets/js/student/student_lecture_controller.js?ver=1"
