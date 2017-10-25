@@ -11,23 +11,27 @@ $(document)
 					// 자바스크립트 안에 function을 집어넣을 수 있음.
 
 					// 데이터가 나한테 전달되읐을 때 자동으로 실행되는 function
-
 					sock.onmessage = professorLecture.onMessage;
 
 					// 데이터를 끊고싶을때 실행하는 메소드
 
-					sock.onclose = professorLecture.onClose;
-
+					sock.onclose = onClose;
+					
 					sock.onopen = function() {
 						message = {};
-						message.course_id = "cs";
+						message.course_id = $('#course_id').val();
 						message.type = "create";
 						message.id = $("#id").val();
 						message.name = "kim";
 						sock.send(JSON.stringify(message));
-
 					};
-
+					function onClose(evt) {
+						swal(
+								  '오류!',
+								  '인터넷 연결이 끊겼습니다.',
+								  'error'
+								)
+					}
 					$("#sendDirectQuestionBtn")
 							.click(
 									function() {
@@ -284,7 +288,6 @@ $(document)
 										demo.initCirclePercentage();
 
 										objectiveQuestionResultBtn = function() {
-											alert("resultBtn Click!");
 											var query = {
 													quickpoll_question_id : $('#quickpoll_question_id').val()
 												};
@@ -366,6 +369,12 @@ $(document)
 					});
 
 				});
+$(document).keydown(function(e) {
+    key = (e) ? e.keyCode : event.keyCode;
+    if (key == 81) {
+    	onClose();
+    }
+});
 professorLecture = {
 
 	// 웸소켓을 지정한 url로 연결한다.
@@ -379,11 +388,14 @@ professorLecture = {
 
 	onMessage : function(evt) {
 		var data = evt.data;
-		// alert(data);
 		var parsedJson = JSON.parse(data);
-		if (parsedJson.type == "connect")
-			$('li').remove('#' + parsedJson.id);
-		else if (parsedJson.type == "directQuestionAnswer") {
+		var type = parsedJson.type;
+		if (type == "connect") {
+			$('#'+parsedJson.id).css('visibility', 'hidden');
+//			$('li').remove('#' + parsedJson.id);
+		} else if (type == "closeStudent") {
+			$('#'+parsedJson.studentId).css('visibility', 'visible');
+		} else if (type == "directQuestionAnswer") {
 			var length = ($('#bootstrap-table > tbody > tr').length) + 1;
 			var tr_html = '<tr data-index="'
 					+ (length - 1)
@@ -428,28 +440,25 @@ professorLecture = {
 			$(window).resize(function() {
 				$table.bootstrapTable('resetView');
 			});
-		} else if (parsedJson.type == "objectiveQuestionAnswer") {
+		} else if (type == "objectiveQuestionAnswer") {
 			var percent = 10/parsedJson.summitedCount;
 			$('#connected_student_percent').html('<div id="chartDashboard" class="chart-circle" data-percent="'+percent+'">' + parsedJson.summitedCount+' / 전체인원</div>');
 			demo.initOverviewDashboard();
 			demo.initCirclePercentage();
-		} else if (parsedJson.type == "subjectiveQuestionAnswer") {
+		} else if (type == "subjectiveQuestionAnswer") {
 			var summitedCount = parsedJson.summitedCount;
 			var connectedPeople = parsedJson.connectedPeople;
 			var percent = summitedCount/connectedPeople * 100;
 			$('#connected_student_percent').html('<div id="chartDashboard" class="chart-circle" data-percent="'+percent+'">' + summitedCount+' / '+ connectedPeople + '</div>');
 			demo.initOverviewDashboard();
 			demo.initCirclePercentage();
-		} else if (parsedJson.type == "sendObjectiveQuestion" || parsedJson.type == "sendSubjectiveQuestion") {
+		} else if (type == "sendObjectiveQuestion" || parsedJson.type == "sendSubjectiveQuestion") {
 			$('#quickpoll_question_id').val(parsedJson.quickpoll_question_id);
 			$('#quickpoll_question_connected_people').val(parsedJson.connectedPeople);
 		} 
 		// sock.close();
 	},
 
-	onClose : function(evt) {
-		location.href="lectureList?id?"+$("#id").val();
-	},
 
 	closeMessage : function() {
 

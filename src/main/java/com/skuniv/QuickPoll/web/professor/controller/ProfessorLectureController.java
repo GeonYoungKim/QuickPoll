@@ -52,6 +52,7 @@ public class ProfessorLectureController {
 		mv.addObject("menteeList", menteeList);
 		mv.addObject("objectiveQuestionList", objectiveQuestionList);
 		mv.addObject("subjectiveQuestionList", subjectiveQuestionList);
+		mv.addObject("courseId", course_id);
 		return mv;
 	}
 	@RequestMapping(value = "/participationRate", method = RequestMethod.GET)

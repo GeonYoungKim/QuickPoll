@@ -1,7 +1,5 @@
 studentLectureController = {
-
 	checkExample : function(index) {
-		alert("checkexamplefunction");
 		var cnt = $('#objective_question_header_student').children().length;
 		for (var i = 1; i <= 4; i++) {
 			if (index == i) {

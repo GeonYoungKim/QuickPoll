@@ -19,7 +19,7 @@ public class StudentLectureControllerTest {
 			Process p = Runtime.getRuntime().exec(System.getenv("windir") + "\\system32\\" + "tasklist.exe");
 			isr = new InputStreamReader(p.getInputStream());
 			br = new BufferedReader(isr);
-			Runtime.getRuntime().exec("taskkill /F /PID " + 6736);
+//			Runtime.getRuntime().exec("taskkill /F /PID " + 6736);
 
 			String line = null;
 			while ((line = br.readLine()) != null) {

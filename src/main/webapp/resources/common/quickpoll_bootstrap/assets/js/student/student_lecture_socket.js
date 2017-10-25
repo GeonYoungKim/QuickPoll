@@ -15,7 +15,6 @@ $(document).ready(function() {
 	sock.onclose = studentLectureSocket.onClose;
 	
 	sock.onopen = function() {
-		alert($('#student_id'));
 		message = {};
 		message.course_id = $("#course_id").val();
 		message.type = "connect";
@@ -23,6 +22,9 @@ $(document).ready(function() {
 		message.name="kim";
 		sock.send(JSON.stringify(message));
 	};
+	movePage = function() {
+		
+	}
 	displayDirectQuestion = function(obj) {
 		$('#waitting_text').html("");
 		$('#student_question_content').empty();
@@ -34,7 +36,7 @@ $(document).ready(function() {
 			message.type = "directQuestionAnswer";
 			message.id = $("#student_id").val();
 			message.question_answer = $('#direct_question_answer').val();
-			sock.send(JSON.stringify(message));
+			
 			swal({  title: "제출 완료!",
         	    text: "정상적으로 제출이 되었습니다.",
         	    type: "success",
@@ -43,14 +45,14 @@ $(document).ready(function() {
         	    closeOnCancel: false
             },function(isConfirm){
                 if (isConfirm){
-                	location.href="/QuickPoll/studentLectureList?student_id="+message.id;       
+                	sock.send(JSON.stringify(message));
+                	location.href="/QuickPoll/studentLectureList?student_id="+message.id;
                 }
             });
 //			swal("제출 완료!", "정상적으로 제출되었습니다.", "success");
 		});
 	}
-	displayObjectiveQuestion = function(obj) {
-		alert("in");
+	displayObjectiveQuestion = function(obj) {		
 		$('#waitting_text').html("");
 		$('#student_question_content').empty();
 		var objective_html = '<div class="panel panel-border panel-default">'+
@@ -116,8 +118,6 @@ $(document).ready(function() {
 					break;
 				}
 			}
-			alert("answer : " +message.question_answer);
-			sock.send(JSON.stringify(message));
 			swal({  title: "제출 완료!",
         	    text: "정상적으로 제출이 되었습니다.",
         	    type: "success",
@@ -126,6 +126,7 @@ $(document).ready(function() {
         	    closeOnCancel: false
             },function(isConfirm){
                 if (isConfirm){
+                	sock.send(JSON.stringify(message));
                 	location.href="/QuickPoll/studentLectureList?student_id="+message.id;     
                 }
             });
@@ -144,7 +145,7 @@ $(document).ready(function() {
 			message.id = $("#student_id").val();
 			message.question_answer = $('#subjective_question_answer').val();
 			message.connectedPeople = obj.connectedPeople;
-			sock.send(JSON.stringify(message));
+			
 			swal({  title: "제출 완료!",
         	    text: "정상적으로 제출이 되었습니다.",
         	    type: "success",
@@ -153,6 +154,7 @@ $(document).ready(function() {
         	    closeOnCancel: false
             },function(isConfirm){
                 if (isConfirm){
+                	sock.send(JSON.stringify(message));
                 	location.href="/QuickPoll/studentLectureList?student_id="+message.id;      
                 }
             });
@@ -173,6 +175,9 @@ studentLectureSocket = {
 
 	onMessage : function(evt) {
 		var data = evt.data;
+		if (data == "close") {
+			studentLectureSocket.onClose();
+		}
 		var parsedJson = JSON.parse(data);
 		if (parsedJson.type == "sendDirectQuestion") {
 			displayDirectQuestion(parsedJson);
@@ -180,17 +185,27 @@ studentLectureSocket = {
 			displayObjectiveQuestion(parsedJson);
 		} else if (parsedJson.type == "sendSubjectiveQuestion") {
 			displaySubjectiveQuestion(parsedJson);
-		}
+		} 
 			
 		// sock.close();
 	},
 
 	onClose : function(evt) {
-		location.href="/QuickPoll/studentLectureList?student_id="+message.id;     
-		$("#data").append("연결 끊김");
-
+		swal({  title: "연결 끊김!",
+    	    text: "퀵폴 문제 연결이 끊겼습니다.",
+    	    type: "error",
+    	    confirmButtonText: "확인",
+    	    closeOnConfirm: false,
+    	    closeOnCancel: false
+        },function(isConfirm){
+            if (isConfirm){
+            	location.href="/QuickPoll/studentLectureList?student_id="+$('#student_id').val();      
+            } else {
+            	location.href="/QuickPoll/studentLectureList?student_id="+$('#student_id').val();
+            }
+        });
+		
 	},
-	
 	closeMessage : function() {
 
 	},
