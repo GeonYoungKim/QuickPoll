@@ -50,7 +50,7 @@
 <body>
 	<input type="hidden" id="quickpoll_question_id">
 	<input type="hidden" id="quickpoll_question_connected_people">
-	<input type="hidden" id="course_id" value="${objectiveQuestionList[0].course_id}">
+	<input type="hidden" id="course_id" value="${courseId}">
 	<div class="wrapper">
 		<div class="sidebar" data-background-color="brown"
 			data-active-color="danger">
@@ -257,7 +257,7 @@
 							</div>
 						</div>
 
-						<div class="col-lg-6 col-md-7">
+						<div class="col-lg-4 col-md-3">
 							<div class="card">
 								<div class="header">
 									<h4 class="title">비접속</h4>
@@ -267,7 +267,7 @@
 										<c:choose>
 											<c:when test="${fn:length(menteeList) > 0}">
 												<c:forEach items="${menteeList}" var="row">
-													<li id="${row.student_id}">
+													<li style="visibility: visible" id="${row.student_id}">
 														<div class="row">
 															<div class="col-xs-3">
 																<div class="avatar">
@@ -401,7 +401,7 @@
 <!-- Paper Dashboard PRO DEMO methods, don't include it in your project! -->
 <script src="resources/common/quickpoll_bootstrap/assets/js/demo.js"></script>
 <script
-	src="resources/common/quickpoll_bootstrap/assets/js/professor/professor_lecture.js?ver=4"
+	src="resources/common/quickpoll_bootstrap/assets/js/professor/professor_lecture.js?ver=2"
 	charset="UTF-8"></script>
 <script
 	src="resources/common/quickpoll_bootstrap/assets/js/professor/create_question.js?ver=2"

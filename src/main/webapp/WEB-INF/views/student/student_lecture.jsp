@@ -47,6 +47,7 @@
 
 <body>
 	<input id="student_id" type="hidden" value="${studentInfo[0].student_id}">
+	<input id="course_id" type="hidden" value="${courseId}">
 	<div class="wrapper">
 		<div class="sidebar" data-background-color="brown"
 			data-active-color="danger">
@@ -318,7 +319,7 @@
 <script type="text/javascript"
 	src="resources/common/quickpoll_bootstrap/assets/js/sockjs-0.3.4.js"></script>
 <script
-	src="resources/common/quickpoll_bootstrap/assets/js/student/student_lecture_socket.js?ver=1"
+	src="resources/common/quickpoll_bootstrap/assets/js/student/student_lecture_socket.js?ver=2"
 	charset="UTF-8"></script>
 	<script
 	src="resources/common/quickpoll_bootstrap/assets/js/student/student_lecture_controller.js?ver=1"

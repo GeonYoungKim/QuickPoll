@@ -81,7 +81,7 @@
 					</div>
 				</div>
 				<ul class="nav">
-					<li class="active"><a href="#tablesExamples"> <i
+					<li class="active"><a href="studentLectureList?student_id=${studentInfo[0].student_id}"> <i
 							class="ti-view-list-alt"></i>
 							<p>강의 목록</p>
 					</a></li>
@@ -108,7 +108,7 @@
 								class="icon-bar bar1"></span> <span class="icon-bar bar2"></span>
 							<span class="icon-bar bar3"></span>
 						</button>
-						<a class="navbar-brand" href="#datatable">강의 목록</a>
+						<a class="navbar-brand" href="studentLectureList?student_id=${studentInfo[0].student_id}">강의 목록</a>
 					</div>
 					<div class="collapse navbar-collapse">
 						<form class="navbar-form navbar-left navbar-search-form"
@@ -178,7 +178,7 @@
 		    	                                	<div class="panel-body">
 		    	                                    	<ul class="nav">
 															<li><a href="quickpollListForStudent?student_id=${studentInfo[0].student_id}&course_id=${row.course_id}">1. 퀵폴보기</a></li>
-															<li><a href="studentLecture?student_id=${studentInfo[0].student_id}&course_id=${row.course_id}">2. 퀵폴 참여하기</a></li>
+															<li><a onclick="studentLectureController.checkLecture('${row.course_id}', '${studentInfo[0].student_id}');">2. 퀵폴 참여하기</a></li>
 															<li><a href="quickpoll">3. 참여도</a></li>
 															<input type="hidden" id="course_id_${status.count}" value="${row.course_id}">
 														</ul>    	
@@ -304,7 +304,9 @@
 
 <!-- Paper Dashboard PRO DEMO methods, don't include it in your project! -->
 <script src="resources/common/quickpoll_bootstrap/assets/js/demo.js"></script>
-
+<script
+	src="resources/common/quickpoll_bootstrap/assets/js/student/student_lecture_controller.js?ver=1"
+	charset="UTF-8"></script>
 <script type="text/javascript">
 	var $table = $('#bootstrap-table');
 
