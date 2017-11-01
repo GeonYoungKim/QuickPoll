@@ -1,6 +1,6 @@
 package com.skuniv.QuickPoll.controller;
 
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -35,7 +35,38 @@ public class ProfessorController {
 		mv.addObject("id", professor_id);
 		return mv;
 	}
-
+	@RequestMapping(value = "/insertObjectiveQuestion")
+	public void insertObjectiveQuestion(HttpServletRequest request) throws Exception {
+		String course_id = request.getParameter("course_id");
+		String question_content = request.getParameter("question_content");
+    	int question_answer = Integer.parseInt(request.getParameter("question_answer"));
+    	String example1 = request.getParameter("example1"); 
+    	String example2 = request.getParameter("example2");
+    	String example3 = request.getParameter("example3");
+    	String example4 = request.getParameter("example4");
+    	Map<String, Object> map = new HashMap<String, Object>();
+    	map.put("course_id", course_id);
+    	map.put("question_content", question_content);
+    	map.put("question_answer", question_answer);
+    	map.put("example1", example1);
+    	map.put("example2", example2);
+    	map.put("example3", example3);
+    	map.put("example4", example4);
+    	professorService.insertObjectiveQuestion(map);
+	}
+	@RequestMapping(value = "/insertSubjectiveQuestion")
+	public void insertSubjectiveQuestion(HttpServletRequest request) throws Exception {
+		String course_id = request.getParameter("course_id");
+		String question_content = request.getParameter("question_content");
+    	String question_answer = request.getParameter("question_answer");
+    	String question_similar_answer = request.getParameter("question_similar_answer");
+    	Map<String, Object> map = new HashMap<String, Object>();
+    	map.put("course_id", course_id);
+    	map.put("question_content", question_content);
+    	map.put("question_answer", question_answer);
+    	map.put("question_similar_answer", question_similar_answer);
+    	professorService.insertSubjectiveQuestion(map);
+	}
 	@RequestMapping(value = "/resultListForObjectiveQuestion")
 	public ModelAndView getResultListForObjectiveQuestion(HttpServletRequest request) throws Exception {
 		int quickpoll_question_id = Integer.parseInt(request.getParameter("quickpoll_question_id"));

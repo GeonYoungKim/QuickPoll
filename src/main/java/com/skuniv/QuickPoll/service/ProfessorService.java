@@ -141,6 +141,12 @@ public class ProfessorService {
 	public void insertCourse(Map<String, Object> map) {	
 		professorDao.insert("professor.insertCourse", map);
 	}
+	public void insertObjectiveQuestion (Map<String, Object> map) {	
+		professorDao.insertObjectiveQuestion(map);
+	}
+	public void insertSubjectiveQuestion (Map<String, Object> map) {	
+		professorDao.insertSubjectiveQuestion(map);
+	}
 	public List<RealCourseVo> selectCourseList(int professor_id) throws Exception {
 		return reParsingCourse(groupByCourse(professorDao.selectCourseList(professor_id)));
 	}
