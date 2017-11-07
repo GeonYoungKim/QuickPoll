@@ -2,8 +2,8 @@ $(document).ready(function() {
 	var sock;
 	
 	var message = {};
-//	sock = new SockJS("http://13.124.224.234:8080/QuickPollSocketServer/echo");
-	sock = new SockJS("http://localhost:8080/QuickPollSocketServer/echo");
+	sock = new SockJS("http://13.124.224.234:8080/QuickPollSocketServer/echo");
+//	sock = new SockJS("http://localhost:8080/QuickPollSocketServer/echo");
 // 자바스크립트 안에 function을 집어넣을 수 있음.
 	
 // 데이터가 나한테 전달되읐을 때 자동으로 실행되는 function
