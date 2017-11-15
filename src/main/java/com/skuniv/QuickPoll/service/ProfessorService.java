@@ -1,5 +1,6 @@
 package com.skuniv.QuickPoll.service;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -14,6 +15,8 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.skuniv.QuickPoll.dao.ProfessorDao;
+import com.skuniv.QuickPoll.util.ExcelRead;
+import com.skuniv.QuickPoll.util.ExcelReadOption;
 
 import model.CourseVo;
 import model.RealCourseVo;
@@ -137,6 +140,17 @@ public class ProfessorService {
 			participationRateList.add(stateMap);
 		}
 		return participationRateList;
+	}
+	public void parsingExcel(File file) {
+		ExcelReadOption ro = new ExcelReadOption();
+		ro.setFilePath(file.getAbsolutePath());
+		ro.setOutputColumns("A", "B", "C", "D");
+		ro.setStartRow(1);
+		List<Map<String, String>> result = ExcelRead.read(ro);
+		System.out.println(result.get(1).keySet());
+		for (Map<String, String> map : result) {
+			System.out.println(map.get("A") + " , " + map.get("B") + " , " + map.get("C") + " , " + map.get("D"));
+		}
 	}
 	public void insertCourse(Map<String, Object> map) {	
 		professorDao.insert("professor.insertCourse", map);
