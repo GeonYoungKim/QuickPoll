@@ -87,11 +87,20 @@ public class ProfessorHomeController {
 	}
 
 	@RequestMapping(value = "/upload")
-	public ModelAndView displayUploadPage(HttpServletRequest request) throws Exception {
+	public ModelAndView displayUploadPages(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("professor/uploadExcel");
 		return mv;
 	}
-
+	@RequestMapping(value = "/test2")
+	public ModelAndView test(HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("professor/test");
+		return mv;
+	}
+	@RequestMapping(value = "/uploadAttendance")
+	public ModelAndView displayUploadPage(HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("professor/uploadAttendance");
+		return mv;
+	}
 	@ResponseBody
 	@RequestMapping(value = "/uploadExcel", method = RequestMethod.POST)
 	public ModelAndView excelUploadAjax(MultipartHttpServletRequest request) throws IllegalStateException, IOException {
@@ -104,6 +113,7 @@ public class ProfessorHomeController {
 		File file = new File(path);
 
 		// // 파일 업로드 처리 완료.
+		
 		excelFile.transferTo(file);
 		professorService.parsingExcel(file);
 		// FileUtils.delete(destFile.getAbsolutePath());
