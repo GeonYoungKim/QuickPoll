@@ -2,6 +2,7 @@ package com.skuniv.QuickPoll.web.professor.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -96,6 +97,14 @@ public class ProfessorHomeController {
 		ModelAndView mv = new ModelAndView("professor/test");
 		return mv;
 	}
+	@RequestMapping(value = "/attendance")
+	public ModelAndView displayAttendance(HttpServletRequest request) throws Exception {
+		String course_id = request.getParameter("course_id");
+		List<LinkedHashMap<String, Object>> list = professorService.selectAttendance(course_id);
+		ModelAndView mv = new ModelAndView("professor/attendance");
+		mv.addObject("attendanceList", list);
+		return mv;
+	}
 	@RequestMapping(value = "/uploadAttendance")
 	public ModelAndView displayUploadPage(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("professor/uploadAttendance");
@@ -111,13 +120,13 @@ public class ProfessorHomeController {
 		path += "/common/excel/" + excelFile.getOriginalFilename();
 		System.out.println("path : " + path);
 		File file = new File(path);
-
 		// // 파일 업로드 처리 완료.
-		
 		excelFile.transferTo(file);
-		professorService.parsingExcel(file);
+		List<HashMap<String, Object>> result = professorService.parsingExcel(file);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("list", result);
 		// FileUtils.delete(destFile.getAbsolutePath());
-
+		professorService.insertEnroll(map);
 		ModelAndView view = new ModelAndView();
 		view.setViewName("");
 		return view;

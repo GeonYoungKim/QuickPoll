@@ -96,6 +96,9 @@ public class ProfessorService {
 	public List<LinkedHashMap<String, Object>> selectSubjectiveQuickPollList(String course_id) throws Exception {
 		return professorDao.selectSubjectiveQuickPollList(course_id);
 	}
+	public List<LinkedHashMap<String, Object>> selectAttendance(String course_id) throws Exception {
+		return professorDao.selectAttendance(course_id);
+	}
 	public List<HashMap<String, Integer>> selectAnswerListForCourse(String course_id) throws Exception {
 		return parsingParticipationRate(professorDao.selectAnswerListForCourse(course_id));
 	}
@@ -141,16 +144,28 @@ public class ProfessorService {
 		}
 		return participationRateList;
 	}
-	public void parsingExcel(File file) {
+	public List<HashMap<String, Object>> parsingExcel(File file) {
 		ExcelReadOption ro = new ExcelReadOption();
 		ro.setFilePath(file.getAbsolutePath());
 		ro.setOutputColumns("A", "B", "C", "D");
 		ro.setStartRow(1);
 		List<Map<String, String>> result = ExcelRead.read(ro);
-		System.out.println(result.get(1).keySet());
-		for (Map<String, String> map : result) {
-			System.out.println(map.get("A") + " , " + map.get("B") + " , " + map.get("C") + " , " + map.get("D"));
+		List<HashMap<String, Object>> list = new LinkedList<HashMap<String, Object>>();
+		for (int i = 2; i < result.size(); i++) {
+			Map<String, String> map = result.get(i);
+			if (map.get("D") == null) break;
+			HashMap<String, Object> studentMap = new HashMap<String, Object>();
+			studentMap.put("course_id", "cs111");
+			studentMap.put("serial_number", map.get("A"));
+			studentMap.put("seat_number", map.get("B"));
+			studentMap.put("student_id", map.get("C"));
+			studentMap.put("name", map.get("D"));
+			list.add(studentMap);
 		}
+		for (Map<String, Object> map : list) {
+			System.out.println(map.get("course_id") + " , " + map.get("student_id") + " , " + map.get("serial_number") + " , " + map.get("seat_number") + " , " + map.get("name"));  
+		}
+		return list;
 	}
 	public void insertCourse(Map<String, Object> map) {	
 		professorDao.insert("professor.insertCourse", map);
@@ -160,6 +175,9 @@ public class ProfessorService {
 	}
 	public void insertSubjectiveQuestion (Map<String, Object> map) {	
 		professorDao.insertSubjectiveQuestion(map);
+	}
+	public void insertEnroll(Map<String, Object> map) {	
+		professorDao.insertEnroll(map);
 	}
 	public List<RealCourseVo> selectCourseList(int professor_id) throws Exception {
 		return reParsingCourse(groupByCourse(professorDao.selectCourseList(professor_id)));
