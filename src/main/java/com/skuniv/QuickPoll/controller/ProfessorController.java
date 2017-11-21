@@ -88,5 +88,11 @@ public class ProfessorController {
 		mv.addObject("resultListForSubjectiveQuestion", resultList);
 		return mv;
 	}
+	@RequestMapping(value="/testmklist")
+	public ModelAndView testpage() throws Exception{
+		ModelAndView mv = new ModelAndView("/professor/test_mklist");
+		
+		return mv;
+	}
 	
 }
