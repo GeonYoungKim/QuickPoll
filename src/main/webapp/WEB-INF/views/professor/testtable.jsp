@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
+
+<meta charset="utf-8" />
 	<link rel="apple-touch-icon" sizes="76x76" href="resources/common/quickpoll_bootstrap/assets/img/apple-icon.png">
 	<link rel="icon" type="image/png" sizes="96x96" href="resources/common/quickpoll_bootstrap/assets/img/favicon.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -23,208 +24,139 @@
 
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="resources/common/quickpoll_bootstrap/assets/css/demo.css" rel="stylesheet" />
-
+<!--dropify-->
+<link
+	href="resources/common/mater/demo/js/plugins/dropify/css/dropify.min.css"
+	type="text/css" rel="stylesheet" media="screen,projection">
 
     <!--  Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
     <link href="resources/common/quickpoll_bootstrap/assets/css/themify-icons.css" rel="stylesheet">
+<title>File Upload | Materialize - Material Design Admin
+	Template</title>
+
 </head>
 
 <body>
+
 	<div class="wrapper">
-		<div class="sidebar" data-background-color="brown" data-active-color="danger">
-	    <!--
+		<div class="sidebar" data-background-color="brown"
+			data-active-color="danger">
+			<!--
 			Tip 1: you can change the color of the sidebar's background using: data-background-color="white | brown"
 			Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
 		-->
 			<div class="logo">
-				<a href="http://www.creative-tim.com" class="simple-text">
-					Creative Tim
-				</a>
+				<a href="http://www.creative-tim.com" class="simple-text"> Quick
+					Poll </a>
 			</div>
 			<div class="logo logo-mini">
-				<a href="http://www.creative-tim.com" class="simple-text">
-					Ct
-				</a>
+				<a href="http://www.creative-tim.com" class="simple-text"> QP </a>
 			</div>
-	    	<div class="sidebar-wrapper">
+			<div class="sidebar-wrapper">
 				<div class="user">
-	                <div class="photo">
-	                    <img src="resources/common/quickpoll_bootstrap/assets/img/faces/face-2.jpg" />
-	                </div>
-	                <div class="info">
-	                    <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-	                        Chet Faker
-	                        <b class="caret"></b>
-	                    </a>
-	                    <div class="collapse" id="collapseExample">
-	                        <ul class="nav">
-	                            <li><a href="#profile">My Profile</a></li>
-	                            <li><a href="#edit">Edit Profile</a></li>
-	                            <li><a href="#settings">Settings</a></li>
-	                        </ul>
-	                    </div>
-	                </div>
-	            </div>
-	            <ul class="nav">
-					<li>
-	                    <a data-toggle="collapse" href="#dashboardOverview">
-	                        <i class="ti-panel"></i>
-	                        <p>Dashboard
-                                <b class="caret"></b>
-                            </p>
-	                    </a>
-                        <div class="collapse" id="dashboardOverview">
+					<div class="photo">
+						<input type="hidden" id="id"
+							value="${professorInfo[0].professor_id}"> <img
+							src="resources/common/profile_image/${professorInfo[0].profile_img}" />
+					</div>
+					<div class="info">
+						<a data-toggle="collapse" href="#collapseExample"
+							class="collapsed"> ${professorInfo[0].name} <b class="caret"></b>
+						</a>
+						<div class="collapse" id="collapseExample">
 							<ul class="nav">
-								<li><a href="../dashboard/overview.html">Overview</a></li>
-								<li><a href="../dashboard/stats.html">Stats</a></li>
+								<li><a href="#profile">My Profile</a></li>
+								<li><a href="#edit">Edit Profile</a></li>
+								<li><a href="#settings">Settings</a></li>
 							</ul>
 						</div>
-	                </li>
-	                <li>
-	                    <a data-toggle="collapse" href="#componentsExamples">
-	                        <i class="ti-package"></i>
-	                        <p>Components
-	                           <b class="caret"></b>
-	                        </p>
-	                    </a>
-	                    <div class="collapse" id="componentsExamples">
-	                        <ul class="nav">
-	                            <li><a href="../components/buttons.html">Buttons</a></li>
-	                            <li><a href="../components/grid.html">Grid System</a></li>
-	                            <li><a href="../components/panels.html">Panels</a></li>
-	                            <li><a href="../components/sweet-alert.html">Sweet Alert</a></li>
-	                            <li><a href="../components/notifications.html">Notifications</a></li>
-	                            <li><a href="../components/icons.html">Icons</a></li>
-	                            <li><a href="../components/typography.html">Typography</a></li>
-	                        </ul>
-	                    </div>
-	                </li>
-	                <li>
-						<a data-toggle="collapse" href="#formsExamples">
-	                        <i class="ti-clipboard"></i>
-	                        <p>
-								Forms
-	                           <b class="caret"></b>
-	                        </p>
-	                    </a>
-	                    <div class="collapse" id="formsExamples">
-	                        <ul class="nav">
-								<li><a href="../forms/regular.html">Regular Forms</a></li>
-								<li><a href="../forms/extended.html">Extended Forms</a></li>
-								<li><a href="../forms/validation.html">Validation Forms</a></li>
-	                            <li><a href="../forms/wizard.html">Wizard</a></li>
-	                        </ul>
-	                    </div>
-	                </li>
-					<li class="active">
-						<a data-toggle="collapse" href="#tablesExamples">
-	                        <i class="ti-view-list-alt"></i>
-	                        <p>
-								Table list
-	                           <b class="caret"></b>
-	                        </p>
-	                    </a>
-	                    <div class="collapse in" id="tablesExamples">
-	                        <ul class="nav">
-								<li><a href="regular.html">Regular Tables</a></li>
-	                            <li><a href="extended.html">Extended Tables</a></li>
-	                            <li class="active"><a href="bootstrap-table.html">Bootstrap Table</a></li>
-								<li><a href="datatables.net.html">DataTables.net</a></li>
-	                        </ul>
-	                    </div>
-	                </li>
-	                <li>
-						<a data-toggle="collapse" href="#mapsExamples">
-	                        <i class="ti-map"></i>
-	                        <p>
-								Maps
-	                           <b class="caret"></b>
-	                        </p>
-	                    </a>
-	                    <div class="collapse" id="mapsExamples">
-	                        <ul class="nav">
-								<li><a href="../maps/google.html">Google Maps</a></li>
-								<li><a href="../maps/vector.html">Vector maps</a></li>
-								<li><a href="../maps/fullscreen.html">Full Screen Map</a></li>
-	                        </ul>
-	                    </div>
-	                </li>
-	                <li>
-	                    <a href="../charts.html">
-	                        <i class="ti-bar-chart-alt"></i>
-	                        <p>Charts</p>
-	                    </a>
-	                </li>
-	                <li>
-	                    <a href="../calendar.html">
-	                        <i class="ti-calendar"></i>
-	                        <p>Calendar</p>
-	                    </a>
-	                </li>
-	                <li>
-						<a data-toggle="collapse" href="#pagesExamples">
-	                        <i class="ti-gift"></i>
-	                        <p>
-								Pages
-	                           <b class="caret"></b>
-	                        </p>
-	                    </a>
-	                    <div class="collapse" id="pagesExamples">
-	                        <ul class="nav">
-								<li><a href="../pages/timeline.html">Timeline Page</a></li>
-								<li><a href="../pages/user.html">User Page</a></li>
-								<li><a href="../pages/login.html">Login Page</a></li>
-								<li><a href="../pages/register.html">Register Page</a></li>
-								<li><a href="../pages/lock.html">Lock Screen Page</a></li>
-	                        </ul>
-	                    </div>
-	                </li>
-	            </ul>
-	    	</div>
-	    </div>
+					</div>
+				</div>
+				<ul class="nav">
+					<li class="active"><a
+						href="lectureList?id=${professorInfo[0].professor_id}"> <i
+							class="ti-view-list-alt"></i>
+							<p>강의 목록</p>
+					</a></li>
+					<li><a href="menteeList?id=${professorInfo[0].professor_id}">
+							<i class="ti-clipboard"></i>
+							<p>멘티 목록</p>
+					</a></li>
 
-	    <div class="main-panel">
-			
+				</ul>
+			</div>
+		</div>
 
-	        <div class="content">
-	            <div class="container-fluid">
-	                <div class="row">
-	                    <div class="col-md-12">
-	                        <div class="card">
-	                            <div class="content">
-	                                <div class="toolbar">
-	                                    <!--Here you can write extra buttons/actions for the toolbar-->
-	                                </div>
-	                                <table id="bootstrap-table" class="table">
-	                                    <thead>
-	                                        <th data-field="state" data-checkbox="true"></th>
-	                                        <th data-field="id" class="text-center">번호</th>
-	                                    	
-	                                    	<th data-field="city">답안</th>
-	                                    	
-	                                    </thead>
-	                                    <tbody>
-	                                        <tr>
-	                                            <td></td>
-	                                        	<td>1</td>
-	                                        	<td>Oud-Turnhout</td>
-	                                        </tr>
-	                                        <tr>
-	                                            <td></td>
-	                                        	<td>2</td>
-	                                        	<td>Sinaai-Waas</td>
-	                                        </tr>
-	                                    </tbody>
-	                                </table>
-	                            </div>
-	                        </div><!--  end card  -->
-	                    </div> <!-- end col-md-12 -->
-	                </div> <!-- end row -->
-	            </div>
-	        </div>
-	    </div>
+		<div class="main-panel">
+			<div class="content">
+				<div class="container-fluid">
+					<div class="row">
+
+						<div class="col-md-12">
+							<div class="card">
+								<form id="allInputsFormValidation" class="form-horizontal"
+									action="" method="post" novalidate="">
+									<div class="content">
+										<h4 class="title">Type Validation</h4>
+										<fieldset>
+											<div class="form-group">
+												<label class="col-sm-2 control-label"> Required Text
+												</label>
+												<div class="col-sm-6">
+													<input class="form-control" type="text" name="required"
+														required="required" />
+												</div>
+												<div class="col-sm-4">
+													<code>required</code>
+												</div>
+											</div>
+										</fieldset>
+	<!-- START CONTENT -->
+			<section id="content">
+				
+				<!--start container-->
+				<div class="container">
+
+					<div class="divider"></div>
+					<!--file-upload-->
+					<div id="file-upload" class="section">
+						<!--use events-->
+						<div class="divider"></div>
+						<div class="row section">
+							<div class="col s12 m4 l3">
+								<p>Excel 업로드</p>
+							</div>
+							<div class="col s12 m8 l9">
+								<input type="file" id="input-file-events" class="dropify-event"
+									data-default-file="" />
+							</div>
+						</div>
+
+
+					</div>
+
+				</div>
+				<!--end container-->
+
+			</section>
+			<!-- END CONTENT -->
+
+
+									</div>
+									<div class="card-footer text-center">
+										<button type="submit" class="btn btn-info btn-fill">Validate
+											Inputs</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
 	</div>
 </body>
 
@@ -283,86 +215,47 @@
 
 	<!-- Paper Dashboard PRO DEMO methods, don't include it in your project! -->
 	<script src="resources/common/quickpoll_bootstrap/assets/js/demo.js"></script>
+<!-- dropify -->
+<script type="text/javascript"
+	src="resources/common/mater/demo/js/plugins/dropify/js/dropify.min.js"></script>
+    <script type="text/javascript">
+        $().ready(function(){
+			$('#registerFormValidation').validate();
+            $('#loginFormValidation').validate();
+            $('#allInputsFormValidation').validate();
+        });
+    </script>
 
-	<script type="text/javascript">
 
-		var $table = $('#bootstrap-table');
+<script type="text/javascript">
+        $(document).ready(function(){
+            // Basic
+            $('.dropify').dropify();
 
-	        function operateFormatter(value, row, index) {
-	            return [
-					'<div class="table-icons">',
-		                '<a rel="tooltip" title="View" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)">',
-							'<i class="ti-image"></i>',
-						'</a>',
-		                '<a rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon table-action edit" href="javascript:void(0)">',
-		                    '<i class="ti-pencil-alt"></i>',
-		                '</a>',
-		                '<a rel="tooltip" title="Remove" class="btn btn-simple btn-danger btn-icon table-action remove" href="javascript:void(0)">',
-		                    '<i class="ti-close"></i>',
-		                '</a>',
-					'</div>',
-	            ].join('');
-	        }
+            // Translated
+            $('.dropify-fr').dropify({
+                messages: {
+                    default: 'Glissez-déposez un fichier ici ou cliquez',
+                    replace: 'Glissez-déposez un fichier ou cliquez pour remplacer',
+                    remove:  'Supprimer',
+                    error:   'Désolé, le fichier trop volumineux'
+                }
+            });
 
-	        $().ready(function(){
-	            window.operateEvents = {
-	                'click .view': function (e, value, row, index) {
-	                    info = JSON.stringify(row);
+            // Used events
+            var drEvent = $('.dropify-event').dropify();
 
-	                    swal('You click view icon, row: ', info);
-	                    console.log(info);
-	                },
-	                'click .edit': function (e, value, row, index) {
-	                    info = JSON.stringify(row);
+            drEvent.on('dropify.beforeClear', function(event, element){
+                return confirm("Do you really want to delete \"" + element.filename + "\" ?");
+            });
 
-	                    swal('You click edit icon, row: ', info);
-	                    console.log(info);
-	                },
-	                'click .remove': function (e, value, row, index) {
-	                    console.log(row);
-	                    $table.bootstrapTable('remove', {
-	                        field: 'id',
-	                        values: [row.id]
-	                    });
-	                }
-	            };
-
-	            $table.bootstrapTable({
-	                toolbar: ".toolbar",
-	                clickToSelect: true,
-	                showRefresh: true,
-	                search: true,
-	                showToggle: true,
-	                showColumns: true,
-	                pagination: true,
-	                searchAlign: 'left',
-	                pageSize: 8,
-	                clickToSelect: false,
-	                pageList: [8,10,25,50,100],
-
-	                formatShowingRows: function(pageFrom, pageTo, totalRows){
-	                    //do nothing here, we don't want to show the text "showing x of y from..."
-	                },
-	                formatRecordsPerPage: function(pageNumber){
-	                    return pageNumber + " rows visible";
-	                },
-	                icons: {
-	                    refresh: 'fa fa-refresh',
-	                    toggle: 'fa fa-th-list',
-	                    columns: 'fa fa-columns',
-	                    detailOpen: 'fa fa-plus-circle',
-	                    detailClose: 'ti-close'
-	                }
-	            });
-
-	            //activate the tooltips after the data table is initialized
-	            $('[rel="tooltip"]').tooltip();
-
-	            $(window).resize(function () {
-	                $table.bootstrapTable('resetView');
-	            });
-			});
-
-	</script>
+            drEvent.on('dropify.afterClear', function(event, element){
+                alert('File deleted');
+            });
+        });
+    </script>
 
 </html>
+
+
+

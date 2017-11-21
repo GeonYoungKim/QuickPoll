@@ -1,7 +1,6 @@
 studentLoginJS = {
 	loginCheck : function() {
 		var input_id = $('#id').val();
-		alert(input_id);
 		var input_pwd = $('#password').val();
 		var query = {
 				student_id : input_id,

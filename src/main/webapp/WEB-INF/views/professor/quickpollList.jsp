@@ -45,6 +45,18 @@
 <link
 	href="resources/common/quickpoll_bootstrap/assets/css/themify-icons.css"
 	rel="stylesheet">
+	<!-- CORE CSS-->
+  <link href="resources/common/mater/demo/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="resources/common/mater/demo/css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <!-- Custome CSS-->    
+  <link href="resources/common/mater/demo/css/custom/custom.css" type="text/css" rel="stylesheet" media="screen,projection">
+
+  <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
+  <link href="resources/common/mater/demo/js/plugins/prism/prism.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="resources/common/mater/demo/js/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="resources/common/mater/demo/js/plugins/chartist-js/chartist.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <!--dropify-->
+  <link href="resources/common/mater/demo/js/plugins/dropify/css/dropify.min.css" type="text/css" rel="stylesheet" media="screen,projection">
 </head>
 
 <body>
