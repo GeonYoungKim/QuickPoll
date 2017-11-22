@@ -100,10 +100,9 @@
 							class="ti-view-list-alt"></i>
 							<p>강의 목록</p>
 					</a></li>
-					<li ><a
-						href="menteeList?id=${professorInfo[0].professor_id}"> <i
-							class="ti-clipboard"></i>
-							<p>멘티 목록</p>
+					<li><a href="uploadAttendance?id=${professorInfo[0].professor_id}"">
+							 <i class="ti-clipboard"></i>
+							<p>출석 등록</p>
 					</a></li>
 
 				</ul>

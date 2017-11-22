@@ -89,14 +89,14 @@
 					</div>
 				</div>
 				<ul class="nav">
-					<li class="active"><a
+					<li ><a
 						href="lectureList?id=${professorInfo[0].professor_id}"> <i
 							class="ti-view-list-alt"></i>
 							<p>강의 목록</p>
 					</a></li>
-					<li><a href="menteeList?id=${professorInfo[0].professor_id}">
-							<i class="ti-clipboard"></i>
-							<p>멘티 목록</p>
+					<li class="active"><a href="uploadAttendance?id=${professorInfo[0].professor_id}"">
+							 <i class="ti-clipboard"></i>
+							<p>출석 등록</p>
 					</a></li>
 
 				</ul>
@@ -118,8 +118,9 @@
 											<div class="form-group">
 												<label class="col-sm-2 control-label"> 과목 코드 </label>
 												<div class="col-sm-6">
-													<input class="form-control" type="text" name="required"
+													<input class="form-control" type="text" id="course_id" name="course_id"
 														required="required" />
+													<input type="hidden" id="professor_id" name="professor_id" value="${professorInfo[0].professor_id}"/>
 												</div>
 												<div class="col-sm-4">
 													<code>반드시 입력</code>
@@ -161,8 +162,7 @@
 
 									</div>
 									<div class="card-footer text-center">
-										<button type="submit" id="addExcelImpoartBtn" class="btn btn-info btn-fill">Validate
-											Inputs</button>
+										<button type="submit" id="addExcelImpoartBtn" class="btn btn-info btn-fill">등록하기</button>
 									</div>
 								</form>
 							</div>

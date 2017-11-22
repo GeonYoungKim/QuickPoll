@@ -89,106 +89,90 @@
 							class="ti-view-list-alt"></i>
 							<p>강의 목록</p>
 					</a></li>
-					<li><a href="menteeList?id=${professorInfo[0].professor_id}">
-							<i class="ti-clipboard"></i>
-							<p>멘티 목록</p>
+					<li><a href="uploadAttendance?id=${professorInfo[0].professor_id}"">
+							 <i class="ti-clipboard"></i>
+							<p>출석 등록</p>
 					</a></li>
 
 				</ul>
 			</div>
 		</div>
 		<div class="main-panel">
-			<nav class="navbar navbar-default">
-				<div class="container-fluid">
-					<div class="navbar-minimize">
-						<button id="minimizeSidebar" class="btn btn-fill btn-icon">
-							<i class="ti-more-alt"></i>
-						</button>
-					</div>
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle">
-							<span class="sr-only">Toggle navigation</span> <span
-								class="icon-bar bar1"></span> <span class="icon-bar bar2"></span>
-							<span class="icon-bar bar3"></span>
-						</button>
-						<a class="navbar-brand" href="#datatable">Bootstrap Table</a>
-					</div>
-					<div class="collapse navbar-collapse">
-						<form class="navbar-form navbar-left navbar-search-form"
-							role="search">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-search"></i></span>
-								<input type="text" value="" class="form-control"
-									placeholder="Search...">
-							</div>
-						</form>
-						<ul class="nav navbar-nav navbar-right">
-							<li><a href="#stats" class="dropdown-toggle btn-magnify"
-								data-toggle="dropdown"> <i class="ti-panel"></i>
-									<p>Stats</p>
-							</a></li>
-							<li class="dropdown"><a href="#notigfications"
-								class="dropdown-toggle" data-toggle="dropdown"> <i
-									class="ti-bell"></i> <span class="notification">5</span>
-									<p class="hidden-md hidden-lg">
-										Notifications <b class="caret"></b>
-									</p>
-							</a>
-								<ul class="dropdown-menu">
-									<li><a href="#not1">Notification 1</a></li>
-									<li><a href="#not2">Notification 2</a></li>
-									<li><a href="#not3">Notification 3</a></li>
-									<li><a href="#not4">Notification 4</a></li>
-									<li><a href="#another">Another notification</a></li>
-								</ul></li>
-							<li><a href="#settings" class="btn-rotate"> <i
-									class="ti-settings"></i>
-									<p class="hidden-md hidden-lg">Settings</p>
-							</a></li>
-						</ul>
-					</div>
-				</div>
-			</nav>
+			
+
 
 			<div class="content">
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-md-12">
+							<h4 class="title">출석부</h4>
+							<p class="category">
+								
+							</p>
+
+							<br>
+
 							<div class="card">
 								<div class="content">
 									<div class="toolbar">
 										<!--Here you can write extra buttons/actions for the toolbar-->
 									</div>
-									<table id="bootstrap-table" class="table">
-										<thead>
-											<th data-field="state" data-checkbox="true"></th>
-											<th data-field="id" class="text-center"  data-sortable="true">일련번호</th>
-											<th data-field="name" data-sortable="true">좌석번호</th>
-											<th data-field="salary">학번</th>
-											<th data-field="country">이름</th>
-											<th data-field="actions" class="td-actions text-right" data-events="operateEvents" data-formatter="operateFormatter">Actions</th>
-										</thead>
-										<tbody>
-											<c:choose>
-												<c:when test="${fn:length(attendanceList) > 0}">
-													<c:forEach items="${attendanceList}" var="row"
-														varStatus="status">
-														<tr>
-															<td></td>
-															<td>${row.serial_number}</td>
-															<td>${row.seat_number}</td>
-															<td>${row.student_id}</td>
-															<td>${row.name}</td>
-															<td></td>
-														</tr>
-													</c:forEach>
-												</c:when>
-												<c:otherwise>
-													<!-- 데이터 없을 경우 -->
-												</c:otherwise>
-											</c:choose>
-										</tbody>
-									</table>
+									<div class="fresh-datatables">
+										<table id="datatables"
+											class="table table-striped table-no-bordered table-hover"
+											cellspacing="0" width="100%" style="width: 100%">
+											<thead>
+												<tr>
+													<th>일련번호</th>
+													<th>좌석번호</th>
+													<th>학번</th>
+													<th>이름</th>
+													
+													<th class="disabled-sorting">Actions</th>
+												</tr>
+											</thead>
+											<tfoot>
+												<tr>
+													<th>일련번호</th>
+													<th>좌석번호</th>
+													<th>학번</th>
+													<th>이름</th>
+												
+													<th>Actions</th>
+												</tr>
+											</tfoot>
+											<tbody>
+												<c:choose>
+													<c:when test="${fn:length(attendanceList) > 0}">
+														<c:forEach items="${attendanceList}" var="row"
+															varStatus="status">
+															<tr>
+																<td>${row.serial_number}</td>
+																<td>${row.seat_number}</td>
+																<td>${row.student_id}</td>
+																<td>${row.name}</td>
+																
+																<td><a href="#"
+																	class="btn btn-simple btn-info btn-icon like"><i
+																		class="ti-heart"></i></a> <a href="#"
+																	class="btn btn-simple btn-warning btn-icon edit"><i
+																		class="ti-pencil-alt"></i></a> <a href="#"
+																	class="btn btn-simple btn-danger btn-icon remove"><i
+																		class="ti-close"></i></a></td>
+															</tr>
+														</c:forEach>
+													</c:when>
+													<c:otherwise>
+														<!-- 데이터 없을 경우 -->
+													</c:otherwise>
+												</c:choose>
+
+
+											</tbody>
+										</table>
+									</div>
+
+
 								</div>
 							</div>
 							<!--  end card  -->
@@ -198,28 +182,6 @@
 					<!-- end row -->
 				</div>
 			</div>
-
-			<footer class="footer">
-				<div class="container-fluid">
-					<nav class="pull-left">
-						<ul>
-							<li><a href="http://www.creative-tim.com"> Creative Tim
-							</a></li>
-							<li><a href="http://blog.creative-tim.com"> Blog </a></li>
-							<li><a href="http://www.creative-tim.com/license">
-									Licenses </a></li>
-						</ul>
-					</nav>
-					<div class="copyright pull-right">
-						&copy;
-						<script>
-							document.write(new Date().getFullYear())
-						</script>
-						, made with <i class="fa fa-heart heart"></i> by <a
-							href="http://www.creative-tim.com">Creative Tim</a>
-					</div>
-				</div>
-			</footer>
 		</div>
 	</div>
 </body>
@@ -301,80 +263,43 @@
 <!-- Paper Dashboard PRO DEMO methods, don't include it in your project! -->
 <script src="resources/common/quickpoll_bootstrap/assets/js/demo.js"></script>
 
-<script type="text/javascript">
-	var $table = $('#bootstrap-table');
+	<script type="text/javascript">
+	    $(document).ready(function() {
 
-	function operateFormatter(value, row, index) {
-		return [
-				'<div class="table-icons">',
-				'<a rel="tooltip" title="View" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)">',
-				'<i class="ti-image"></i>',
-				'</a>',
-				'<a rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon table-action edit" href="javascript:void(0)">',
-				'<i class="ti-pencil-alt"></i>',
-				'</a>',
-				'<a rel="tooltip" title="Remove" class="btn btn-simple btn-danger btn-icon table-action remove" href="javascript:void(0)">',
-				'<i class="ti-close"></i>', '</a>', '</div>', ].join('');
-	}
+	        $('#datatables').DataTable({
+	            "pagingType": "full_numbers",
+	            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+	            responsive: true,
+	            language: {
+	            search: "_INPUT_",
+		            searchPlaceholder: "Search records",
+		        }
+	        });
 
-	$().ready(function() {
-		window.operateEvents = {
-			'click .view' : function(e, value, row, index) {
-				info = JSON.stringify(row);
 
-				swal('You click view icon, row: ', info);
-				console.log(info);
-			},
-			'click .edit' : function(e, value, row, index) {
-				info = JSON.stringify(row);
+	        var table = $('#datatables').DataTable();
+	         // Edit record
+	         table.on( 'click', '.edit', function () {
+	            $tr = $(this).closest('tr');
 
-				swal('You click edit icon, row: ', info);
-				console.log(info);
-			},
-			'click .remove' : function(e, value, row, index) {
-				console.log(row);
-				$table.bootstrapTable('remove', {
-					field : 'id',
-					values : [ row.id ]
-				});
-			}
-		};
+	            var data = table.row($tr).data();
+	            alert( 'You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.' );
+	         } );
 
-		$table.bootstrapTable({
-			toolbar : ".toolbar",
-			clickToSelect : true,
-			showRefresh : true,
-			search : true,
-			showToggle : true,
-			showColumns : true,
-			pagination : true,
-			searchAlign : 'left',
-			pageSize : 8,
-			clickToSelect : false,
-			pageList : [ 8, 10, 25, 50, 100 ],
+	         // Delete a record
+	         table.on( 'click', '.remove', function (e) {
+	            $tr = $(this).closest('tr');
+	            table.row($tr).remove().draw();
+	            e.preventDefault();
+	         } );
 
-			formatShowingRows : function(pageFrom, pageTo, totalRows) {
-				//do nothing here, we don't want to show the text "showing x of y from..."
-			},
-			formatRecordsPerPage : function(pageNumber) {
-				return pageNumber + " rows visible";
-			},
-			icons : {
-				refresh : 'fa fa-refresh',
-				toggle : 'fa fa-th-list',
-				columns : 'fa fa-columns',
-				detailOpen : 'fa fa-plus-circle',
-				detailClose : 'ti-close'
-			}
-		});
+	        //Like record
+	        table.on( 'click', '.like', function () {
+	            alert('You clicked on Like button');
+	         });
 
-		//activate the tooltips after the data table is initialized
-		$('[rel="tooltip"]').tooltip();
+	    });
+	</script>
 
-		$(window).resize(function() {
-			$table.bootstrapTable('resetView');
-		});
-	});
-</script>
 
 </html>

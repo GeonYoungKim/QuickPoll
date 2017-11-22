@@ -8,14 +8,14 @@ UploadJS = {
 			}		
 		},
 		check: function() {
-			var file = $("#excelFile").val();
-			if (file == "" || file == null) {
-				alert("파일을 선택해주세요.");
-				return false;
-			} else if (!UploadJS.checkFileType(file)) {
-				alert("엑셀 파일만 업로드 가능합니다.");
-				return false;
-			}
+//			var file = $("#excelFile").val();
+//			if (file == "" || file == null) {
+//				alert("파일을 선택해주세요.");
+//				return false;
+//			} else if (!UploadJS.checkFileType(file)) {
+//				alert("엑셀 파일만 업로드 가능합니다.");
+//				return false;
+//			}
 
 			if (confirm("업로드 하시겠습니까?")) {
 //				var options = {
