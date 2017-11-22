@@ -243,21 +243,76 @@
 														<div class="col-md-11">
 															<label class="text-info">Q.문제</label>
 															<textarea class="form-control"
-																placeholder="Here can be your nice text" rows="3"
+																placeholder="문제를 작성해주세요" rows="3"
 																name="required" required="required"></textarea>
 														</div>
 													</div>
 												</fieldset>
+												<div class="row">
+													<div class="col-md-6">
+														<label class="text-warning">A.유사답안</label>
+													</div>
+												</div>
+												<input type="button" class="btn btn-sm btn-fill"
+													value="추가하기" id="add_btn" onclick="add_item()"> <br />
+												<div class="col-md-8" id="add_form" style="display: none">
+													<div class="form-group">
+														<div class="col-md-10">
+															<input type="text" placeholder="A.유사답안"
+																class="form-control" name="required" required="required" />
+														</div>
+														<div class="col-md-1">
+															<input type="button" class="btn btn-sm btn-fill"
+																value="x" onclick="remove_item(this)">
+														</div>
+														<br />
+													</div>
+												</div>
+												<br />
+												<div class="row">
+													<div class="col-md-12" id="field"></div>
+												</div>
 
+												<br />
+												<div class="card-footer text-center">
+													<button type="submit" class="btn btn-info btn-fill"
+														id="save_btn">저장하기</button>
+												</div>
+											</form>
+										</div>
+										<div class="tab-pane" id="messages">
+											<form id="OXQuiz" class="form-horizontal" action=""
+												method="post" novalidate="">
+
+												<fieldset>
+													<div class="form-group">
+														<div class="col-md-11">
+															<label class="text-info">Q.문제</label>
+															<textarea class="form-control"
+																placeholder="문제를 작성해주세요" rows="3"
+																name="required" required="required"></textarea>
+														</div>
+													</div>
+												</fieldset>
+												<div class="row">
+													<div class="col-sm-2">
+														<br /> <label class="text-success">A.정답</label> <select
+															name="cities" class="selectpicker" data-title="A.정답"
+															data-style="btn-danger btn-block"
+															data-menu-style="dropdown-blue" name="required"
+															required="required">
+															<option value="ko">O</option>
+															<option value="ko">X</option>
+														</select>
+													</div>
+												</div>
 												<br />
 												<div class="card-footer text-center">
 													<button type="submit" class="btn btn-info btn-fill">저장하기</button>
 												</div>
 											</form>
 										</div>
-										<div class="tab-pane" id="messages">
-											<p>Here are your messages.</p>
-										</div>
+
 									</div>
 								</div>
 							</div>
@@ -266,6 +321,7 @@
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 </body>
 
@@ -353,7 +409,23 @@
 		$('#loginFormValidation').validate();
 		$('#MultipleChoiceForm').validate();
 		$('#EssayQuestionsForm').validate();
+	});
+</script>
+<script type="text/javascript">
+	    function add_item() {
+		// pre_set 에 있는 내용을 읽어와서 처리..
+		var div = document.createElement('div');
+		div.innerHTML = document.getElementById('add_form').innerHTML;
+		document.getElementById('field').appendChild(div);
+	}
 
+	function remove_item(obj) {
+		// obj.parentNode 를 이용하여 삭제
+		document.getElementById('field').removeChild(
+				obj.parentNode.parentNode.parentNode);
+	}
+	$(document).on("click", '#save_btn', function() {
+		$('#EssayQuestionsForm').validate();
 	});
 </script>
 
