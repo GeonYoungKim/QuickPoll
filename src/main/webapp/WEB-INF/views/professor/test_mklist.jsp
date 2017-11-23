@@ -175,7 +175,7 @@
 													<div class="form-group">
 														<div class="col-md-11">
 															<label class="text-info">Q.문제</label> <input type="text"
-																placeholder="Q.문제" class="form-control" name="required"
+																placeholder="Q.문제" class="form-control" name="quiz_required"
 																required="required" />
 														</div>
 													</div>
@@ -185,7 +185,7 @@
 													<div class="col-md-6">
 														<label class="text-warning">Q.1번</label> <input
 															type="text" placeholder="객관식 1번" class="form-control"
-															name="required" required="required" />
+															name="answer1_required" required="required" />
 													</div>
 												</div>
 												<br />
@@ -193,7 +193,7 @@
 													<div class="col-md-6">
 														<label class="text-warning">Q.2번</label> <input
 															type="text" placeholder="객관식 2번" class="form-control"
-															name="required" required="required" />
+															name="answer2_required" required="required" />
 													</div>
 												</div>
 												<br />
@@ -201,7 +201,7 @@
 													<div class="col-md-6">
 														<label class="text-warning">Q.3번</label> <input
 															type="text" placeholder="객관식 3번" class="form-control"
-															name="required" required="required" />
+															name="answer3_required" required="required" />
 													</div>
 												</div>
 												<br />
@@ -209,7 +209,7 @@
 													<div class="col-md-6">
 														<label class="text-warning">Q.4번</label> <input
 															type="text" placeholder="객관식 4번" class="form-control"
-															name="required" required="required" />
+															name="answer4_required" required="required" />
 													</div>
 												</div>
 												<br />
@@ -218,7 +218,7 @@
 														<br /> <label class="text-success">A.정답</label> <select
 															name="cities" class="selectpicker" data-title="A.정답"
 															data-style="btn-danger btn-block"
-															data-menu-style="dropdown-blue" name="required"
+															data-menu-style="dropdown-blue" name="right_answer_required"
 															required="required">
 															<option value="ko">1번</option>
 															<option value="ko">2번</option>
@@ -242,12 +242,20 @@
 													<div class="form-group">
 														<div class="col-md-11">
 															<label class="text-info">Q.문제</label>
-															<textarea class="form-control"
-																placeholder="문제를 작성해주세요" rows="3"
-																name="required" required="required"></textarea>
+															<textarea class="form-control" placeholder="문제를 작성해주세요"
+																rows="3" name="essay_questions_required" required="required"></textarea>
 														</div>
 													</div>
 												</fieldset>
+												<div class="row">
+													<div class="col-md-10">
+														<label class="text-warning">A.정답</label> <input
+															type="text" placeholder="A.정답" class="form-control"
+															name="e_right_answer_required" required="required" />
+													</div>
+												</div>
+												<br /><br />
+												
 												<div class="row">
 													<div class="col-md-6">
 														<label class="text-warning">A.유사답안</label>
@@ -259,7 +267,7 @@
 													<div class="form-group">
 														<div class="col-md-10">
 															<input type="text" placeholder="A.유사답안"
-																class="form-control" name="required" required="required" />
+																class="form-control" name="e_like_answer_required" required="required" />
 														</div>
 														<div class="col-md-1">
 															<input type="button" class="btn btn-sm btn-fill"
@@ -280,6 +288,7 @@
 												</div>
 											</form>
 										</div>
+										
 										<div class="tab-pane" id="messages">
 											<form id="OXQuiz" class="form-horizontal" action=""
 												method="post" novalidate="">
@@ -288,9 +297,8 @@
 													<div class="form-group">
 														<div class="col-md-11">
 															<label class="text-info">Q.문제</label>
-															<textarea class="form-control"
-																placeholder="문제를 작성해주세요" rows="3"
-																name="required" required="required"></textarea>
+															<textarea class="form-control" placeholder="문제를 작성해주세요"
+																rows="3" name="required" required="ox_quiz_required"></textarea>
 														</div>
 													</div>
 												</fieldset>
@@ -299,7 +307,7 @@
 														<br /> <label class="text-success">A.정답</label> <select
 															name="cities" class="selectpicker" data-title="A.정답"
 															data-style="btn-danger btn-block"
-															data-menu-style="dropdown-blue" name="required"
+															data-menu-style="dropdown-blue" name="ox_answer_required"
 															required="required">
 															<option value="ko">O</option>
 															<option value="ko">X</option>
@@ -321,8 +329,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	</div>
 </body>
 
 <!--   Core JS Files. Extra: PerfectScrollbar + TouchPunch libraries inside jquery-ui.min.js   -->
@@ -409,6 +415,7 @@
 		$('#loginFormValidation').validate();
 		$('#MultipleChoiceForm').validate();
 		$('#EssayQuestionsForm').validate();
+		$('#OXQuiz').validate();
 	});
 </script>
 <script type="text/javascript">
@@ -424,9 +431,6 @@
 		document.getElementById('field').removeChild(
 				obj.parentNode.parentNode.parentNode);
 	}
-	$(document).on("click", '#save_btn', function() {
-		$('#EssayQuestionsForm').validate();
-	});
 </script>
 
 </html>
