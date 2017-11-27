@@ -1,29 +1,30 @@
 package com.skuniv.QuickPoll.web.professor.controller;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import model.CourseVo;
+import com.skuniv.QuickPoll.util.ExcelRead;
+import com.skuniv.QuickPoll.util.ExcelReadOption;
 
 public class ProfessorHomeControllerTest {
 
 	@Test
 	public void test() {
-		HashMap<String, Integer> map = new HashMap<String, Integer>();
-		map.put("student_id", 2011301013);
-		Iterator<String> student_id = map.keySet().iterator();
-		while (student_id.hasNext()) {
-			System.out.println(student_id.next());
+		
+		ExcelReadOption ro = new ExcelReadOption();
+		ro.setFilePath("sample.xlsx");
+		ro.setOutputColumns("A", "B", "C", "D");
+		ro.setStartRow(1);
+
+		List<Map<String, String>> result = ExcelRead.read(ro);
+		System.out.println(result.get(1).keySet());
+		for (Map<String, String> map : result) {
+			System.out.println(map.get("A") + " , " + map.get("B") + " , " + map.get("C") + " , " + map.get("D"));
 		}
+
 	}
 
 }

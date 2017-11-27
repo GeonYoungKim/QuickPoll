@@ -1,6 +1,7 @@
 package com.skuniv.QuickPoll.web.professor.controller;
 
-import java.util.ArrayList;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -15,14 +16,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.skuniv.QuickPoll.service.ProfessorService;
 
-import model.CourseVo;
 import model.RealCourseVo;
 
 /**
@@ -33,36 +34,40 @@ public class ProfessorHomeController {
 	@Resource(name = "ProfessorService")
 	private ProfessorService professorService;
 	private static final Logger logger = LoggerFactory.getLogger(ProfessorHomeController.class);
-	
+
 	/**
 	 * Simply selects the home view to render by returning its name.
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 */
 	@RequestMapping(value = "/redirectLectureList", method = RequestMethod.GET)
 	public String mainDisplay(HttpServletRequest request, RedirectAttributes redirectAttributes) throws Exception {
 		int id = Integer.parseInt(request.getParameter("id"));
-		//professor 
+		// professor
 		List<Map<String, Object>> list = professorService.selectProfessorList(id);
 		List<RealCourseVo> courseList = professorService.selectCourseList(id);
-		
+
 		redirectAttributes.addFlashAttribute("professorInfo", list);
 		redirectAttributes.addFlashAttribute("courseListInfo", courseList);
-	    return "redirect:/lectureList";
+		return "redirect:/lectureList";
 	}
+
 	@RequestMapping(value = "/quickpollList")
 	public ModelAndView disPlayQuickPollList(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/professor/quickpollList");
 		int id = Integer.parseInt(request.getParameter("id"));
 		String course_id = request.getParameter("course_id");
 		List<Map<String, Object>> professorList = professorService.selectProfessorList(id);
-		List<LinkedHashMap<String, Object>> objectiveQuickPollList = professorService.selectObjectiveQuickPollList(course_id);
-		List<LinkedHashMap<String, Object>> subjectiveQuickPollList = professorService.selectSubjectiveQuickPollList(course_id);
+		List<LinkedHashMap<String, Object>> objectiveQuickPollList = professorService
+				.selectObjectiveQuickPollList(course_id);
+		List<LinkedHashMap<String, Object>> subjectiveQuickPollList = professorService
+				.selectSubjectiveQuickPollList(course_id);
 		mv.addObject("professorInfo", professorList);
 		mv.addObject("objectiveQuestionList", objectiveQuickPollList);
 		mv.addObject("subjectiveQuestionList", subjectiveQuickPollList);
 		return mv;
 	}
-	
+
 	@RequestMapping(value = "/menteeList", method = RequestMethod.GET)
 	public ModelAndView studentList(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("menteeList");
@@ -73,12 +78,59 @@ public class ProfessorHomeController {
 		mv.addObject("menteeList", menteeList);
 		return mv;
 	}
+
 	@RequestMapping(value = "/get", method = RequestMethod.GET)
-	
 	public ModelAndView get(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("jsonView");
 		List<RealCourseVo> courseList = professorService.selectCourseList(301001);
-		mv.addObject("courseList",courseList);
+		mv.addObject("courseList", courseList);
 		return mv;
 	}
+
+	@RequestMapping(value = "/upload")
+	public ModelAndView displayUploadPages(HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("professor/uploadExcel");
+		return mv;
+	}
+	@RequestMapping(value = "/test2")
+	public ModelAndView test(HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("professor/test");
+		return mv;
+	}
+	
+	
+
+	// @RequestMapping(value = "/insertCourse", method=RequestMethod.POST)
+	// public ModelAndView insertCourse(MultipartHttpServletRequest request)
+	// throws IllegalStateException, IOException {
+	// request.setCharacterEncoding("utf-8");
+	// String name = new String(request.getParameter("name").getBytes("8859_1"),
+	// "UTF-8");
+	// String content = new
+	// String(request.getParameter("content").getBytes("8859_1"), "UTF-8");;
+	// Map<String, MultipartFile> files = request.getFileMap();
+	// CommonsMultipartFile cmf = (CommonsMultipartFile) files.get("img");
+	// // 경로
+	// String pdfPath =
+	// request.getSession().getServletContext().getRealPath("/resources");
+	// System.out.println("pdf : " + pdfPath);
+	// String savePath = ""+pdfPath+"/common/hyo/images/"+new
+	// String(cmf.getOriginalFilename().getBytes("8859_1"), "UTF-8");;
+	// System.out.println("저장 경로 : " +savePath);
+	// File file = new File(savePath);
+	// // 파일 업로드 처리 완료.
+	// cmf.transferTo(file);
+	//
+	//// String img = "alg.png";
+	// Map<String, Object> map = new HashMap<String, Object>();
+	// map.put("name", name);
+	// map.put("content", content);
+	// map.put("img", cmf.getOriginalFilename());
+	//
+	// service.insertRoom(map);
+	//
+	// ModelAndView mv = new ModelAndView("main");
+	// return mv;
+	// }
+
 }
