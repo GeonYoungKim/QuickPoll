@@ -169,13 +169,13 @@
 										<div class="tab-pane active" id="home">
 
 											<form id="MultipleChoiceForm" class="form-horizontal"
-												action="" method="post" novalidate="">
+											 method="GET" >
 
 												<fieldset>
 													<div class="form-group">
 														<div class="col-md-11">
 															<label class="text-info">Q.문제</label> <input type="text"
-																placeholder="Q.문제" class="form-control" name="quiz_required"
+																placeholder="Q.문제" class="form-control" id="mul_problem" name="quiz_required"
 																required="required" />
 														</div>
 													</div>
@@ -184,7 +184,7 @@
 												<div class="row">
 													<div class="col-md-6">
 														<label class="text-warning">Q.1번</label> <input
-															type="text" placeholder="객관식 1번" class="form-control"
+															type="text" placeholder="객관식 1번" class="form-control" id = "mul_example1"
 															name="answer1_required" required="required" />
 													</div>
 												</div>
@@ -192,7 +192,7 @@
 												<div class="row">
 													<div class="col-md-6">
 														<label class="text-warning">Q.2번</label> <input
-															type="text" placeholder="객관식 2번" class="form-control"
+															type="text" placeholder="객관식 2번" class="form-control" id = "mul_example2"
 															name="answer2_required" required="required" />
 													</div>
 												</div>
@@ -200,7 +200,7 @@
 												<div class="row">
 													<div class="col-md-6">
 														<label class="text-warning">Q.3번</label> <input
-															type="text" placeholder="객관식 3번" class="form-control"
+															type="text" placeholder="객관식 3번" class="form-control" id = "mul_example3"
 															name="answer3_required" required="required" />
 													</div>
 												</div>
@@ -208,7 +208,7 @@
 												<div class="row">
 													<div class="col-md-6">
 														<label class="text-warning">Q.4번</label> <input
-															type="text" placeholder="객관식 4번" class="form-control"
+															type="text" placeholder="객관식 4번" class="form-control" id = "mul_example4"
 															name="answer4_required" required="required" />
 													</div>
 												</div>
@@ -218,7 +218,7 @@
 														<br /> <label class="text-success">A.정답</label> <select
 															name="cities" class="selectpicker" data-title="A.정답"
 															data-style="btn-danger btn-block"
-															data-menu-style="dropdown-blue" name="right_answer_required"
+															data-menu-style="dropdown-blue" id ="mul_answer" name="right_answer_required"
 															required="required">
 															<option value="ko">1번</option>
 															<option value="ko">2번</option>
@@ -229,7 +229,7 @@
 												</div>
 												<br />
 												<div class="card-footer text-center">
-													<button type="submit" class="btn btn-info btn-fill">저장하기</button>
+													<button type="submit" class="btn btn-info btn-fill" onclick="saveQuestion.multipleChoice();">저장하기</button>
 												</div>
 											</form>
 										</div>
@@ -329,6 +329,7 @@
 <script
 	src="resources/common/quickpoll_bootstrap/assets/js/bootstrap.min.js"
 	type="text/javascript"></script>
+<script src="resources/common/quickpoll_bootstrap/assets/js/professor/save_question.js"></script>
 
 <!--  Forms Validations Plugin -->
 <script
