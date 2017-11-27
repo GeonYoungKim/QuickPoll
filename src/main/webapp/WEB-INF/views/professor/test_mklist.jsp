@@ -421,9 +421,25 @@
 <script type="text/javascript">
 	    function add_item() {
 		// pre_set 에 있는 내용을 읽어와서 처리..
+		var i = $("#field").children().length;
+		alert(i);
 		var div = document.createElement('div');
-		div.innerHTML = document.getElementById('add_form').innerHTML;
+		div.innerHTML = '<div class="form-group">'+
+		'<div class="col-md-10">'+
+			'<input type="text" placeholder="A.유사답안"'+
+				'class="form-control" name="e_like_answer_required'+i+'" required="required" />'+
+	'</div>'+
+		'<div class="col-md-1">'+
+			'<input type="button" class="btn btn-sm btn-fill"'+
+				'value="x" onclick="remove_item(this)">'+
+		'</div>'+
+		'<br />'+
+'</div>';
+
+		//div.innerHTML = document.getElementById('add_form').innerHTML;
 		document.getElementById('field').appendChild(div);
+		
+		
 	}
 
 	function remove_item(obj) {
