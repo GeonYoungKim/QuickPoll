@@ -1,5 +1,7 @@
 package com.skuniv.QuickPoll.web.professor.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -11,6 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
@@ -115,5 +121,52 @@ public class ProfessorLectureController {
 		map.put("credit", credit);
 		map.put("professor_id", professor_id);
 		professorService.insertCourse(map);
+	}
+	@RequestMapping(value = "/attendance")
+	public ModelAndView displayAttendance(HttpServletRequest request) throws Exception {
+		System.out.println("hi");
+		String course_id = request.getParameter("course_id");
+		int professor_id = Integer.parseInt(request.getParameter("professor_id"));
+		List<Map<String, Object>> professorList = professorService.selectProfessorList(professor_id);
+		List<LinkedHashMap<String, Object>> list = professorService.selectAttendance(course_id);
+		ModelAndView mv = new ModelAndView("professor/attendance");
+		mv.addObject("attendanceList", list);
+		mv.addObject("professorInfo", professorList);
+		return mv;
+	}
+	@RequestMapping(value = "/uploadAttendance")
+	public ModelAndView displayUploadPage(HttpServletRequest request) throws Exception {
+		int professor_id = Integer.parseInt(request.getParameter("id"));
+		List<Map<String, Object>> professorList = professorService.selectProfessorList(professor_id);
+		ModelAndView mv = new ModelAndView("professor/uploadAttendance");
+		mv.addObject("professorInfo", professorList);
+		return mv;
+	}
+	@ResponseBody
+	@RequestMapping(value = "/uploadExcel", method = RequestMethod.POST)
+	public ModelAndView excelUploadAjax(MultipartHttpServletRequest request) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		Map<String, MultipartFile> files = request.getFileMap();
+		
+		CommonsMultipartFile excelFile = (CommonsMultipartFile) files.get("excelFile");
+		String path = request.getSession().getServletContext().getRealPath("/resources");
+		path += "/common/excel/" + excelFile.getOriginalFilename();
+		System.out.println("path : " + path);
+		File file = new File(path);
+		// // 파일 업로드 처리 완료.
+		excelFile.transferTo(file);
+		List<HashMap<String, Object>> result = professorService.parsingExcel(file);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("list", result);
+		// FileUtils.delete(destFile.getAbsolutePath());
+		professorService.insertEnroll(map);
+		String course_id = request.getParameter("course_id");
+		int professor_id = Integer.parseInt(request.getParameter("professor_id"));
+		List<Map<String, Object>> professorList = professorService.selectProfessorList(professor_id);
+		List<LinkedHashMap<String, Object>> list = professorService.selectAttendance(course_id);
+		ModelAndView mv = new ModelAndView("professor/attendance");
+		mv.addObject("attendanceList", list);
+		mv.addObject("professorInfo", professorList);
+		return mv;
 	}
 }

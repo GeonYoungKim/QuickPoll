@@ -8,8 +8,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form id="excelUploadForm" name="excelUploadForm" enctype="multipart/form-data" method="post" action ="uploadExcel">
-    <div class="contents">
+<a href="" onclick="UploadJS.check();">asdf</a>
+<form id="excelUploadForm" name="excelUploadForm" enctype="multipart/form-data" method="post" action ="uploadAttendance">
+<input type="hidden" id = "course_id"name="course_id" value="cs111"/>
+<input type="hidden" id="professor_id" name="professor_id" value="301001"/>
+ 
+ <!--    <div class="contents">
         <div>첨부파일은 한개만 등록 가능합니다.</div>
  
         <dl class="vm_name">
@@ -20,7 +24,7 @@
             
     <div class="bottom">
         <button type="button" id="addExcelImpoartBtn" class="btn" onclick="UploadJS.check();" ><span>추가</span></button> 
-    </div>
+    </div> -->
 </form> 
 
 </body>
@@ -28,6 +32,6 @@
 	src="resources/common/quickpoll_bootstrap/assets/js/jquery-1.10.2.js"
 	type="text/javascript"></script>
 <script
-	src="resources/common/quickpoll_bootstrap/assets/js/professor/upload.js?ver=1"
+	src="resources/common/quickpoll_bootstrap/assets/js/professor/upload.js?ver=2"
 	charset="UTF-8"></script>
 </html>

@@ -97,40 +97,8 @@ public class ProfessorHomeController {
 		ModelAndView mv = new ModelAndView("professor/test");
 		return mv;
 	}
-	@RequestMapping(value = "/attendance")
-	public ModelAndView displayAttendance(HttpServletRequest request) throws Exception {
-		String course_id = request.getParameter("course_id");
-		List<LinkedHashMap<String, Object>> list = professorService.selectAttendance(course_id);
-		ModelAndView mv = new ModelAndView("professor/attendance");
-		mv.addObject("attendanceList", list);
-		return mv;
-	}
-	@RequestMapping(value = "/uploadAttendance")
-	public ModelAndView displayUploadPage(HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("professor/uploadAttendance");
-		return mv;
-	}
-	@ResponseBody
-	@RequestMapping(value = "/uploadExcel", method = RequestMethod.POST)
-	public ModelAndView excelUploadAjax(MultipartHttpServletRequest request) throws IllegalStateException, IOException {
-		request.setCharacterEncoding("utf-8");
-		Map<String, MultipartFile> files = request.getFileMap();
-		CommonsMultipartFile excelFile = (CommonsMultipartFile) files.get("excelFile");
-		String path = request.getSession().getServletContext().getRealPath("/resources");
-		path += "/common/excel/" + excelFile.getOriginalFilename();
-		System.out.println("path : " + path);
-		File file = new File(path);
-		// // 파일 업로드 처리 완료.
-		excelFile.transferTo(file);
-		List<HashMap<String, Object>> result = professorService.parsingExcel(file);
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("list", result);
-		// FileUtils.delete(destFile.getAbsolutePath());
-		professorService.insertEnroll(map);
-		ModelAndView view = new ModelAndView();
-		view.setViewName("");
-		return view;
-	}
+	
+	
 
 	// @RequestMapping(value = "/insertCourse", method=RequestMethod.POST)
 	// public ModelAndView insertCourse(MultipartHttpServletRequest request)
