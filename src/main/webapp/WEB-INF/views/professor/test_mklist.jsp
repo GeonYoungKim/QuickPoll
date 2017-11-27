@@ -262,20 +262,8 @@
 													</div>
 												</div>
 												<input type="button" class="btn btn-sm btn-fill"
-													value="추가하기" id="add_btn" onclick="add_item()"> <br />
-												<div class="col-md-8" id="add_form" style="display: none">
-													<div class="form-group">
-														<div class="col-md-10">
-															<input type="text" placeholder="A.유사답안"
-																class="form-control" name="e_like_answer_required" required="required" />
-														</div>
-														<div class="col-md-1">
-															<input type="button" class="btn btn-sm btn-fill"
-																value="x" onclick="remove_item(this)">
-														</div>
-														<br />
-													</div>
-												</div>
+													value="추가하기" id="add_btn" onclick="add_item()"> 
+												<br />
 												<br />
 												<div class="row">
 													<div class="col-md-12" id="field"></div>
