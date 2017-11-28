@@ -15,5 +15,6 @@ saveQuestion={
 						mul_answer : mul_answer
 				}
 				alert(mul_answer);
+				consol.log(mul_data.mul_answer);
 		}
 }
