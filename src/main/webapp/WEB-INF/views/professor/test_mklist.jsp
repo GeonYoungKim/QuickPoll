@@ -216,14 +216,14 @@
 												<div class="row">
 													<div class="col-sm-2">
 														<br /> <label class="text-success">A.정답</label> <select
-															name="cities" class="selectpicker" data-title="A.정답"
+														    class="selectpicker" data-title="A.정답"
 															data-style="btn-danger btn-block"
 															data-menu-style="dropdown-blue" id ="mul_answer" name="right_answer_required"
 															required="required">
-															<option value="ko">1번</option>
-															<option value="ko">2번</option>
-															<option value="ko">3번</option>
-															<option value="ko">4번</option>
+															<option>1번</option>
+															<option>2번</option>
+															<option>3번</option>
+															<option>4번</option>
 														</select>
 													</div>
 												</div>
@@ -293,7 +293,7 @@
 												<div class="row">
 													<div class="col-sm-2">
 														<br /> <label class="text-success">A.정답</label> <select
-															name="cities" class="selectpicker" data-title="A.정답"
+															class="selectpicker" data-title="A.정답"
 															data-style="btn-danger btn-block"
 															data-menu-style="dropdown-blue" name="ox_answer_required"
 															required="required">
