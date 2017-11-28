@@ -400,8 +400,6 @@
 
 <script type="text/javascript">
 	$().ready(function() {
-		$('#registerFormValidation').validate();
-		$('#loginFormValidation').validate();
 		$('#MultipleChoiceForm').validate();
 		$('#EssayQuestionsForm').validate();
 		$('#OXQuiz').validate();

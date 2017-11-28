@@ -14,7 +14,11 @@ saveQuestion={
 						mul_example4 : mul_example4,
 						mul_answer : mul_answer
 				}
+<<<<<<< HEAD
 				alert(mul_answer);
 				consol.log(mul_data.mul_answer);
+=======
+				alert(mul_data.quiz_required + mul_data.mul_example1+ mul_data.mul_example1);
+>>>>>>> b99757fded92b69cfe8bcdd38d6afdb127ab65f2
 		}
 }
