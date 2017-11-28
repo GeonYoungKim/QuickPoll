@@ -14,6 +14,6 @@ saveQuestion={
 						mul_example4 : mul_example4,
 						mul_answer : mul_answer
 				}
-				alert(mul_answer);
+				alert(mul_data.quiz_required + mul_data.mul_example1+ mul_data.mul_example1);
 		}
 }
