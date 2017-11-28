@@ -18,5 +18,11 @@ saveQuestion={
 				alert(mul_answer);
 				consol.log(mul_data.mul_answer);
 
+		},
+		EssayQuestions : function(){
+			//생성된만큼 배열에 집어넣기 유사답안은 여러개일 수 있기 때문
+		},
+		OXChoice : function(){
+			
 		}
 }
