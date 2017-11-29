@@ -169,14 +169,14 @@
 										<div class="tab-pane active" id="home">
 
 											<form id="MultipleChoiceForm" class="form-horizontal"
-											 method="GET" >
+												method="GET">
 
 												<fieldset>
 													<div class="form-group">
 														<div class="col-md-11">
 															<label class="text-info">Q.문제</label> <input type="text"
-																placeholder="Q.문제" class="form-control" id="mul_problem" name="quiz_required"
-																required="required" />
+																placeholder="Q.문제" class="form-control" id="mul_problem"
+																name="quiz_required" required="required" />
 														</div>
 													</div>
 												</fieldset>
@@ -184,42 +184,46 @@
 												<div class="row">
 													<div class="col-md-6">
 														<label class="text-warning">Q.1번</label> <input
-															type="text" placeholder="객관식 1번" class="form-control" id = "mul_example1"
-															name="answer1_required" required="required" />
+															type="text" placeholder="객관식 1번" class="form-control"
+															id="mul_example1" name="answer1_required"
+															required="required" />
 													</div>
 												</div>
 												<br />
 												<div class="row">
 													<div class="col-md-6">
 														<label class="text-warning">Q.2번</label> <input
-															type="text" placeholder="객관식 2번" class="form-control" id = "mul_example2"
-															name="answer2_required" required="required" />
+															type="text" placeholder="객관식 2번" class="form-control"
+															id="mul_example2" name="answer2_required"
+															required="required" />
 													</div>
 												</div>
 												<br />
 												<div class="row">
 													<div class="col-md-6">
 														<label class="text-warning">Q.3번</label> <input
-															type="text" placeholder="객관식 3번" class="form-control" id = "mul_example3"
-															name="answer3_required" required="required" />
+															type="text" placeholder="객관식 3번" class="form-control"
+															id="mul_example3" name="answer3_required"
+															required="required" />
 													</div>
 												</div>
 												<br />
 												<div class="row">
 													<div class="col-md-6">
 														<label class="text-warning">Q.4번</label> <input
-															type="text" placeholder="객관식 4번" class="form-control" id = "mul_example4"
-															name="answer4_required" required="required" />
+															type="text" placeholder="객관식 4번" class="form-control"
+															id="mul_example4" name="answer4_required"
+															required="required" />
 													</div>
 												</div>
 												<br />
 												<div class="row">
 													<div class="col-sm-2">
 														<br /> <label class="text-success">A.정답</label> <select
-														    class="selectpicker" data-title="A.정답"
+															class="selectpicker" data-title="A.정답"
 															data-style="btn-danger btn-block"
-															data-menu-style="dropdown-blue" id ="mul_answer" name="right_answer_required"
-															required="required">
+															data-menu-style="dropdown-blue" id="mul_answer"
+															name="right_answer_required" required="required">
 															<option>1번</option>
 															<option>2번</option>
 															<option>3번</option>
@@ -229,21 +233,23 @@
 												</div>
 												<br />
 												<div class="card-footer text-center">
-													<button type="submit" class="btn btn-info btn-fill" onclick="saveQuestion.multipleChoice();">저장하기</button>
+													<button type="submit" class="btn btn-info btn-fill"
+														onclick="saveQuestion.multipleChoice();">저장하기</button>
 												</div>
 											</form>
 										</div>
 
 										<div class="tab-pane" id="profile">
 											<form id="EssayQuestionsForm" class="form-horizontal"
-												action="" method="post" novalidate="">
+												method="get">
 
 												<fieldset>
 													<div class="form-group">
 														<div class="col-md-11">
 															<label class="text-info">Q.문제</label>
 															<textarea class="form-control" placeholder="문제를 작성해주세요"
-																rows="3" name="essay_questions_required" required="required"></textarea>
+																rows="3" name="essay_questions_required"
+																required="required"></textarea>
 														</div>
 													</div>
 												</fieldset>
@@ -254,16 +260,16 @@
 															name="e_right_answer_required" required="required" />
 													</div>
 												</div>
-												<br /><br />
-												
+												<br />
+												<br />
+
 												<div class="row">
 													<div class="col-md-6">
 														<label class="text-warning">A.유사답안</label>
 													</div>
 												</div>
 												<input type="button" class="btn btn-sm btn-fill"
-													value="추가하기" id="add_btn" onclick="add_item()"> 
-												<br />
+													value="추가하기" id="add_btn" onclick="add_item()"> <br />
 												<br />
 												<div class="row">
 													<div class="col-md-12" id="field"></div>
@@ -272,21 +278,20 @@
 												<br />
 												<div class="card-footer text-center">
 													<button type="submit" class="btn btn-info btn-fill"
-														id="save_btn">저장하기</button>
+														id="save_btn" onclick="saveQuestion.essayQuestions();">저장하기</button>
 												</div>
 											</form>
 										</div>
-										
+
 										<div class="tab-pane" id="messages">
-											<form id="OXQuiz" class="form-horizontal" action=""
-												method="post" novalidate="">
+											<form id="OXQuizForm" class="form-horizontal" method="get">
 
 												<fieldset>
 													<div class="form-group">
 														<div class="col-md-11">
 															<label class="text-info">Q.문제</label>
 															<textarea class="form-control" placeholder="문제를 작성해주세요"
-																rows="3" name="required" required="ox_quiz_required"></textarea>
+																rows="3" name="ox_quiz_required" required="required"></textarea>
 														</div>
 													</div>
 												</fieldset>
@@ -304,7 +309,7 @@
 												</div>
 												<br />
 												<div class="card-footer text-center">
-													<button type="submit" class="btn btn-info btn-fill">저장하기</button>
+													<button type="submit" class="btn btn-info btn-fill" onclick="saveQuestion.OXQuestions();">저장하기</button>
 												</div>
 											</form>
 										</div>
@@ -329,7 +334,8 @@
 <script
 	src="resources/common/quickpoll_bootstrap/assets/js/bootstrap.min.js"
 	type="text/javascript"></script>
-<script src="resources/common/quickpoll_bootstrap/assets/js/professor/save_question.js"></script>
+<script
+	src="resources/common/quickpoll_bootstrap/assets/js/professor/save_question.js"></script>
 
 <!--  Forms Validations Plugin -->
 <script
@@ -402,31 +408,29 @@
 	$().ready(function() {
 		$('#MultipleChoiceForm').validate();
 		$('#EssayQuestionsForm').validate();
-		$('#OXQuiz').validate();
+		$('#OXQuizForm').validate();
 	});
 </script>
 <script type="text/javascript">
 	    function add_item() {
 		// pre_set 에 있는 내용을 읽어와서 처리..
 		var i = $("#field").children().length;
-		alert(i);
+		//0부터 시작
 		var div = document.createElement('div');
-		div.innerHTML = '<div class="form-group">'+
-		'<div class="col-md-10">'+
-			'<input type="text" placeholder="A.유사답안"'+
-				'class="form-control" name="e_like_answer_required'+i+'" required="required" />'+
-	'</div>'+
-		'<div class="col-md-1">'+
-			'<input type="button" class="btn btn-sm btn-fill"'+
-				'value="x" onclick="remove_item(this)">'+
-		'</div>'+
-		'<br />'+
-'</div>';
+		div.innerHTML = '<div class="form-group">'
+				+ '<div class="col-md-10">'
+				+ '<input type="text" placeholder="A.유사답안"'+
+				'class="form-control" name="e_like_answer_required'+i+'" required="required" />'
+				+ '</div>' + '<div class="col-md-1">'
+				+ '<input type="button" class="btn btn-sm btn-fill"'
+				+ 'value="x" onclick="remove_item(this)">' + '</div>'
+				+ '<br />' + '</div>';
 
 		//div.innerHTML = document.getElementById('add_form').innerHTML;
 		document.getElementById('field').appendChild(div);
-		
-		
+		//var count = $("#field").children().length;
+		//alert(count);
+
 	}
 
 	function remove_item(obj) {
