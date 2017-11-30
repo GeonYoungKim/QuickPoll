@@ -335,7 +335,7 @@
 	src="resources/common/quickpoll_bootstrap/assets/js/bootstrap.min.js"
 	type="text/javascript"></script>
 <script
-	src="resources/common/quickpoll_bootstrap/assets/js/professor/save_question.js"></script>
+	src="resources/common/quickpoll_bootstrap/assets/js/professor/save_question.js?ver=1" charset="utf-8"></script>
 
 <!--  Forms Validations Plugin -->
 <script

@@ -5,17 +5,33 @@ saveQuestion={
 				var mul_example2 = $('#MultipleChoiceForm').find('input[name="answer2_required"]').val();
 				var mul_example3 = $('#MultipleChoiceForm').find('input[name="answer3_required"]').val();
 				var mul_example4 = $('#MultipleChoiceForm').find('input[name="answer4_required"]').val();
+				
+				// 뒤에 '번' 잘라서 보내기.
 				var mul_answer = $('#MultipleChoiceForm').find('select[name="right_answer_required"] option:checked').text();
+				
 				var mul_data = {
-						mul_problem : mul_problem,
-						mul_example1 : mul_example1,
-						mul_example2 : mul_example2,
-						mul_example3 : mul_example3,
-						mul_example4 : mul_example4,
-						mul_answer : mul_answer
+						problem : mul_problem,
+						example1 : mul_example1,
+						example2 : mul_example2,
+						example3 : mul_example3,
+						example4 : mul_example4,
+						answer : mul_answer,
+						course_id : "cs"
 				}
-
-				alert(mul_problem+ " " + mul_answer);
+				$
+				.ajax({
+					type : "GET",
+					url : "insertObjective",
+					data : mul_data,
+					success : function(data) {
+//						location.href="/professor";
+					}
+				});
+				
+				
+				
+				
+//				alert(mul_problem+ " " + mul_answer);
 		},
 		essayQuestions : function(){
 			//생성된만큼 배열에 집어넣기 유사답안은 여러개일 수 있기 때문
@@ -30,7 +46,8 @@ saveQuestion={
 			}
 			var essay_data = {
 					essay_problem :essay_problem,
-					correct_answer : correct_answer
+					correct_answer : correct_answer,
+					like_answer : like_answer
 			}
 			alert(essay_problem+" "+correct_answer+" "+length + " "+like_answer);
 		},

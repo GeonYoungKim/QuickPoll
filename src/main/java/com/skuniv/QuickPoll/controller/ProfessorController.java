@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skuniv.QuickPoll.service.ProfessorService;
@@ -94,5 +96,19 @@ public class ProfessorController {
 		
 		return mv;
 	}
-	
+	@ResponseBody
+	@RequestMapping(value="/insertObjective", method = RequestMethod.GET)
+	public String insertObjective(HttpServletRequest request) throws Exception{
+		String question_content = request.getParameter("problem");
+    	String question_answer = request.getParameter("answer");
+    	String example1 = request.getParameter("example1"); 
+    	String example2 = request.getParameter("example2");
+    	String example3 = request.getParameter("example3");
+    	String example4 = request.getParameter("example4");
+    	System.out.println("problem : " + question_content + " example : " + example1 + " , " + example2 + " , " + example3 + " , " + example4 + " , answer : " + question_answer);
+    	Map<String, Object> map = new HashMap<String, Object>();
+    	map.put("question_content", question_content);
+    	professorService.insertObjective();
+    	return "ok";
+	}
 }
