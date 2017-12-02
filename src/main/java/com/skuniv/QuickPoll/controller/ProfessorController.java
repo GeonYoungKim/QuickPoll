@@ -5,7 +5,6 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -96,19 +95,39 @@ public class ProfessorController {
 		
 		return mv;
 	}
+	
 	@ResponseBody
 	@RequestMapping(value="/insertObjective", method = RequestMethod.GET)
 	public String insertObjective(HttpServletRequest request) throws Exception{
+		String course_id=request.getParameter("course_id");
 		String question_content = request.getParameter("problem");
-    	String question_answer = request.getParameter("answer");
+    	int question_answer = Integer.parseInt(request.getParameter("answer"));
     	String example1 = request.getParameter("example1"); 
     	String example2 = request.getParameter("example2");
     	String example3 = request.getParameter("example3");
     	String example4 = request.getParameter("example4");
-    	System.out.println("problem : " + question_content + " example : " + example1 + " , " + example2 + " , " + example3 + " , " + example4 + " , answer : " + question_answer);
+    	System.out.println("course_id : "+course_id+"problem : " + question_content + " example : " + example1 + " , " + example2 + " , " + example3 + " , " + example4 + " , answer : " + question_answer);
     	Map<String, Object> map = new HashMap<String, Object>();
+    	map.put("course_id",course_id);
     	map.put("question_content", question_content);
-    	professorService.insertObjective();
+    	map.put("question_answer", question_answer);
+    	map.put("example1",example1);
+    	map.put("example2",example2);
+    	map.put("example3",example3);
+    	map.put("example4",example4);
+    	professorService.insertObjective(map);
     	return "ok";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/insertSubjective", method=RequestMethod.GET)
+	public String insertSubjective(HttpServletRequest request) throws Exception{
+		String course_id=request.getParameter("course_id");
+		String question_content = request.getParameter("problem");
+		String question_answer = request.getParameter("answer");
+		String question_similar_answer = request.getParameter("like_answer");
+		//list가 안받아짐 시발련
+		System.out.println("course_id : "+course_id+" qusetion_content : "+question_content+" question_answer : "+question_answer + " question_similar_answer : " +question_similar_answer);
+		return "ok";
 	}
 }

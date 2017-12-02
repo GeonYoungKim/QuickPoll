@@ -245,4 +245,8 @@ public class ProfessorService {
 		return courseVoList;
 	
 	}
+	/**°´°ü½Ä insertservice**/
+	public void insertObjective(Map<String,Object>map){
+		professorDao.insertObjective(map);
+	}
 }

@@ -8,7 +8,7 @@ saveQuestion={
 				
 				// 뒤에 '번' 잘라서 보내기.
 				var mul_answer = $('#MultipleChoiceForm').find('select[name="right_answer_required"] option:checked').text();
-				
+				mul_answer = mul_answer.substring(0,1);
 				var mul_data = {
 						problem : mul_problem,
 						example1 : mul_example1,
@@ -24,13 +24,10 @@ saveQuestion={
 					url : "insertObjective",
 					data : mul_data,
 					success : function(data) {
-//						location.href="/professor";
+						alert(data);
+						//location.href="/testmklist";
 					}
 				});
-				
-				
-				
-				
 //				alert(mul_problem+ " " + mul_answer);
 		},
 		essayQuestions : function(){
@@ -45,16 +42,28 @@ saveQuestion={
 				}
 			}
 			var essay_data = {
-					essay_problem :essay_problem,
-					correct_answer : correct_answer,
+					course_id : "cs",
+					problem :essay_problem,
+					answer : correct_answer,
 					like_answer : like_answer
 			}
-			alert(essay_problem+" "+correct_answer+" "+length + " "+like_answer);
+			//alert(essay_problem+" "+correct_answer+" "+length + " "+like_answer);
+		
+			.ajax({
+				type : "GET",
+				url : "insertSubjective",
+				data : essay_data,
+				success : function(data) {
+					alert(data);
+					//location.href="/testmklist";
+				}
+			});
 		},
 		OXQuestions : function(){
 			var ox_problem = $('#OXQuizForm').find('textarea[name="ox_quiz_required"]').val();
 			var ox_answer = $('#OXQuizForm').find('select[name="ox_answer_required"] option:checked').text();
 			var ox_data = {
+					course_id : "cs",
 					ox_problem : ox_problem,
 					ox_answer : ox_answer
 			}

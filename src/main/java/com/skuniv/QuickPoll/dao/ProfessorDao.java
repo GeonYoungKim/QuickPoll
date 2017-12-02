@@ -50,12 +50,16 @@ public class ProfessorDao extends ConnectDB {
 	public void insertCourse(Map<String, Object> map) {	
 		insert("professor.insertCourse", map);
 	}
+	
 	public void insertObjectiveQuestion(Map<String, Object> map) {	
 		insert("professor.insertObjectiveQuestion", map);
 	}
 	public void insertSubjectiveQuestion(Map<String, Object> map) {	
 		insert("professor.insertSubjectiveQuestion", map);
 	}
-	
+	//°´°ü½Ä service
+	public void insertObjective(Map<String, Object> map) {
+		insert("professor.insertObjective",map);
+	}
 	
 }
