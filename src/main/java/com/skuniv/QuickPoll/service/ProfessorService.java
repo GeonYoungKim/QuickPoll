@@ -249,4 +249,7 @@ public class ProfessorService {
 	public void insertObjective(Map<String,Object>map){
 		professorDao.insertObjective(map);
 	}
+	public void insertSubjective(Map<String,Object>map) {
+		professorDao.insertSubjective(map);
+	}
 }

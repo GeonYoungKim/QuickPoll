@@ -209,4 +209,23 @@
 	
 	</insert>
 	
+	<!-- insert 주관식 ky  -->
+	<insert id="insertSubjective" parameterType="hashmap">
+		<![CDATA[
+			INSERT
+				INTO SubjectiveQuestion(
+					course_id,
+					question_content,
+					question_answer,
+					question_similar_answer
+				)
+				VALUES(
+					#{course_id},
+					#{question_content},
+					#{question_answer},
+					#{question_similar_answer}
+				)
+		]]>
+	</insert>
+	
 </mapper>

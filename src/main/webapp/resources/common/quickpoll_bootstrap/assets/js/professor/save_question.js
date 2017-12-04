@@ -47,8 +47,10 @@ saveQuestion={
 					answer : correct_answer,
 					like_answer : like_answer
 			}
-			//alert(essay_problem+" "+correct_answer+" "+length + " "+like_answer);
-		
+			alert("ok");
+			alert(essay_data.problem+" "+essay_data.answer+" "+length + " "+essay_data.like_answer);
+			
+			$
 			.ajax({
 				type : "GET",
 				url : "insertSubjective",
