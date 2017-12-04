@@ -227,5 +227,19 @@
 				)
 		]]>
 	</insert>
-	
+	<insert id="insertOxQuestion" parameterType="hashmap">
+		<![CDATA[
+			INSERT
+				INTO OxQuestion(
+					course_id,
+					question_content,
+					question_answer
+				)
+				VALUES(
+					#{course_id},
+					#{question_content},
+					#{question_answer}
+				)
+		]]>
+	</insert>
 </mapper>

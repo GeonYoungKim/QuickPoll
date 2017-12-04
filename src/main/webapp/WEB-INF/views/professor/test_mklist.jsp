@@ -169,7 +169,7 @@
 										<div class="tab-pane active" id="home">
 
 											<form id="MultipleChoiceForm" class="form-horizontal"
-												method="GET">
+												method="POST">
 
 												<fieldset>
 													<div class="form-group">
@@ -241,7 +241,7 @@
 
 										<div class="tab-pane" id="profile">
 											<form id="EssayQuestionsForm" class="form-horizontal"
-												method="get">
+												method="post">
 
 												<fieldset>
 													<div class="form-group">
@@ -284,7 +284,7 @@
 										</div>
 
 										<div class="tab-pane" id="messages">
-											<form id="OXQuizForm" class="form-horizontal" method="get">
+											<form id="OXQuizForm" class="form-horizontal" method="POST">
 
 												<fieldset>
 													<div class="form-group">
@@ -335,7 +335,7 @@
 	src="resources/common/quickpoll_bootstrap/assets/js/bootstrap.min.js"
 	type="text/javascript"></script>
 <script
-	src="resources/common/quickpoll_bootstrap/assets/js/professor/save_question.js?ver=3" charset="utf-8"></script>
+	src="resources/common/quickpoll_bootstrap/assets/js/professor/save_question.js?ver=2" charset="utf-8"></script>
 
 <!--  Forms Validations Plugin -->
 <script

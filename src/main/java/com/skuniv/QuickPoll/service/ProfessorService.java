@@ -252,4 +252,7 @@ public class ProfessorService {
 	public void insertSubjective(Map<String,Object>map) {
 		professorDao.insertSubjective(map);
 	}
+	public void insertOxQuestion(Map<String,Object>map) {
+		professorDao.insertOxQuestion(map);
+	}
 }

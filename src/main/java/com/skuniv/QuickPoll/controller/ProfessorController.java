@@ -1,6 +1,5 @@
 package com.skuniv.QuickPoll.controller;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,6 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skuniv.QuickPoll.service.ProfessorService;
+
+import model.SaveQuestionVo;
 
 @Controller
 public class ProfessorController {
@@ -96,17 +97,16 @@ public class ProfessorController {
 		
 		return mv;
 	}
-	
 	@ResponseBody
-	@RequestMapping(value="/insertObjective", method = RequestMethod.GET)
-	public String insertObjective(HttpServletRequest request) throws Exception{
-		String course_id=request.getParameter("course_id");
-		String question_content = request.getParameter("problem");
-    	int question_answer = Integer.parseInt(request.getParameter("answer"));
-    	String example1 = request.getParameter("example1"); 
-    	String example2 = request.getParameter("example2");
-    	String example3 = request.getParameter("example3");
-    	String example4 = request.getParameter("example4");
+	@RequestMapping(value="/insertObjective", method = RequestMethod.POST)
+	public String insertObjective(SaveQuestionVo model){
+		String course_id=model.getCourse_id();
+		String question_content = model.getProblem();
+    	int question_answer = Integer.parseInt(model.getAnswer());
+    	String example1 = model.getExample1();
+    	String example2 = model.getExample2();
+    	String example3 = model.getExample3();
+    	String example4 = model.getExample4();
     	System.out.println("course_id : "+course_id+"problem : " + question_content + " example : " + example1 + " , " + example2 + " , " + example3 + " , " + example4 + " , answer : " + question_answer);
     	Map<String, Object> map = new HashMap<String, Object>();
     	map.put("course_id",course_id);
@@ -119,17 +119,21 @@ public class ProfessorController {
     	professorService.insertObjective(map);
     	return "ok";
 	}
-	
 	@ResponseBody
-	@RequestMapping(value="/insertSubjective", method=RequestMethod.GET)
-	public String insertSubjective(HttpServletRequest request) throws Exception{
-		String course_id=request.getParameter("course_id");
-		String question_content = request.getParameter("problem");
-		String question_answer = request.getParameter("answer");
-		String [] answer = request.getParameterValues("like_answer[]");
-		String question_similar_answer = Arrays.toString(answer);
-		//배열을 String으로 변경하면 대괄호도 함께 String으로 변환
-		question_similar_answer = question_similar_answer.substring(1, question_similar_answer.length()-1);
+	@RequestMapping(value="/insertSubjective", method=RequestMethod.POST)
+	public String insertSubjective(SaveQuestionVo model) {
+//		String course_id=request.getParameter("course_id");
+//		String question_content = request.getParameter("problem");
+//		String question_answer = request.getParameter("answer");
+//		String [] answer = request.getParameterValues("like_answer[]");
+//		String question_similar_answer = Arrays.toString(answer);
+//		//배열을 String으로 변경하면 대괄호도 함께 String으로 변환
+//		question_similar_answer = question_similar_answer.substring(1, question_similar_answer.length()-1);
+		String course_id = model.getCourse_id();
+		String question_content = model.getProblem();
+		String question_answer = model.getAnswer();
+		String question_similar_answer = model.getLike_answer();
+		question_similar_answer = question_similar_answer.substring(0, question_similar_answer.length()-1);
 		System.out.println("course_id : "+course_id+" qusetion_content : "+question_content+" question_answer : "+question_answer + " question_similar_answer : " +question_similar_answer);
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("course_id", course_id);
@@ -139,4 +143,19 @@ public class ProfessorController {
 		professorService.insertSubjective(map);
 		return "ok";
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="/insertOX" , method=RequestMethod.POST)
+	public String insertOxQuestion(SaveQuestionVo model) {
+		String course_id = model.getCourse_id();
+		String question_content = model.getProblem();
+		String question_answer = model.getAnswer();
+		System.out.println("course_id : "+ course_id + " question_content : " + question_content + " question_answer : "+ question_answer );
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("course_id", course_id);
+		map.put("question_content",question_content);
+		map.put("question_answer",question_answer);
+		return "ok";
+	}
+
 }

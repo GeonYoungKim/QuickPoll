@@ -63,6 +63,9 @@ public class ProfessorDao extends ConnectDB {
 	}
 	//аж╟Э╫д DAO
 	public void insertSubjective(Map<String,Object> map) {
-		
+		insert("professor.insertSubjective",map);
+	}
+	public void insertOxQuestion(Map<String,Object> map) {
+		insert("professor.insertOxQuestion",map);
 	}
 }

@@ -20,7 +20,7 @@ saveQuestion={
 				}
 				$
 				.ajax({
-					type : "GET",
+					type : "POST",
 					url : "insertObjective",
 					data : mul_data,
 					success : function(data) {
@@ -41,18 +41,23 @@ saveQuestion={
 					like_answer[j]= $('#EssayQuestionsForm').find('input[name="e_like_answer_required'+j+'"]').val();
 				}
 			}
+			
+			var result_like_answer = "";
+			for(var i in like_answer){
+				result_like_answer += like_answer[i]+",";
+			}
 			var essay_data = {
 					course_id : "cs",
 					problem :essay_problem,
 					answer : correct_answer,
-					like_answer : like_answer
+					like_answer : result_like_answer
 			}
 			alert("ok");
 			alert(essay_data.problem+" "+essay_data.answer+" "+length + " "+essay_data.like_answer);
 			
 			$
 			.ajax({
-				type : "GET",
+				type : "POST",
 				url : "insertSubjective",
 				data : essay_data,
 				success : function(data) {
@@ -66,10 +71,19 @@ saveQuestion={
 			var ox_answer = $('#OXQuizForm').find('select[name="ox_answer_required"] option:checked').text();
 			var ox_data = {
 					course_id : "cs",
-					ox_problem : ox_problem,
-					ox_answer : ox_answer
+					problem : ox_problem,
+					answer : ox_answer
 			}
-			
-			alert(ox_problem + " " + ox_answer);
+			$
+			.ajax({
+				type : "POST",
+				url : "insertOX",
+				data : ox_data,
+				success : function(data) {
+					alert(data);
+					//location.href="/testmklist";
+				}
+			});
+			//alert(ox_problem + " " + ox_answer);
 		}
 }
