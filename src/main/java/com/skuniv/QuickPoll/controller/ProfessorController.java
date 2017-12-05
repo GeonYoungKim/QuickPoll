@@ -1,5 +1,7 @@
 package com.skuniv.QuickPoll.controller;
 
+import static org.hamcrest.CoreMatchers.any;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -137,6 +139,20 @@ public class ProfessorController {
 		map.put("question_answer",question_answer);
 		map.put("question_similar_answer",question_similar_answer);
 		professorService.insertSubjective(map);
+		return "ok";
+	}
+	@ResponseBody
+	@RequestMapping(value="/insertOxQuestion", method=RequestMethod.GET)
+	public String insertOxQuestion(HttpServletRequest request){
+		String course_id = request.getParameter("course_id");
+		String question_content = request.getParameter("problem");
+		String question_answer = request.getParameter("answer");
+		System.out.println("course_id : " + course_id + " question_content : "+ question_content+ " question_answer : "+question_answer);
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("course_id", course_id);
+		map.put("question_content", question_content);
+		map.put("question_answer", question_answer);
+		professorService.insertOXQuestion(map);
 		return "ok";
 	}
 }

@@ -66,10 +66,19 @@ saveQuestion={
 			var ox_answer = $('#OXQuizForm').find('select[name="ox_answer_required"] option:checked').text();
 			var ox_data = {
 					course_id : "cs",
-					ox_problem : ox_problem,
-					ox_answer : ox_answer
+					problem : ox_problem,
+					answer : ox_answer
 			}
-			
-			alert(ox_problem + " " + ox_answer);
+			$
+			.ajax({
+				type : "GET",
+				url : "insertOxQuestion",
+				data : ox_data,
+				success : function(data) {
+					alert(data);
+					//location.href="/testmklist";
+				}
+			});
+			//alert(ox_problem + " " + ox_answer);
 		}
 }
