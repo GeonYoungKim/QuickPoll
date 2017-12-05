@@ -252,7 +252,10 @@ public class ProfessorService {
 	public void insertSubjective(Map<String,Object>map) {
 		professorDao.insertSubjective(map);
 	}
-	public void insertOxQuestion(Map<String,Object>map) {
-		professorDao.insertOxQuestion(map);
+	public void insertOXQuestion(Map<String,Object>map) {
+		String s = map.get("question_answer").toString();
+		int question_answer = s.equals("O") ? 1:0;
+		map.put("question_answer", question_answer);
+		professorDao.insertOXQuestion(map);
 	}
 }

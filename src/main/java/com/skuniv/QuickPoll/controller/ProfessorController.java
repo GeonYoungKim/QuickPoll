@@ -145,8 +145,8 @@ public class ProfessorController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/insertOX" , method=RequestMethod.POST)
-	public String insertOxQuestion(SaveQuestionVo model) {
+	@RequestMapping(value="/insertOxQuestion" , method=RequestMethod.POST)
+	public String insertOXQuestion(SaveQuestionVo model) {
 		String course_id = model.getCourse_id();
 		String question_content = model.getProblem();
 		String question_answer = model.getAnswer();
@@ -155,6 +155,7 @@ public class ProfessorController {
 		map.put("course_id", course_id);
 		map.put("question_content",question_content);
 		map.put("question_answer",question_answer);
+		professorService.insertOXQuestion(map);
 		return "ok";
 	}
 

@@ -77,7 +77,7 @@ saveQuestion={
 			$
 			.ajax({
 				type : "POST",
-				url : "insertOX",
+				url : "insertOxQuestion",
 				data : ox_data,
 				success : function(data) {
 					alert(data);

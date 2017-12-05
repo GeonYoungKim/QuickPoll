@@ -227,10 +227,10 @@
 				)
 		]]>
 	</insert>
-	<insert id="insertOxQuestion" parameterType="hashmap">
+	<insert id="insertOXQuestion" parameterType="hashmap">
 		<![CDATA[
 			INSERT
-				INTO OxQuestion(
+				INTO OXQuestion(
 					course_id,
 					question_content,
 					question_answer
