@@ -17,6 +17,7 @@ import com.skuniv.QuickPoll.dao.ProfessorDao;
 
 import model.CourseVo;
 import model.RealCourseVo;
+import model.SaveQuestionVo;
 
 @Service("ProfessorService")
 public class ProfessorService {
@@ -246,16 +247,28 @@ public class ProfessorService {
 	
 	}
 	/**°´°ü½Ä insertservice**/
-	public void insertObjective(Map<String,Object>map){
-		professorDao.insertObjective(map);
+	public void insertObjective(SaveQuestionVo model){
+		objectiveAnswerType(model);
+		professorDao.insertObjective(model);
 	}
-	public void insertSubjective(Map<String,Object>map) {
-		professorDao.insertSubjective(map);
+	public void insertSubjective(SaveQuestionVo model) {
+		subjectiveAnswerType(model);
+		professorDao.insertSubjective(model);
 	}
-	public void insertOXQuestion(Map<String,Object>map) {
-		String s = map.get("question_answer").toString();
-		int question_answer = s.equals("O") ? 1:0;
-		map.put("question_answer", question_answer);
-		professorDao.insertOXQuestion(map);
+	public void insertOXQuestion(SaveQuestionVo model) {
+		oxAnswerType(model);
+		professorDao.insertOXQuestion(model);
+	}
+	public void oxAnswerType(SaveQuestionVo model){
+		String answer = (String)model.getAnswer();
+		model.setAnswer(answer.equals("O") ? 1:0);
+	}
+	public void subjectiveAnswerType(SaveQuestionVo model){
+		String answer = model.getLike_answer();
+		model.setLike_answer(answer.substring(0, answer.length()-1));
+	}
+	public void objectiveAnswerType(SaveQuestionVo model){
+		String answer = (String)model.getAnswer();
+		model.setAnswer(Integer.parseInt(answer));
 	}
 }

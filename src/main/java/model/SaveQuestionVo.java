@@ -5,7 +5,7 @@ package model;
 public class SaveQuestionVo {
 	private String course_id;
 	private String problem;
-	private String answer;
+	private Object answer;
 	private String like_answer;
 	private String example1;
 	private String example2;
@@ -23,10 +23,10 @@ public class SaveQuestionVo {
 	public void setProblem(String problem) {
 		this.problem = problem;
 	}
-	public String getAnswer() {
+	public Object getAnswer() {
 		return answer;
 	}
-	public void setAnswer(String answer) {
+	public void setAnswer(Object answer) {
 		this.answer = answer;
 	}
 	public String getExample1() {

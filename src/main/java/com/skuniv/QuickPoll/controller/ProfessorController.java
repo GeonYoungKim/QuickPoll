@@ -97,50 +97,31 @@ public class ProfessorController {
 		
 		return mv;
 	}
+	
 	@ResponseBody
 	@RequestMapping(value="/insertObjective", method = RequestMethod.POST)
 	public String insertObjective(SaveQuestionVo model){
 		String course_id=model.getCourse_id();
 		String question_content = model.getProblem();
-    	int question_answer = Integer.parseInt(model.getAnswer());
+    	int question_answer = Integer.parseInt((String)model.getAnswer());
     	String example1 = model.getExample1();
     	String example2 = model.getExample2();
     	String example3 = model.getExample3();
     	String example4 = model.getExample4();
     	System.out.println("course_id : "+course_id+"problem : " + question_content + " example : " + example1 + " , " + example2 + " , " + example3 + " , " + example4 + " , answer : " + question_answer);
-    	Map<String, Object> map = new HashMap<String, Object>();
-    	map.put("course_id",course_id);
-    	map.put("question_content", question_content);
-    	map.put("question_answer", question_answer);
-    	map.put("example1",example1);
-    	map.put("example2",example2);
-    	map.put("example3",example3);
-    	map.put("example4",example4);
-    	professorService.insertObjective(map);
+    	professorService.insertObjective(model);
     	return "ok";
 	}
 	@ResponseBody
 	@RequestMapping(value="/insertSubjective", method=RequestMethod.POST)
 	public String insertSubjective(SaveQuestionVo model) {
-//		String course_id=request.getParameter("course_id");
-//		String question_content = request.getParameter("problem");
-//		String question_answer = request.getParameter("answer");
-//		String [] answer = request.getParameterValues("like_answer[]");
-//		String question_similar_answer = Arrays.toString(answer);
-//		//배열을 String으로 변경하면 대괄호도 함께 String으로 변환
-//		question_similar_answer = question_similar_answer.substring(1, question_similar_answer.length()-1);
 		String course_id = model.getCourse_id();
 		String question_content = model.getProblem();
-		String question_answer = model.getAnswer();
+		String question_answer = (String)model.getAnswer();
 		String question_similar_answer = model.getLike_answer();
 		question_similar_answer = question_similar_answer.substring(0, question_similar_answer.length()-1);
 		System.out.println("course_id : "+course_id+" qusetion_content : "+question_content+" question_answer : "+question_answer + " question_similar_answer : " +question_similar_answer);
-		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("course_id", course_id);
-		map.put("question_content", question_content);
-		map.put("question_answer",question_answer);
-		map.put("question_similar_answer",question_similar_answer);
-		professorService.insertSubjective(map);
+		professorService.insertSubjective(model);
 		return "ok";
 	}
 	
@@ -149,13 +130,9 @@ public class ProfessorController {
 	public String insertOXQuestion(SaveQuestionVo model) {
 		String course_id = model.getCourse_id();
 		String question_content = model.getProblem();
-		String question_answer = model.getAnswer();
+		String question_answer = (String)model.getAnswer();
 		System.out.println("course_id : "+ course_id + " question_content : " + question_content + " question_answer : "+ question_answer );
-		Map<String,Object> map = new HashMap<String, Object>();
-		map.put("course_id", course_id);
-		map.put("question_content",question_content);
-		map.put("question_answer",question_answer);
-		professorService.insertOXQuestion(map);
+		professorService.insertOXQuestion(model);
 		return "ok";
 	}
 

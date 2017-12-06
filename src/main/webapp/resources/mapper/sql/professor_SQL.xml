@@ -184,7 +184,7 @@
 		]]>
 	</insert>
 	<!-- insert 객관식 ky -->
-	<insert id="insertObjective" parameterType="hashmap">
+	<insert id="insertObjective" parameterType="model.SaveQuestionVo">
 		<![CDATA[
 			INSERT
 				INTO ObjectiveQuestion(
@@ -198,8 +198,8 @@
 				)
 				VALUES(
 					#{course_id},
-					#{question_content},
-					#{question_answer},
+					#{problem},
+					#{answer},
 					#{example1},
 					#{example2},
 					#{example3},
@@ -210,7 +210,7 @@
 	</insert>
 	
 	<!-- insert 주관식 ky  -->
-	<insert id="insertSubjective" parameterType="hashmap">
+	<insert id="insertSubjective" parameterType="model.SaveQuestionVo">
 		<![CDATA[
 			INSERT
 				INTO SubjectiveQuestion(
@@ -221,13 +221,13 @@
 				)
 				VALUES(
 					#{course_id},
-					#{question_content},
-					#{question_answer},
-					#{question_similar_answer}
+					#{problem},
+					#{answer},
+					#{like_answer}
 				)
 		]]>
 	</insert>
-	<insert id="insertOXQuestion" parameterType="hashmap">
+	<insert id="insertOXQuestion" parameterType="model.SaveQuestionVo">
 		<![CDATA[
 			INSERT
 				INTO OXQuestion(
@@ -237,8 +237,8 @@
 				)
 				VALUES(
 					#{course_id},
-					#{question_content},
-					#{question_answer}
+					#{problem},
+					#{answer}
 				)
 		]]>
 	</insert>

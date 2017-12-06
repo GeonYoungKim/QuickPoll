@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 
 import com.skuniv.QuickPoll.connect.ConnectDB;
 
+import model.SaveQuestionVo;
+
 @SuppressWarnings("unchecked")
 @Repository("ProfessorDao")
 public class ProfessorDao extends ConnectDB {
@@ -58,14 +60,14 @@ public class ProfessorDao extends ConnectDB {
 		insert("professor.insertSubjectiveQuestion", map);
 	}
 	//按包侥 Dao
-	public void insertObjective(Map<String, Object> map) {
-		insert("professor.insertObjective",map);
+	public void insertObjective(SaveQuestionVo model) {
+		insert("professor.insertObjective",model);
 	}
 	//林包侥 DAO
-	public void insertSubjective(Map<String,Object> map) {
-		insert("professor.insertSubjective",map);
+	public void insertSubjective(SaveQuestionVo model) {
+		insert("professor.insertSubjective",model);
 	}
-	public void insertOXQuestion(Map<String,Object> map) {
-		insert("professor.insertOXQuestion",map);
+	public void insertOXQuestion(SaveQuestionVo model) {
+		insert("professor.insertOXQuestion",model);
 	}
 }
