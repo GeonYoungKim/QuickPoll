@@ -40,7 +40,9 @@ public class StudentService {
 		return studentDao.selectObjectiveQuickPollList(course_id);
 	}
 	public List<LinkedHashMap<String, Object>> selectSubjectiveQuickPollList(String course_id) throws Exception {
+		String s;
 		return studentDao.selectSubjectiveQuickPollList(course_id);
+		
 	}
 //	public List<LinkedHashMap<String, Object>> groupByCourseName(List<LinkedHashMap<String, Object>> enrollList) {
 //		for (int i = 0; i < enrollList.size(); i++) {
