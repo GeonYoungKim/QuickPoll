@@ -1,5 +1,4 @@
 loginJS = {
-
 	loginCheck : function() {
 		var input_id = $('#id').val();
 		var input_pwd = $('#password').val();
@@ -14,8 +13,6 @@ loginJS = {
 					data : query,
 					dataType : "json",
 					success : function(json) {
-						
-						alert(json.loginState);
 						if (json.loginState) {
 							location.href = "lectureList?id="+json.id+"";
 						} else {

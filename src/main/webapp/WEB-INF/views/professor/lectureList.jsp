@@ -45,6 +45,7 @@
 <link
 	href="resources/common/quickpoll_bootstrap/assets/css/themify-icons.css"
 	rel="stylesheet">
+	
 </head>
 <body>
 	<div class="wrapper">
@@ -81,13 +82,15 @@
 					</div>
 				</div>
 				<ul class="nav">
-					<li class="active"><a href="lectureList?id=${professorInfo[0].professor_id}"> <i
+					<li class="active"><a
+						href="lectureList?id=${professorInfo[0].professor_id}"> <i
 							class="ti-view-list-alt"></i>
 							<p>강의 목록</p>
 					</a></li>
-					<li><a href="menteeList?id=${professorInfo[0].professor_id}">
-							<i class="ti-clipboard"></i>
-							<p>멘티 목록</p>
+					
+					<li><a href="uploadAttendance?id=${professorInfo[0].professor_id}"">
+							 <i class="ti-clipboard"></i>
+							<p>출석 등록</p>
 					</a></li>
 
 				</ul>
@@ -148,63 +151,77 @@
 				</div>
 			</nav>
 			<div class="content">
-	            <div class="container-fluid">
-	                <div class="row">
-	                    <div class="col-md-12">
-	                        <div class="card">
-	                            <div class="header">
-	                                <h4 class="title">과목 List</h4>
-	                                <p class="category">각 과목 보기에서 선택해 주세요.</p>
-	                            </div>
-	                            <div class="content">
-	    	                       <div id="acordeon">
-	    	                           <div class="panel-grou p" id="accordion">
-	    	                           
-	    	                           <c:choose>
-											<c:when
-												test="${fn:length(courseListInfo) > 0}">
-												<c:forEach items="${courseListInfo}"
-													var="row" varStatus="status">
-													<div class="panel panel-border panel-default">
-		    	                                <a data-toggle="collapse" href="#lecture_${status.count}">
-		    	                                    <div class="panel-heading">
-		    	                                        <h4 class="panel-title">
-		    	                                        	    ${row.course_name} &emsp;  ${row.dayWithPeroid}                             	
-		    	                                        	<i class="ti-angle-down"></i>
-		    	                                        </h4>
-		    	                                    </div>
-		    	                                </a>
-		    	                                <div id="lecture_${status.count}" class="panel-collapse collapse">
-		    	                                	<div class="panel-body">
-		    	                                    	<ul class="nav">
-															<li><a href="quickpollList?id=${professorInfo[0].professor_id}&course_id=${row.course_id}">1. 퀵폴보기</a></li>
-															<li><a href="professorLecture?id=${professorInfo[0].professor_id}&course_id=${row.course_id}">2. 퀵폴만들기</a></li>
-															<li><a href="participationRate?id=${professorInfo[0].professor_id}&course_id=${row.course_id}">3. 참여도</a></li>
-															<%-- <input type="hidden" id="course_id_${status.count}" value="${row.course_id}"> --%>
-															<%-- <input type="hidden" id="course_period_${status.count}" value="${row.period}"> --%>
-															<input type="hidden" id="course_credit_${status.count}" value="${row.credit}">
-															<input type="hidden" id="course_professor_id_${status.count}" value="${row.professor_id}">
-														</ul>    	
-		    	                                    </div>
-		    	                                </div>
-	    	                                </div>
-												</c:forEach>
-											</c:when>
-											<c:otherwise>
-												<!-- 데이터 없을 경우 -->
-											</c:otherwise>
-										</c:choose>
-	    	                                
-	    	                                
-	    	                               
-	    	                            </div>
-	    	                        </div><!--  end acordeon -->
-	                            </div>
-	                        </div>
-	                    </div>
-	                </div>
-	            </div>
-	    	</div>
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="header">
+									<h4 class="title">과목 List</h4>
+									<p class="category">각 과목 보기에서 선택해 주세요.</p>
+								</div>
+								<div class="content">
+									<div id="acordeon">
+										<div class="panel-grou p" id="accordion">
+
+											<c:choose>
+												<c:when test="${fn:length(courseListInfo) > 0}">
+													<c:forEach items="${courseListInfo}" var="row"
+														varStatus="status">
+														<div class="panel panel-border panel-default">
+															<a data-toggle="collapse" href="#lecture_${status.count}">
+																<div class="panel-heading">
+																	<h4 class="panel-title">
+																		${row.course_name} &emsp; ${row.dayWithPeroid} <i
+																			class="ti-angle-down"></i>
+																	</h4>
+																</div>
+															</a>
+															<div id="lecture_${status.count}"
+																class="panel-collapse collapse">
+																<div class="panel-body">
+																	<ul class="nav">
+																		<li><a
+																			href="quickpollList?id=${professorInfo[0].professor_id}&course_id=${row.course_id}">1.
+																				퀵폴보기</a></li>
+																		<li><a
+																			href="professorLecture?id=${professorInfo[0].professor_id}&course_id=${row.course_id}">2.
+																				퀵폴만들기</a></li>
+																		<li><a
+																			href="participationRate?id=${professorInfo[0].professor_id}&course_id=${row.course_id}">3.
+																				참여도</a></li>
+																		<li><a
+																			href="attendance?id=${professorInfo[0].professor_id}&course_id=${row.course_id}&professor_id=${professorInfo[0].professor_id}">4.
+																				출석부</a></li>
+																		<%-- <input type="hidden" id="course_id_${status.count}" value="${row.course_id}"> --%>
+																		<%-- <input type="hidden" id="course_period_${status.count}" value="${row.period}"> --%>
+																		<input type="hidden"
+																			id="course_credit_${status.count}"
+																			value="${row.credit}">
+																		<input type="hidden"
+																			id="course_professor_id_${status.count}"
+																			value="${row.professor_id}">
+																	</ul>
+																</div>
+															</div>
+														</div>
+													</c:forEach>
+												</c:when>
+												<c:otherwise>
+													<!-- 데이터 없을 경우 -->
+												</c:otherwise>
+											</c:choose>
+
+
+
+										</div>
+									</div>
+									<!--  end acordeon -->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
 			<footer class="footer">
 				<div class="container-fluid">
@@ -307,7 +324,7 @@
 
 <!-- Paper Dashboard PRO DEMO methods, don't include it in your project! -->
 <script src="resources/common/quickpoll_bootstrap/assets/js/demo.js"></script>
-
+<script src="resources/common/quickpoll_bootstrap/assets/js/professor/userdata.js?ver=2" charset="utf-8"></script>
 <script type="text/javascript">
 	var $table = $('#bootstrap-table');
 
