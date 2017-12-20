@@ -174,7 +174,6 @@ $('#question_content').html(watting_html);
 		success : function(json) {
 			var list = json.resultListForSubjectiveQuestion;
 			var answer_count = 0;
-			alert(list.totalPeople);
 			var connected_people = list.totalPeople;
 			$("#subjective_question_content").html('<h4 id="subjective_question_content" class="panel-title">'+
 					'<span style="visibility: hidden" class="ti-check"></span>'+

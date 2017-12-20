@@ -1,5 +1,6 @@
 package com.skuniv.QuickPoll.dao;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,6 +43,9 @@ public class ProfessorDao extends ConnectDB {
 	public List<LinkedHashMap<String, Object>>selectSubjectiveQuickPollList(String course_id) {
 		return (List<LinkedHashMap<String, Object>>)selectList("professor.selectSubjectiveQuickPollList", course_id);
 	}
+	public List<LinkedHashMap<String, Object>>selectAttendance(String course_id) {
+		return (List<LinkedHashMap<String, Object>>)selectList("professor.selectAttendance", course_id);
+	}
 	public List<LinkedHashMap<String, Object>> selectAnswerListForCourse(String course_id) {
 		return (List<LinkedHashMap<String, Object>>)selectList("professor.selectAnswerListForCourse", course_id);
 	}
@@ -59,6 +63,7 @@ public class ProfessorDao extends ConnectDB {
 	public void insertSubjectiveQuestion(Map<String, Object> map) {	
 		insert("professor.insertSubjectiveQuestion", map);
 	}
+
 	//°´°ü½Ä Dao
 	public void insertObjective(SaveQuestionVo model) {
 		insert("professor.insertObjective",model);
@@ -70,4 +75,9 @@ public class ProfessorDao extends ConnectDB {
 	public void insertOXQuestion(SaveQuestionVo model) {
 		insert("professor.insertOXQuestion",model);
 	}
+
+	public void insertEnroll(Map<String, Object> map) {	
+		insert("professor.insertEnroll", map);
+	}
+	
 }

@@ -2,8 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="professor">
-	
-	<select id="selectProfessorPassword" resultType="String" parameterType="Integer">
+
+	<select id="selectProfessorPassword" resultType="String"
+		parameterType="Integer">
 		<![CDATA[
 			SELECT
 			    password
@@ -13,7 +14,8 @@
 				professor_id = #{professor_id}
 		]]>
 	</select>
-	<select id="selectProfessorList" resultType="hashmap" parameterType="Integer">
+	<select id="selectProfessorList" resultType="hashmap"
+		parameterType="Integer">
 		<![CDATA[
 			SELECT
 			    *
@@ -23,7 +25,8 @@
 				professor_id = #{professor_id}
 		]]>
 	</select>
-	<select id="selectMenteeList" resultType="hashmap" parameterType="Integer">
+	<select id="selectMenteeList" resultType="hashmap"
+		parameterType="Integer">
 		<![CDATA[
 			SELECT
 			    *
@@ -33,7 +36,8 @@
 				professor_id = #{professor_id}
 		]]>
 	</select>
-	<select id="selectObjectiveQuestionList" resultType="java.util.LinkedHashMap" parameterType="String">
+	<select id="selectObjectiveQuestionList" resultType="java.util.LinkedHashMap"
+		parameterType="String">
 		<![CDATA[
 			SELECT
 			    *
@@ -43,7 +47,8 @@
 				course_id = #{course_id}
 		]]>
 	</select>
-	<select id="selectSubjectiveQuestionList" resultType="java.util.LinkedHashMap" parameterType="String">
+	<select id="selectSubjectiveQuestionList" resultType="java.util.LinkedHashMap"
+		parameterType="String">
 		<![CDATA[
 			SELECT
 			    *
@@ -53,7 +58,19 @@
 				course_id = #{course_id}
 		]]>
 	</select>
-	<select id="selectObjectiveQuickPollList" resultType="java.util.LinkedHashMap" parameterType="String">
+	<select id="selectAttendance" resultType="java.util.LinkedHashMap"
+		parameterType="String">
+		<![CDATA[
+			SELECT
+			    *
+			FROM
+			    enroll
+			WHERE
+				course_id = #{course_id}
+		]]>
+	</select>
+	<select id="selectObjectiveQuickPollList" resultType="java.util.LinkedHashMap"
+		parameterType="String">
 		<![CDATA[
 			SELECT
 			    o.example1, o.example2, o.example3, o.example4, o.question_answer, q.*
@@ -63,7 +80,8 @@
 				q.question_type = 2 AND q.course_id = #{course_id} AND q.question_id = o.objective_question_id
 		]]>
 	</select>
-	<select id="selectSubjectiveQuickPollList" resultType="java.util.LinkedHashMap" parameterType="String">
+	<select id="selectSubjectiveQuickPollList" resultType="java.util.LinkedHashMap"
+		parameterType="String">
 		<![CDATA[
 			SELECT
 			    s.question_answer, q.*
@@ -73,7 +91,8 @@
 				q.question_type = 3 AND q.course_id = #{course_id} AND q.question_id = s.subjective_question_id
 		]]>
 	</select>
-	<select id="selectResultListForQuickPollAnswer" resultType="hashmap" parameterType="Integer">
+	<select id="selectResultListForQuickPollAnswer" resultType="hashmap"
+		parameterType="Integer">
 		<![CDATA[
 			SELECT
 			    *
@@ -82,8 +101,9 @@
 			WHERE
 				quickpoll_question_id = #{quickpoll_question_id}
 		]]>
-	</select> 
-	<select id="selectCourseList" resultType="java.util.LinkedHashMap" parameterType="Integer">
+	</select>
+	<select id="selectCourseList" resultType="java.util.LinkedHashMap"
+		parameterType="Integer">
 		<![CDATA[
 			SELECT
 			    *
@@ -93,7 +113,8 @@
 				professor_id = #{professor_id} 
 		]]>
 	</select>
-	<select id="selectAnswerListForCourse" resultType="java.util.LinkedHashMap" parameterType="String">
+	<select id="selectAnswerListForCourse" resultType="java.util.LinkedHashMap"
+		parameterType="String">
 		<![CDATA[
 			SELECT
 				 * 
@@ -109,7 +130,8 @@
 			
 		]]>
 	</select>
-	<select id="selectCountForQuestion" resultType="Integer" parameterType="String">
+	<select id="selectCountForQuestion" resultType="Integer"
+		parameterType="String">
 		<![CDATA[
 			SELECT 
 				count(quickpoll_question_id) 
@@ -183,6 +205,7 @@
 			    
 		]]>
 	</insert>
+
 	<!-- insert 객관식 ky -->
 	<insert id="insertObjective" parameterType="model.SaveQuestionVo">
 		<![CDATA[
@@ -241,5 +264,25 @@
 					#{answer}
 				)
 		]]>
+	</insert>
+	<insert id="insertEnroll" parameterType="java.util.HashMap">
+		INSERT
+		INTO enroll(
+		course_id,
+		student_id,
+		serial_number,
+		seat_number,
+		name
+		)
+		VALUES
+		<foreach collection="list" item="item" separator=",">
+			(
+			#{item.course_id},
+			#{item.student_id},
+			#{item.serial_number},
+			#{item.seat_number},
+			#{item.name}
+			)
+		</foreach>
 	</insert>
 </mapper>
